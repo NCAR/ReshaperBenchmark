@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Usually need gcc to build PyNIO
+export CC=gcc
+export FC=gfortran
+
+# Set for convenience (to build PyNIO):
+#export F2CLIBS=gfortran
+#export F2CLIBS_PREFIX=/dir/containing/libgfortran/
+
+# Append directories to PATH or LD_LIBRARY_PATH, if necessary
+CWD=`pwd`
+NEEDS_BINDIR=`echo $PATH | grep -q "$CWD/bin"; echo $?`
+if [ $NEEDS_BINDIR -ne 0 ]; then
+	export PATH=$CWD/bin:$PATH
+fi
+
+NEEDS_LIBDIR=`echo $LD_LIBRARY_PATH | grep -q "$CWD/lib"; echo $?`
+if [ $NEEDS_LIBDIR -ne 0 ]; then
+	export LD_LIBRARY_PATH=$CWD/lib:$LD_LIBRARY_PATH
+fi
