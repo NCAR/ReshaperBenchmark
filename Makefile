@@ -31,6 +31,9 @@ endif
 
 all: pyreshaper
 
+test: pyreshaper
+	echo
+
 pyreshaper: build asaptools netcdf4python
 	@HAS_PYRESHAPER=`source $(PREFIX)/venv/bin/activate && python -c "import pyreshaper" 2> /dev/null; echo $$?`; \
 	if [ $$HAS_PYRESHAPER -ne 0 ]; then \
