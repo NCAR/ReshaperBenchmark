@@ -10,8 +10,8 @@ as an agent for your company, institution or other entity) (collectively, "you" 
 Corporation for Atmospheric Research ("UCAR").
 
 1. **License Grant to Technology.** UCAR grants to Licensee a restricted, royalty-free, perpetual, nonexclusive, 
-   nontransferable, noncommercial license to copy, modify, enhance, improve and use the NCAR ASAPBenchmarkTools code set for 
-   configuring and building the NCAR/UCAR ASAP group's benchmarking suite on various systems (**Technology**) 
+   nontransferable, noncommercial license to copy, modify, enhance, improve and use the NCAR ReshaperBenchmark code set for 
+   configuring, building, and running the NCAR/UCAR PyReshaper benchmarking suite on various systems (**Technology**) 
    for research purposes and for collaborating with UCAR only; provided, however, that Licensee does not commercialize, 
    sell, license, distribute, or transfer the Technology, or any work that contains the Technology. Licensee may freely 
    use the data and results from the Technology. Licensee shall note in all publications of data or results that this 
