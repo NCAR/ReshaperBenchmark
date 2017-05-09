@@ -2,11 +2,6 @@
 
 # Usually need gcc to build PyNIO
 export CC=gcc
-export FC=gfortran
-
-# Set for convenience (to build PyNIO):
-#export F2CLIBS=gfortran
-#export F2CLIBS_PREFIX=/dir/containing/libgfortran/
 
 # Append directories to PATH or LD_LIBRARY_PATH, if necessary
 CWD=`pwd`
