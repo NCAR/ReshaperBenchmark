@@ -25,9 +25,9 @@ def commalist(arg):
 #===================================================================================================
 __PARSER__ = ArgumentParser(description='Generate time-slice files for PyReshaper testing')
 __PARSER__.add_argument('-d', '--dimensions', type=commalist, metavar='SIZE[,SIZE[,SIZE[...]]]',
-                        default=[10,100,100,100], help='Size of dimensions')
+                        default=(10,100,100,100), help='Size of dimensions')
 __PARSER__.add_argument('-v', '--variables', type=commalist, metavar='SIZE[,SIZE[,SIZE[...]]]',
-                        default=[5,10,15,20], help='Number of variables of each dimension size')
+                        default=(5,10,15,20), help='Number of variables of each dimension size')
 
 
 #===================================================================================================
