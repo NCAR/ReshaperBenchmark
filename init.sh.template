@@ -1,4 +1,6 @@
 #!/bin/sh
+# COPYRIGHT 2017, University Corporation for Atmospheric Research
+
 
 # Usually need gcc to build PyNIO
 export CC=gcc

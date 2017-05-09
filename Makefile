@@ -2,6 +2,7 @@
 #
 #  Makefile for ASAP Benchmark Utilities: Externals-Source Level
 #
+# COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
 
 export PREFIX := $(abspath .)
