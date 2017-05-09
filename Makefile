@@ -233,7 +233,7 @@ hdf5: build szip zlib
 		if [ ! -d $(HDF5) ]; then \
 			tar -xmzf ../src/$(HDF5).tar.gz && \
 			cd $(HDF5) && \
-			./configure --prefix=$(PREFIX) --with-zlib=$(PREFIX) --with-szip=$(PREFIX); \
+			./configure --prefix=$(PREFIX) --with-zlib=$(PREFIX) --with-szlib=$(PREFIX); \
 			cd ..; \
 		fi; \
 		cd $(HDF5) && \
