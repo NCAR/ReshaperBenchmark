@@ -211,7 +211,7 @@ netcdf:	build hdf5
 			tar -xmzf ../src/$(NETCDF).tar.gz && \
 			cd $(NETCDF) && \
 			CPPFLAGS=-I$(PREFIX)/include LDFLAGS=-L$(PREFIX)/lib \
-			./configure --enable-netcdf-4 --with-hdf5=$(PREFIX) --prefix=$(PREFIX) --disable-dap; \
+			./configure --enable-netcdf-4 --prefix=$(PREFIX) --disable-dap; \
 			cd ..; \
 		fi; \
 		cd $(NETCDF) && \
