@@ -7,41 +7,76 @@ See the LICENSE.rst file for details
 """
 
 from argparse import ArgumentParser, ArgumentTypeError
-
-#===================================================================================================
-# commalist
-#===================================================================================================
-def commalist(arg):
-    try:
-        name, size_str = arg.split(',')
-        size = int(size_str)
-    except:
-        raise ArgumentTypeError("Dimensions must be formatted as 'NAME,SIZE'")
-    return name, size
+from itertools import permutations
 
 
 #===================================================================================================
 # Argument Parser
 #===================================================================================================
 __PARSER__ = ArgumentParser(description='Generate time-slice files for PyReshaper testing')
-__PARSER__.add_argument('-d', '--dimensions', type=commalist, metavar='SIZE[,SIZE[,SIZE[...]]]',
-                        default=(10,100,100,100), help='Size of dimensions')
-__PARSER__.add_argument('-v', '--variables', type=commalist, metavar='SIZE[,SIZE[,SIZE[...]]]',
-                        default=(5,10,15,20), help='Number of variables of each dimension size')
+__PARSER__.add_argument('-d', '--dimensions', metavar='SIZE[,SIZE[,SIZE[...]]]',
+                        help='Size of dimensions to be written to files')
+__PARSER__.add_argument('-v', '--variables', action='append', metavar='NUM[,DIM[,DIM[...]]]',
+                        help='Number of variables of a given dimensionality')
 
 
 #===================================================================================================
 # Commond-Line Interface
 #===================================================================================================
 def cli(argv=None):
-    return __PARSER__.parse_args(argv)
+    args = __PARSER__.parse_args(argv)
+    
+    if args.dimensions is None:
+        dimensions = {'0': 10, '1': 1000}
+    elif args.dimensions == '':
+        raise ArgumentTypeError('Dimensions must be specified as a '
+                                'comma-separated list of integers')
+    else:
+        try:
+            dimensions = {str(i):int(s) for i,s in enumerate(args.dimensions.split(','))}
+        except:
+            raise ArgumentTypeError('Dimensions must be specified as a '
+                                    'comma-separated list of integers')
+    
+    if args.variables is None:
+        dims = sorted(dimensions)
+        variables = {}
+        n = 0
+        for i in range(len(dims)):
+            for vdims in permutations(dims, i+1):
+                vname = 'v{}'.format(n)
+                variables[vname] = tuple(vdims)
+                n += 1
+    elif args.variables == '':
+        raise ArgumentTypeError('Variables must be specified as a '
+                                'comma-separated list of integers')
+    else:
+        try:
+            n = 0
+            variables = {}
+            for varg in args.variables:
+                vtype = varg.split(',')
+                vnum = int(vtype[0])
+                vdims = tuple(d for d in vtype[1:] if d in dimensions)
+                for i in range(vnum):
+                    vname = 'v{}'.format(n)
+                    variables[vname] = vdims
+                    n += 1
+        except:
+            raise ArgumentTypeError('Variables must be specified as a '
+                                    'comma-separated list of integers')
+        
+    return dimensions, variables
 
 
 #===================================================================================================
 # main
 #===================================================================================================
 def main(argv=None):
-    args = cli(argv)
+    dimensions, variables = cli(argv)
+    
+    print dimensions
+    print variables
 
 
 #===================================================================================================
