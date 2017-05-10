@@ -8,6 +8,9 @@ See the LICENSE.rst file for details
 
 from argparse import ArgumentParser, ArgumentTypeError
 from itertools import permutations
+from netCDF4 import Dataset
+from numpy import arange
+from numpy.random import random_sample
 
 
 #===================================================================================================
@@ -16,6 +19,8 @@ from itertools import permutations
 __PARSER__ = ArgumentParser(description='Generate time-slice files for PyReshaper testing')
 __PARSER__.add_argument('-d', '--dimensions', metavar='SIZE[,SIZE[,SIZE[...]]]',
                         help='Size of dimensions to be written to files')
+__PARSER__.add_argument('-n', '--numslices', metavar='NUMBER', default=100, type=int,
+                        help='Number of time-slice files to write')
 __PARSER__.add_argument('-v', '--variables', action='append', metavar='NUM[,DIM[,DIM[...]]]',
                         help='Number of variables of a given dimensionality')
 
@@ -66,17 +71,47 @@ def cli(argv=None):
             raise ArgumentTypeError('Variables must be specified as a '
                                     'comma-separated list of integers')
         
-    return dimensions, variables
+    return dimensions, variables, args.numslices
 
 
 #===================================================================================================
 # main
 #===================================================================================================
 def main(argv=None):
-    dimensions, variables = cli(argv)
+    dimensions, variables, numslices = cli(argv)
     
-    print dimensions
-    print variables
+    for nslice in xrange(numslices):
+        fname = 'slice.{}.nc'.format(nslice)
+        with Dataset(fname, 'w') as fobj:
+            fobj.setncattr('file', fname)
+            fobj.setncattr('slice', str(nslice))
+            
+            for dname in dimensions:
+                if dname == '0':
+                    fobj.createDimension(dname)
+                else:
+                    fobj.createDimension(dname, dimensions[dname])
+
+            vobjs = {}
+            for vname in variables:
+                vdims = variables[vname]
+                vtype = 'f' if len(vdims) > 1 else 'd'
+                vobj = fobj.createVariable(vname, vtype, vdims)
+                vobj.setncattr('units', '1')
+                vobj.setncattr('comment', 'Variable {}'.format(vname))
+                vobjs[vname] = vobj
+
+            for vname in vobjs:
+                vobj = vobjs[vname]
+                ndims = len(vobj.dimensions)
+                if ndims == 0:
+                    vobj[:] = 1.0
+                elif ndims == 1:
+                    vobj[:] = arange(dimensions[vobj.dimensions['0']], dtype='f')
+                else:
+                    shape = tuple(dimensions[d] for d in vobj.dimensions)
+                    vobj[:] = random_sample(shape)
+                    
 
 
 #===================================================================================================
