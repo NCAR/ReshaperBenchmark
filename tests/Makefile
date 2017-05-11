@@ -30,10 +30,10 @@ default: all
 
 all: small	
 
-.PHONY:	small
+.PHONY:	small logdir
 
-logs:
+logdir:
 	@mkdir -p $(PREFIX)/logs
 
-small: logs
+small: logdir
 	@$(MAKE) -C small

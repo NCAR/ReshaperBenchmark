@@ -14,6 +14,7 @@ from numpy.random import random_sample
 from os.path import isdir, isfile, join
 from os import makedirs
 from asaptools import simplecomm
+from sys import path
 
 
 #===================================================================================================

@@ -7,6 +7,11 @@ from glob import glob
 from os import environ, getcwd
 from os.path import join as joinpath, basename
 from time import strftime
+from sys import path
+
+print 'Path:'
+for p in path:
+    print '   {}'.format(p)
 
 TESTNAME = basename(getcwd())
 
