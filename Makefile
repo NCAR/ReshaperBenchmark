@@ -11,7 +11,7 @@ export PYTHONVER := $(shell python -c "import sys; print 'python{0}.{1}'.format(
 
 all: build
 
-.PHONY: build cleanbuild cleanbuildall cleantestdata list tests
+.PHONY: build cleanbuild cleanbuildall cleantests cleantestdata list tests
 
 tests:
 	@IS_BUILT=`source $(PREFIX)/venv/bin/activate && python -c "import pyreshaper" 2> /dev/null; echo $$?`; \
@@ -42,3 +42,5 @@ cleanbuildall: cleanbuild
 cleantestdata:
 	rm -rf $(PREFIX)/tests/*/input $(PREFIX)/tests/*/output
 
+cleantests: cleantestdata
+	rm -rf $(PREFIX)/tests/*/*.log
