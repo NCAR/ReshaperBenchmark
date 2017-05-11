@@ -22,7 +22,7 @@ ifndef DEFLATE
 endif
 
 export HOSTNAME := $(shell hostname -s)
-export EXECRUN := $(PREFIX)/sbin/exec-run.sh $(PREFIX)/sbin/runtest.py
+export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py
 export ACTIVATE := source $(PREFIX)/venv/bin/activate
 
 default: all
