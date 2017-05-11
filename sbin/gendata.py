@@ -11,6 +11,8 @@ from itertools import permutations
 from netCDF4 import Dataset
 from numpy import arange
 from numpy.random import random_sample
+from os.path import isdir, isfile, join
+from os import makedirs
 
 
 #===================================================================================================
@@ -21,6 +23,8 @@ __PARSER__.add_argument('-d', '--dimensions', metavar='SIZE[,SIZE[,SIZE[...]]]',
                         help='Size of dimensions to be written to files')
 __PARSER__.add_argument('-n', '--numslices', metavar='NUMBER', default=100, type=int,
                         help='Number of time-slice files to write')
+__PARSER__.add_argument('-o', '--outdir', metavar='DIR', default='slices',
+                        help='Directory where time-slice files should be written')
 __PARSER__.add_argument('-v', '--variables', action='append', metavar='NUM[,DIM[,DIM[...]]]',
                         help='Number of variables of a given dimensionality')
 
@@ -32,25 +36,25 @@ def cli(argv=None):
     args = __PARSER__.parse_args(argv)
     
     if args.dimensions is None:
-        dimensions = {'0': 10, '1': 1000}
+        args.dimensions = {'0': 10, '1': 1000}
     elif args.dimensions == '':
         raise ArgumentTypeError('Dimensions must be specified as a '
                                 'comma-separated list of integers')
     else:
         try:
-            dimensions = {str(i):int(s) for i,s in enumerate(args.dimensions.split(','))}
+            args.dimensions = {str(i):int(s) for i,s in enumerate(args.dimensions.split(','))}
         except:
             raise ArgumentTypeError('Dimensions must be specified as a '
                                     'comma-separated list of integers')
     
     if args.variables is None:
-        dims = sorted(dimensions)
-        variables = {}
+        dims = sorted(args.dimensions)
+        args.variables = {}
         n = 0
         for i in range(len(dims)):
             for vdims in permutations(dims, i+1):
                 vname = 'v{}'.format(n)
-                variables[vname] = tuple(vdims)
+                args.variables[vname] = tuple(vdims)
                 n += 1
     elif args.variables == '':
         raise ArgumentTypeError('Variables must be specified as a '
@@ -58,30 +62,42 @@ def cli(argv=None):
     else:
         try:
             n = 0
-            variables = {}
+            args.variables = {}
             for varg in args.variables:
                 vtype = varg.split(',')
                 vnum = int(vtype[0])
-                vdims = tuple(d for d in vtype[1:] if d in dimensions)
+                vdims = tuple(d for d in vtype[1:] if d in args.dimensions)
                 for i in range(vnum):
                     vname = 'v{}'.format(n)
-                    variables[vname] = vdims
+                    args.variables[vname] = vdims
                     n += 1
         except:
             raise ArgumentTypeError('Variables must be specified as a '
                                     'comma-separated list of integers')
         
-    return dimensions, variables, args.numslices
+    return args
 
 
 #===================================================================================================
 # main
 #===================================================================================================
 def main(argv=None):
-    dimensions, variables, numslices = cli(argv)
+    args = cli(argv)
+    
+    dimensions = args.dimensions
+    variables = args.variables
+    numslices = args.numslices
+    outdir = args.outdir
+    
+    if not isdir(outdir):
+        makedirs(outdir)
     
     for nslice in xrange(numslices):
-        fname = 'slice.{}.nc'.format(nslice)
+        fname = join(outdir, 'slice.{}.nc'.format(nslice))
+        if isfile(fname):
+            print 'Overwriting file: {}'.format(fname)
+        else:
+            print 'Creating file: {}'.format(fname)
         with Dataset(fname, 'w') as fobj:
             fobj.setncattr('file', fname)
             fobj.setncattr('slice', str(nslice))
