@@ -5,7 +5,7 @@
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
 
-export PREFIX := $(abspath .)
+export PREFIX := $(abspath ..)
 export PYTHONUSERBASE := $(PREFIX)
 export PYTHONVER := $(shell python -c "import sys; print 'python{0}.{1}'.format(*sys.version_info[:2])")
 
@@ -31,9 +31,6 @@ endif
 
 all: pyreshaper
 
-test: pyreshaper
-	echo
-
 pyreshaper: build asaptools netcdf4python
 	@HAS_PYRESHAPER=`source $(PREFIX)/venv/bin/activate && python -c "import pyreshaper" 2> /dev/null; echo $$?`; \
 	if [ $$HAS_PYRESHAPER -ne 0 ]; then \
@@ -41,9 +38,9 @@ pyreshaper: build asaptools netcdf4python
 		echo $(HLINE2); \
 		echo "Now building: $@"; \
 		echo; \
-		cd build; \
+		cd $(PREFIX)/build; \
 		if [ ! -d $(PYRESHAPER) ]; then \
-			tar -xmzf ../src/$(PYRESHAPER).tar.gz; \
+			tar -xmzf $(PREFIX)/src/$(PYRESHAPER).tar.gz; \
 		fi; \
 		cd $(PYRESHAPER) && \
 		source $(PREFIX)/venv/bin/activate && \
@@ -60,9 +57,9 @@ asaptools: build mpi4py
 		echo $(HLINE2); \
 		echo "Now building: $@"; \
 		echo; \
-		cd build; \
+		cd $(PREFIX)/build; \
 		if [ ! -d $(ASAPTOOLS) ]; then \
-			tar -xmzf ../src/$(ASAPTOOLS).tar.gz; \
+			tar -xmzf $(PREFIX)/src/$(ASAPTOOLS).tar.gz; \
 		fi; \
 		cd $(ASAPTOOLS) && \
 		source $(PREFIX)/venv/bin/activate && \
@@ -79,9 +76,9 @@ netcdf4python: build numpy ordereddict netcdf
 		echo $(HLINE2); \
 		echo "Now building: $@"; \
 		echo; \
-		cd build; \
+		cd $(PREFIX)/build; \
 		if [ ! -d $(NETCDF4PY) ]; then \
-			tar -xmzf ../src/$(NETCDF4PY).tar.gz; \
+			tar -xmzf $(PREFIX)/src/$(NETCDF4PY).tar.gz; \
 		fi; \
 		cd $(NETCDF4PY) && \
 		source $(PREFIX)/venv/bin/activate && \
@@ -103,9 +100,9 @@ ordereddict: build virtualenv
 		echo $(HLINE2); \
 		echo "Now building: $@"; \
 		echo; \
-		cd build; \
+		cd $(PREFIX)/build; \
 		if [ ! -d $(ORDEREDDICT) ]; then \
-			tar -xmzf ../src/$(ORDEREDDICT).tar.gz; \
+			tar -xmzf $(PREFIX)/src/$(ORDEREDDICT).tar.gz; \
 		fi; \
 		cd $(ORDEREDDICT) && \
 		source $(PREFIX)/venv/bin/activate && \
@@ -122,9 +119,9 @@ mpi4py: build numpy
 		echo $(HLINE2); \
 		echo "Now building: $@"; \
 		echo; \
-		cd build; \
+		cd $(PREFIX)/build; \
 		if [ ! -d $(MPI4PY) ]; then \
-			tar -xmzf ../src/$(MPI4PY).tar.gz; \
+			tar -xmzf $(PREFIX)/src/$(MPI4PY).tar.gz; \
 		fi; \
 		cd $(MPI4PY) && \
 		source $(PREFIX)/venv/bin/activate && \
@@ -141,9 +138,9 @@ numpy: build setuptools
 		echo $(HLINE2); \
 		echo "Now building: $@"; \
 		echo; \
-		cd build; \
+		cd $(PREFIX)/build; \
 		if [ ! -d $(NUMPY) ]; then \
-			tar -xmzf ../src/$(NUMPY).tar.gz; \
+			tar -xmzf $(PREFIX)/src/$(NUMPY).tar.gz; \
 		fi; \
 		cd $(NUMPY) && \
 		source $(PREFIX)/venv/bin/activate && \
@@ -160,9 +157,9 @@ setuptools: build virtualenv
 		echo $(HLINE2); \
 		echo "Now building: $@"; \
 		echo; \
-		cd build; \
+		cd $(PREFIX)/build; \
 		if [ ! -d $(SETUPTOOLS) ]; then \
-			tar -xmzf ../src/$(SETUPTOOLS).tar.gz; \
+			tar -xmzf $(PREFIX)/src/$(SETUPTOOLS).tar.gz; \
 		fi; \
 		cd $(SETUPTOOLS) && \
 		source $(PREFIX)/venv/bin/activate && \
@@ -178,13 +175,13 @@ ifeq ($(wildcard $(PREFIX)/venv),)
 	@echo $(HLINE2)
 	@echo "Now building: $@"
 	@echo
-	@cd build; \
+	@cd $(PREFIX)/build; \
 	if [ ! -d $(VIRTUALENV) ]; then \
-		tar -xmzf ../src/$(VIRTUALENV).tar.gz; \
+		tar -xmzf $(PREFIX)/src/$(VIRTUALENV).tar.gz; \
 	fi
-	@cd build/$(VIRTUALENV) && $(PYTHON) setup.py install --user --prefix=
+	@cd $(PREFIX)/build/$(VIRTUALENV) && $(PYTHON) setup.py install --user --prefix=
 	@if [ ! -d $(PREFIX)/venv ]; then \
-		bin/virtualenv --no-pip --no-wheel --no-setuptools $(PREFIX)/venv; \
+		$(PREFIX)/bin/virtualenv --no-pip --no-wheel --no-setuptools $(PREFIX)/venv; \
 	fi
 endif
 	@echo $(HLINE1)
@@ -203,15 +200,15 @@ python:
 	@echo $(HLINE1)
 
 netcdf:	build hdf5
-	@if [ ! -s lib/libnetcdf.a ]; then \
+	@if [ ! -s $$PREFIX/lib/libnetcdf.a ]; then \
 		echo; \
 		echo $(HLINE2); \
 		echo "Now building: $@"; \
 		echo; \
-		cd build; \
+		cd $(PREFIX)/build; \
 		export LD_LIBRARY_PATH=$(PREFIX)/lib:$$LD_LIBRARY_PATH; \
 		if [ ! -d $(NETCDF) ]; then \
-			tar -xmzf ../src/$(NETCDF).tar.gz && \
+			tar -xmzf $(PREFIX)/src/$(NETCDF).tar.gz && \
 			cd $(NETCDF) && \
 			CPPFLAGS=-I$(PREFIX)/include LDFLAGS=-L$(PREFIX)/lib \
 			./configure --enable-netcdf-4 --prefix=$(PREFIX) --disable-dap; \
@@ -227,14 +224,14 @@ netcdf:	build hdf5
 	@echo $(HLINE1)
 
 hdf5: build szip zlib
-	@if [ ! -s lib/libhdf5.a ]; then \
+	@if [ ! -s $$PREFIX/lib/libhdf5.a ]; then \
 		echo; \
 		echo $(HLINE2); \
 		echo "Now building: $@"; \
 		echo; \
-		cd build; \
+		cd $(PREFIX)/build; \
 		if [ ! -d $(HDF5) ]; then \
-			tar -xmzf ../src/$(HDF5).tar.gz && \
+			tar -xmzf $(PREFIX)/src/$(HDF5).tar.gz && \
 			cd $(HDF5) && \
 			./configure --prefix=$(PREFIX) --with-zlib=$(PREFIX) --with-szlib=$(PREFIX); \
 			cd ..; \
@@ -248,14 +245,14 @@ hdf5: build szip zlib
 	@echo $(HLINE1)
 
 szip: build
-	@if [ ! -s lib/libsz.a ]; then \
+	@if [ ! -s $$PREFIX/lib/libsz.a ]; then \
 		echo; \
 		echo $(HLINE2); \
 		echo "Now building: $@"; \
 		echo; \
-		cd build; \
+		cd $(PREFIX)/build; \
 		if [ ! -d $(SZIP) ]; then \
-			tar -xmzf ../src/$(SZIP).tar.gz && \
+			tar -xmzf $(PREFIX)/src/$(SZIP).tar.gz && \
 			cd $(SZIP) && \
 			./configure --prefix=$(PREFIX); \
 			cd ..; \
@@ -269,14 +266,14 @@ szip: build
 	@echo $(HLINE1)
 
 zlib: build
-	@if [ ! -s lib/libz.a ]; then \
+	@if [ ! -s $$PREFIX/lib/libz.a ]; then \
 		echo; \
 		echo $(HLINE2); \
 		echo "Now building: $@"; \
 		echo; \
-		cd build; \
+		cd $(PREFIX)/build; \
 		if [ ! -d $(ZLIB) ]; then \
-			tar -xmzf ../src/$(ZLIB).tar.gz && \
+			tar -xmzf $(PREFIX)/src/$(ZLIB).tar.gz && \
 			cd $(ZLIB) && \
 			./configure --prefix=$(PREFIX); \
 			cd ..; \
@@ -293,9 +290,9 @@ zlib: build
 .PHONY:	clean list build
 
 build:
-	@if [ ! -d build ]; then \
+	@if [ ! -d $$PREFIX/build ]; then \
 		echo "Creating build directory."; \
-		mkdir build; \
+		mkdir $$PREFIX/build; \
 	else \
 		echo "Build directory already exists."; \
 	fi
