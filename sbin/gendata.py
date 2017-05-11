@@ -13,6 +13,7 @@ from numpy import arange
 from numpy.random import random_sample
 from os.path import isdir, isfile, join
 from os import makedirs
+from asaptools import simplecomm
 
 
 #===================================================================================================
@@ -25,6 +26,8 @@ __PARSER__.add_argument('-n', '--numslices', metavar='NUMBER', default=100, type
                         help='Number of time-slice files to write')
 __PARSER__.add_argument('-o', '--outdir', metavar='DIR', default='slices',
                         help='Directory where time-slice files should be written')
+__PARSER__.add_argument('-s', '--serial', default=False, action='store_true',
+                        help='Whether to run the data generation in serial')
 __PARSER__.add_argument('-v', '--variables', action='append', metavar='NUM[,DIM[,DIM[...]]]',
                         help='Number of variables of a given dimensionality')
 
@@ -92,12 +95,20 @@ def main(argv=None):
     if not isdir(outdir):
         makedirs(outdir)
     
-    for nslice in xrange(numslices):
+    scomm = simplecomm.create_comm(serial=args.serial)
+    prefix = '[{}/{}]'.format(scomm.get_rank(), scomm.get_size())
+    if scomm.is_manager():
+        print 'Creating time-slice files in output directory: {}'.format(outdir)
+
+    myslices = scomm.partition(range(numslices), involved=True)
+        
+    for nslice in myslices:
         fname = join(outdir, 'slice.{}.nc'.format(nslice))
         if isfile(fname):
-            print 'Overwriting file: {}'.format(fname)
+            print '{}: Overwriting file: {}'.format(prefix, fname)
         else:
-            print 'Creating file: {}'.format(fname)
+            print '{}: Creating file: {}'.format(prefix, fname)
+
         with Dataset(fname, 'w') as fobj:
             fobj.setncattr('file', fname)
             fobj.setncattr('slice', str(nslice))
