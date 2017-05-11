@@ -12,11 +12,11 @@ all: small
 small:
 	@echo "Running benchmark: $@"
 	@echo "  Generating input data."
-	@$(ACTIVATE) && \
+	@$(ACTIVATE); \
 	$(MPIRUN) $(GENDATA) -p $@ > gendata.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log
 	@if [ ! -d output ]; then mkdir output; fi
 	@echo "  Running test."
-	$(ACTIVATE) && \
+	$(ACTIVATE); \
 	$(MPIRUN) $(EXECRUN) > reshaper.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log
 	@echo "  Copying logfiles."
 	@cp *.log $(PREFIX)/logs/
