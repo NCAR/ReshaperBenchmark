@@ -3,6 +3,7 @@
 
 # Append directories to PATH or LD_LIBRARY_PATH, if necessary
 CWD=`pwd`
+
 NEEDS_BINDIR=`echo $PATH | grep -q "$CWD/bin"; echo $?`
 if [ $NEEDS_BINDIR -ne 0 ]; then
 	export PATH=$CWD/bin:$PATH

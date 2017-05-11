@@ -1,6 +1,6 @@
 ################################################################################
 #
-#  Makefile for the NCAR PyReshaper Benchmark
+#  Makefile for the NCAR PyReshaper Benchmark - ./Tests/
 #
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
@@ -23,6 +23,7 @@ endif
 
 export HOSTNAME := $(shell hostname -s)
 export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py
+export GENDATA := $(PREFIX)/sbin/gendata.py -o input
 export ACTIVATE := source $(PREFIX)/venv/bin/activate
 
 default: all
@@ -31,5 +32,8 @@ all: small
 
 .PHONY:	small
 
-small:
+logs:
+	@mkdir -p $(PREFIX)/logs
+
+small: logs
 	@$(MAKE) -C small

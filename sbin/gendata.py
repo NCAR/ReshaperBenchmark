@@ -41,13 +41,13 @@ def cli(argv=None):
     args = __PARSER__.parse_args(argv)
     
     if args.dimensions is None:
-        args.dimensions = {'0': 10, '1': 1000}
+        args.dimensions = {'d0': 10, 'd1': 1000}
     elif args.dimensions == '':
         raise ArgumentTypeError('Dimensions must be specified as a '
                                 'comma-separated list of integers')
     else:
         try:
-            args.dimensions = {str(i):int(s) for i,s in enumerate(args.dimensions.split(','))}
+            args.dimensions = {'d{}'.format(i):int(s) for i,s in enumerate(args.dimensions.split(','))}
         except:
             raise ArgumentTypeError('Dimensions must be specified as a '
                                     'comma-separated list of integers')
@@ -116,12 +116,22 @@ def main(argv=None):
             fobj.setncattr('slice', str(nslice))
             
             for dname in dimensions:
-                if dname == '0':
+                if dname == 'd0':
                     fobj.createDimension(dname)
                 else:
                     fobj.createDimension(dname, dimensions[dname])
 
-            vobjs = {}
+            for dname in dimensions:
+                vobj = fobj.createVariable(dname, 'd', (dname,))
+                vobj.setncattr('units', '1')
+                vobj.setncattr('comment', 'Coordinate {}'.format(dname))
+                dlen = dimensions[dname]
+                if dname == 'd0':
+                    vobj[:] = arange(nslice*dlen, (nslice+1)*dlen, dtype='d')
+                else:
+                    vobj[:] = arange(dlen, dtype='d')
+                
+            vobjs = {}    
             for vname in variables:
                 vdims = variables[vname]
                 vtype = 'f' if len(vdims) > 1 else 'd'
@@ -136,7 +146,7 @@ def main(argv=None):
                 if ndims == 0:
                     vobj[:] = 1.0
                 elif ndims == 1:
-                    vobj[:] = arange(dimensions[vobj.dimensions['0']], dtype='f')
+                    vobj[:] = arange(dimensions[vobj.dimensions[0]], dtype='d')
                 else:
                     shape = tuple(dimensions[d] for d in vobj.dimensions)
                     vobj[:] = random_sample(shape)

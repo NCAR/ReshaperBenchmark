@@ -4,41 +4,28 @@
 #===============================================================================
 
 from glob import glob
-from pyreshaper.specification import Specifier
-from pyreshaper.reshaper import Reshaper
 from os import environ, getcwd
 from os.path import join as joinpath, basename
 from time import strftime
-import sys
-sys.path.append(getcwd())
 
 TESTNAME = basename(getcwd())
 
-RUNNAME     = environ['RUNNAME']
-DEFLATE     = environ['DEFLATE']
-HOSTNAME    = environ['HOSTNAME']
-INPUTDIR    = environ['INPUTDIR']
-OUTPUTDIR   = environ['OUTPUTDIR']
-NCIOBACKEND = environ['NCIOBACKEND']
+RUNNAME  = environ['RUNNAME']
+DEFLATE  = environ['DEFLATE']
+HOSTNAME = environ['HOSTNAME']
 
-testinit = __import__('testinit')
+from pyreshaper.specification import Specifier
+from pyreshaper.reshaper import Reshaper
 
-infiles = []
-for pattern in testinit.INFILES:
-    infiles.extend(glob(joinpath(INPUTDIR, testinit.INAME, pattern)))
-
-testspec = Specifier(infiles=infiles,
+testspec = Specifier(infiles=glob(joinpath('input', '*.nc')),
                      ncfmt='netcdf4',
                      compression=int(DEFLATE),
-                     prefix=joinpath(OUTPUTDIR, TESTNAME, testinit.PREFIX),
-                     suffix=testinit.SUFFIX,
-                     metadata=testinit.METADATA,
-                     backend=NCIOBACKEND)
+                     prefix=joinpath('output', '{}.'.format(TESTNAME)),
+                     suffix='.nc',
+                     backend='netCDF4')
 testspec.validate()
 
-TIMESTAMP = strftime("%Y%m%d%H%M%S")
-SPECNAME = TESTNAME.replace('-', '.', 1)
-specname = '.'.join([SPECNAME, RUNNAME, HOSTNAME, TIMESTAMP, 'spec'])
+specname = '.'.join([TESTNAME, RUNNAME, HOSTNAME, strftime("%Y%m%d%H%M%S"), 's2s'])
 testspec.write(specname)
 
 reshaper = Reshaper(testspec, verbosity=5, wmode='o')
