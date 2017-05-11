@@ -15,7 +15,7 @@ all: build
 
 build:
 	@echo "Building source and dependencies."
-	@$(MAKE) -c src
+	@$(MAKE) -C src
 
 list:
 	@echo "Available Targets:"

@@ -165,7 +165,7 @@ setuptools: virtualenv
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 
-virtualenv: python
+virtualenv: build python
 ifeq ($(wildcard $(PREFIX)/venv),)
 	@echo
 	@echo $(HLINE2)
@@ -283,7 +283,7 @@ szip: build
 	@echo $(HLINE1)
 	
 
-.PHONY:	allclean clean build
+.PHONY:	build
 
 build:
 	@if [ ! -d $$PREFIX/build ]; then \
