@@ -185,7 +185,6 @@ endif
 	@echo $(HLINE1)
 
 python:
-	@echo
 	@echo $(HLINE2)
 	@echo "Checking Python Version"
 	@echo
@@ -291,3 +290,4 @@ build:
 	else \
 		echo "Build directory already exists."; \
 	fi
+	@echo
