@@ -1,6 +1,6 @@
 ################################################################################
 #
-#  Makefile for ASAP Benchmark Utilities: Externals-Source Level
+#  Makefile for the NCAR PyReshaper Benchmark
 #
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
