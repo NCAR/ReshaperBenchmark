@@ -26,6 +26,8 @@ __PARSER__.add_argument('-n', '--numslices', metavar='NUMBER', default=100, type
                         help='Number of time-slice files to write')
 __PARSER__.add_argument('-o', '--outdir', metavar='DIR', default='slices',
                         help='Directory where time-slice files should be written')
+__PARSER__.add_argument('-p', '--prefix', metavar='PREFIX', default='slice',
+                        help='String prefix to all time-slice files generated')
 __PARSER__.add_argument('-s', '--serial', default=False, action='store_true',
                         help='Whether to run the data generation in serial')
 __PARSER__.add_argument('-v', '--variables', action='append', metavar='NUM[,DIM[,DIM[...]]]',
@@ -96,18 +98,18 @@ def main(argv=None):
         makedirs(outdir)
     
     scomm = simplecomm.create_comm(serial=args.serial)
-    prefix = '[{}/{}]'.format(scomm.get_rank(), scomm.get_size())
+    header = '[{}/{}]'.format(scomm.get_rank(), scomm.get_size())
     if scomm.is_manager():
         print 'Creating time-slice files in output directory: {}'.format(outdir)
 
     myslices = scomm.partition(range(numslices), involved=True)
         
     for nslice in myslices:
-        fname = join(outdir, 'slice.{}.nc'.format(nslice))
+        fname = join(outdir, '{}.{}.nc'.format(args.prefix, nslice))
         if isfile(fname):
-            print '{}: Overwriting file: {}'.format(prefix, fname)
+            print '{}: Overwriting file: {}'.format(header, fname)
         else:
-            print '{}: Creating file: {}'.format(prefix, fname)
+            print '{}: Creating file: {}'.format(header, fname)
 
         with Dataset(fname, 'w') as fobj:
             fobj.setncattr('file', fname)
