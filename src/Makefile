@@ -185,7 +185,6 @@ endif
 	@echo $(HLINE1)
 
 python:
-	@which $(PYTHON)
 	@echo
 	@echo $(HLINE2)
 	@echo "Checking Python Version"
