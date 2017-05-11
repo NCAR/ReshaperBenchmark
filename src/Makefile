@@ -5,10 +5,6 @@
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
 
-export PREFIX := $(abspath ..)
-export PYTHONUSERBASE := $(PREFIX)
-export PYTHONVER := $(shell python -c "import sys; print 'python{0}.{1}'.format(*sys.version_info[:2])")
-
 HLINE1 := "---------------------------------------------------------------------"
 HLINE2 := "====================================================================="
 
@@ -31,7 +27,7 @@ endif
 
 all: pyreshaper
 
-pyreshaper: build asaptools netcdf4python
+pyreshaper: asaptools netcdf4python
 	@HAS_PYRESHAPER=`source $(PREFIX)/venv/bin/activate && python -c "import pyreshaper" 2> /dev/null; echo $$?`; \
 	if [ $$HAS_PYRESHAPER -ne 0 ]; then \
 		echo; \
@@ -50,7 +46,7 @@ pyreshaper: build asaptools netcdf4python
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 
-asaptools: build mpi4py
+asaptools: mpi4py
 	@HAS_ASAPTOOLS=`source $(PREFIX)/venv/bin/activate && python -c "import asaptools" 2> /dev/null; echo $$?`; \
 	if [ $$HAS_ASAPTOOLS -ne 0 ]; then \
 		echo; \
@@ -69,7 +65,7 @@ asaptools: build mpi4py
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 
-netcdf4python: build numpy ordereddict netcdf
+netcdf4python: numpy ordereddict netcdf
 	@HAS_NETCDF4PY=`source $(PREFIX)/venv/bin/activate && python -c "import netCDF4" 2> /dev/null; echo $$?`; \
 	if [ $$HAS_NETCDF4PY -ne 0 ]; then \
 		echo; \
@@ -90,7 +86,7 @@ netcdf4python: build numpy ordereddict netcdf
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 
-ordereddict: build virtualenv
+ordereddict: virtualenv
 	@HAS_ORDEREDDICT=`source $(PREFIX)/venv/bin/activate && python -c "from collections import OrderedDict" 2> /dev/null; echo $$?`; \
 	if [ $$HAS_ORDEREDDICT -ne 0 ]; then \
 		HAS_ORDEREDDICT=`source $(PREFIX)/venv/bin/activate && python -c "from ordereddict import OrderedDict" 2> /dev/null; echo $$?`; \
@@ -112,7 +108,7 @@ ordereddict: build virtualenv
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 	
-mpi4py: build numpy
+mpi4py: numpy
 	@HAS_MPI4PY=`source $(PREFIX)/venv/bin/activate && python -c "import mpi4py" 2> /dev/null; echo $$?`; \
 	if [ $$HAS_MPI4PY -ne 0 ]; then \
 		echo; \
@@ -131,7 +127,7 @@ mpi4py: build numpy
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 
-numpy: build setuptools
+numpy: setuptools
 	@HAS_NUMPY=`source $(PREFIX)/venv/bin/activate && python -c "import numpy" 2> /dev/null; echo $$?`; \
 	if [ $$HAS_NUMPY -ne 0 ]; then \
 		echo; \
@@ -150,7 +146,7 @@ numpy: build setuptools
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 
-setuptools: build virtualenv
+setuptools: virtualenv
 	@HAS_SETUPTOOLS=`source $(PREFIX)/venv/bin/activate && python -c "import setuptools" 2> /dev/null; echo $$?`; \
 	if [ $$HAS_SETUPTOOLS -ne 0 ]; then \
 		echo; \
@@ -169,7 +165,7 @@ setuptools: build virtualenv
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 
-virtualenv: build sitepkgs python
+virtualenv: python
 ifeq ($(wildcard $(PREFIX)/venv),)
 	@echo
 	@echo $(HLINE2)
@@ -199,7 +195,7 @@ python:
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 
-netcdf:	build hdf5
+netcdf: hdf5
 	@if [ ! -s $$PREFIX/lib/libnetcdf.a ]; then \
 		echo; \
 		echo $(HLINE2); \
@@ -223,7 +219,7 @@ netcdf:	build hdf5
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 
-hdf5: build szip zlib
+hdf5: zlib szip
 	@if [ ! -s $$PREFIX/lib/libhdf5.a ]; then \
 		echo; \
 		echo $(HLINE2); \
@@ -237,27 +233,6 @@ hdf5: build szip zlib
 			cd ..; \
 		fi; \
 		cd $(HDF5) && \
-		$(MAKE) && \
-		$(MAKE) install; \
-	fi
-	@echo $(HLINE1)
-	@echo "Installed: $@"
-	@echo $(HLINE1)
-
-szip: build
-	@if [ ! -s $$PREFIX/lib/libsz.a ]; then \
-		echo; \
-		echo $(HLINE2); \
-		echo "Now building: $@"; \
-		echo; \
-		cd $(PREFIX)/build; \
-		if [ ! -d $(SZIP) ]; then \
-			tar -xmzf $(PREFIX)/src/$(SZIP).tar.gz && \
-			cd $(SZIP) && \
-			./configure --prefix=$(PREFIX); \
-			cd ..; \
-		fi; \
-		cd $(SZIP) && \
 		$(MAKE) && \
 		$(MAKE) install; \
 	fi
@@ -286,8 +261,29 @@ zlib: build
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 	
+szip: build
+	@if [ ! -s $$PREFIX/lib/libsz.a ]; then \
+		echo; \
+		echo $(HLINE2); \
+		echo "Now building: $@"; \
+		echo; \
+		cd $(PREFIX)/build; \
+		if [ ! -d $(SZIP) ]; then \
+			tar -xmzf $(PREFIX)/src/$(SZIP).tar.gz && \
+			cd $(SZIP) && \
+			./configure --prefix=$(PREFIX); \
+			cd ..; \
+		fi; \
+		cd $(SZIP) && \
+		$(MAKE) && \
+		$(MAKE) install; \
+	fi
+	@echo $(HLINE1)
+	@echo "Installed: $@"
+	@echo $(HLINE1)
+	
 
-.PHONY:	clean list build
+.PHONY:	allclean clean build
 
 build:
 	@if [ ! -d $$PREFIX/build ]; then \
@@ -296,19 +292,3 @@ build:
 	else \
 		echo "Build directory already exists."; \
 	fi
-
-sitepkgs:
-	@if [ ! -d $$PREFIX/lib/$$PYTHONVER/site-packages ]; then \
-		mkdir -p $$PREFIX/lib/$$PYTHONVER/site-packages; \
-	fi
-
-list:
-	@echo "Available Targets:"
-	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
-
-clean:
-	rm -rf build
-
-allclean:	clean
-	rm -rf bin include lib share man venv
-
