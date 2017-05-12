@@ -16,7 +16,6 @@ from os import makedirs
 from asaptools import simplecomm
 from sys import path
 
-
 #===================================================================================================
 # Argument Parser
 #===================================================================================================
@@ -25,9 +24,9 @@ __PARSER__.add_argument('-d', '--dimensions', metavar='SIZE[,SIZE[,SIZE[...]]]',
                         help='Size of dimensions to be written to files')
 __PARSER__.add_argument('-n', '--numslices', metavar='NUMBER', default=100, type=int,
                         help='Number of time-slice files to write')
-__PARSER__.add_argument('-o', '--outdir', metavar='DIR', default='slices',
+__PARSER__.add_argument('-o', '--outputdir', metavar='DIR', default='slices',
                         help='Directory where time-slice files should be written')
-__PARSER__.add_argument('-p', '--prefix', metavar='PREFIX', default='slice',
+__PARSER__.add_argument('-p', '--prefix', metavar='PREFIX', default='slice.',
                         help='String prefix to all time-slice files generated')
 __PARSER__.add_argument('-s', '--serial', default=False, action='store_true',
                         help='Whether to run the data generation in serial')
@@ -93,7 +92,7 @@ def main(argv=None):
     dimensions = args.dimensions
     variables = args.variables
     numslices = args.numslices
-    outdir = args.outdir
+    outdir = args.outputdir
     
     if not isdir(outdir):
         makedirs(outdir)
@@ -102,11 +101,12 @@ def main(argv=None):
     header = '[{}/{}]'.format(scomm.get_rank(), scomm.get_size())
     if scomm.is_manager():
         print 'Creating time-slice files in output directory: {}'.format(outdir)
+        print
 
     myslices = scomm.partition(range(numslices), involved=True)
         
     for nslice in myslices:
-        fname = join(outdir, '{}.{}.nc'.format(args.prefix, nslice))
+        fname = join(outdir, '{}{}.nc'.format(args.prefix, nslice))
         if isfile(fname):
             print '{}: Overwriting file: {}'.format(header, fname)
         else:

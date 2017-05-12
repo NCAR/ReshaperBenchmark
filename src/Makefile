@@ -177,7 +177,7 @@ ifeq ($(wildcard $(PREFIX)/venv),)
 	fi
 	@cd $(PREFIX)/build/$(VIRTUALENV) && $(PYTHON) setup.py install --user --prefix=
 	@if [ ! -d $(PREFIX)/venv ]; then \
-		$(PREFIX)/bin/virtualenv --no-pip --no-wheel --no-setuptools $(PREFIX)/venv; \
+		$(PREFIX)/bin/virtualenv --no-pip --no-wheel --no-setuptools --no-site-packages $(PREFIX)/venv; \
 	fi
 endif
 	@echo $(HLINE1)

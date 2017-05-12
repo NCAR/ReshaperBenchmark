@@ -5,6 +5,7 @@
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
 
+export SHELL := $(shell which bash)
 export PREFIX := $(abspath .)
 export PYTHONUSERBASE := $(PREFIX)
 export PYTHONVER := $(shell python -c "import sys; print 'python{0}.{1}'.format(*sys.version_info[:2])")

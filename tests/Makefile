@@ -6,7 +6,7 @@
 ################################################################################
 
 ifndef MPIRUN
-  export MPIRUN := $(shell which mpirun) -n 16
+  export MPIRUN := mpirun -n 16
 endif
 
 ifndef RUNNAME
@@ -22,7 +22,7 @@ ifndef DEFLATE
 endif
 
 export HOSTNAME := $(shell hostname -s)
-export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py
+export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py -d 0 -i input -o output 
 export GENDATA := $(PREFIX)/sbin/gendata.py -o input
 export ACTIVATE := source $(PREFIX)/venv/bin/activate
 
