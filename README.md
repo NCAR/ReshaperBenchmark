@@ -1,5 +1,5 @@
 # ReshaperBenchmark
-I/O Benchmark based on the PyReshaper Utility
+### I/O Benchmark based on the PyReshaper Utility
 
 To run these benchmarks, you will need Python 2.7, an implementation of MPI, and
 a C compiler.  Before building the benchmark and dependencies, you may need to
