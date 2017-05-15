@@ -41,13 +41,13 @@ def cli(argv=None):
     args = __PARSER__.parse_args(argv)
     
     if args.dimensions is None:
-        dimensions = {'d0': 10, 'd1': 1000}
+        dimensions = {'0': 10, '1': 1000}
     elif args.dimensions == '':
         raise ArgumentTypeError('Dimensions must be specified as a '
                                 'comma-separated list of integers')
     else:
         try:
-            dimensions = {'d{}'.format(i):int(s) for i,s in enumerate(args.dimensions.split(','))}
+            dimensions = {str(i):int(s) for i,s in enumerate(args.dimensions.split(','))}
         except:
             raise ArgumentTypeError('Dimensions must be specified as a '
                                     'comma-separated list of integers')
@@ -72,7 +72,7 @@ def cli(argv=None):
             for varg in args.variables:
                 vtype = varg.split(',')
                 vnum = int(vtype[0])
-                vdims = tuple('d{}'.format(d) for d in vtype[1:] if 'd{}'.format(d) in args.dimensions)
+                vdims = tuple(d for d in vtype[1:] if d in args.dimensions)
                 for i in range(vnum):
                     vname = 'v{}'.format(n)
                     variables[vname] = vdims
@@ -121,7 +121,7 @@ def main(argv=None):
             fobj.setncattr('slice', str(nslice))
             
             for dname in dimensions:
-                if dname == 'd0':
+                if dname == '0':
                     fobj.createDimension(dname)
                 else:
                     fobj.createDimension(dname, dimensions[dname])
@@ -131,7 +131,7 @@ def main(argv=None):
                 vobj.setncattr('units', '1')
                 vobj.setncattr('comment', 'Coordinate {}'.format(dname))
                 dlen = dimensions[dname]
-                if dname == 'd0':
+                if dname == '0':
                     vobj[:] = arange(nslice*dlen, (nslice+1)*dlen, dtype='d')
                 else:
                     vobj[:] = arange(dlen, dtype='d')
