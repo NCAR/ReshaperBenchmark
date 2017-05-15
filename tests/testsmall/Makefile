@@ -1,6 +1,6 @@
 ################################################################################
 #
-#  Makefile for the NCAR PyReshaper Benchmark - ./tests/small
+#  Makefile for the NCAR PyReshaper Benchmark - ./tests/testsmall
 #
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################

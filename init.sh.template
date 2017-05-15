@@ -1,6 +1,26 @@
 #!/bin/sh
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 
+# The command that must preface any test script to run in parallel
+export MPIRUN="mpirun -n 16"
+
+# Whether to capture strace results during tests (default to no strace results)
+# If strace is enabled, the timing of the tests will be affected.  Therefore,
+# if strace is enabled, you should reflect this fact in the RUNNAME (below).
+# WARNING:  On some systems, or with some MPI implementations, strace will
+#           not capture statistics between MPI_Init and MPI_Finalize!  You
+#           may need to modify your MPIRUN command to allow strace to work
+#           as expected.
+export STRACE=0
+
+# Whether to output test files with compression enabled.  This will affect
+# timing if enabled.  Therefore, if the DEFLATE value is changed, you should
+# reflect this fact in the RUNNAME (below).
+export DEFLATE=0
+
+# A name to give these runs (can be anything, just no "." or spaces)
+export RUNNAME=default-$DEFLATE-$STRACE
+
 # Append directories to PATH or LD_LIBRARY_PATH, if necessary
 CWD=`pwd`
 

@@ -1,6 +1,6 @@
 ################################################################################
 #
-#  Makefile for the NCAR PyReshaper Benchmark - ./tests/onedegree
+#  Makefile for the NCAR PyReshaper Benchmark - ./tests/test1p0deg
 #
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
