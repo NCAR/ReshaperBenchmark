@@ -26,14 +26,16 @@ export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py -d 0 -i in
 export GENDATA := $(PREFIX)/sbin/gendata.py -o input
 export ACTIVATE := source $(PREFIX)/venv/bin/activate
 
-default: all
+dirs = $(sort $(dir $(wildcard */)))
+tests = $(dirs:%/=%)
 
-all: small	
+default:
 
-.PHONY:	small logdir
+.PHONY:	logdir
 
 logdir:
 	@mkdir -p $(PREFIX)/logs
 
-small: logdir
-	@$(MAKE) -C small
+$(tests): logdir
+	@$(MAKE) -C $@
+	

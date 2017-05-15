@@ -14,7 +14,7 @@ from numpy.random import random_sample
 from os.path import isdir, isfile, join
 from os import makedirs
 from asaptools import simplecomm
-from sys import path
+from time import time
 
 #===================================================================================================
 # Argument Parser
@@ -41,25 +41,26 @@ def cli(argv=None):
     args = __PARSER__.parse_args(argv)
     
     if args.dimensions is None:
-        args.dimensions = {'d0': 10, 'd1': 1000}
+        dimensions = {'d0': 10, 'd1': 1000}
     elif args.dimensions == '':
         raise ArgumentTypeError('Dimensions must be specified as a '
                                 'comma-separated list of integers')
     else:
         try:
-            args.dimensions = {'d{}'.format(i):int(s) for i,s in enumerate(args.dimensions.split(','))}
+            dimensions = {'d{}'.format(i):int(s) for i,s in enumerate(args.dimensions.split(','))}
         except:
             raise ArgumentTypeError('Dimensions must be specified as a '
                                     'comma-separated list of integers')
+    args.dimensions = dimensions
     
     if args.variables is None:
         dims = sorted(args.dimensions)
-        args.variables = {}
+        variables = {}
         n = 0
         for i in range(len(dims)):
             for vdims in permutations(dims, i+1):
                 vname = 'v{}'.format(n)
-                args.variables[vname] = tuple(vdims)
+                variables[vname] = tuple(vdims)
                 n += 1
     elif args.variables == '':
         raise ArgumentTypeError('Variables must be specified as a '
@@ -67,18 +68,19 @@ def cli(argv=None):
     else:
         try:
             n = 0
-            args.variables = {}
+            variables = {}
             for varg in args.variables:
                 vtype = varg.split(',')
                 vnum = int(vtype[0])
-                vdims = tuple(d for d in vtype[1:] if d in args.dimensions)
+                vdims = tuple('d{}'.format(d) for d in vtype[1:] if 'd{}'.format(d) in args.dimensions)
                 for i in range(vnum):
                     vname = 'v{}'.format(n)
-                    args.variables[vname] = vdims
+                    variables[vname] = vdims
                     n += 1
         except:
             raise ArgumentTypeError('Variables must be specified as a '
                                     'comma-separated list of integers')
+    args.variables = variables
         
     return args
 
@@ -102,9 +104,11 @@ def main(argv=None):
     if scomm.is_manager():
         print 'Creating time-slice files in output directory: {}'.format(outdir)
         print
-
+    scomm.sync()
+    
     myslices = scomm.partition(range(numslices), involved=True)
-        
+
+    tstart = time()
     for nslice in myslices:
         fname = join(outdir, '{}{}.nc'.format(args.prefix, nslice))
         if isfile(fname):
@@ -151,7 +155,13 @@ def main(argv=None):
                 else:
                     shape = tuple(dimensions[d] for d in vobj.dimensions)
                     vobj[:] = random_sample(shape)
-                    
+    tend = time()
+    
+    runtime = scomm.allreduce(tend - tstart, op='max')
+
+    if scomm.is_manager():
+        print
+        print 'Maximum Process Runtime: {} seconds'.format(runtime)
 
 
 #===================================================================================================
