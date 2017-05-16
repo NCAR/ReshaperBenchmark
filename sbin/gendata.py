@@ -96,16 +96,15 @@ def main(argv=None):
     numslices = args.numslices
     outdir = args.outputdir
     
-    if not isdir(outdir):
-        makedirs(outdir)
-    
     scomm = simplecomm.create_comm(serial=args.serial)
     header = '[{}/{}]'.format(scomm.get_rank(), scomm.get_size())
     if scomm.is_manager():
         print 'Creating time-slice files in output directory: {}'.format(outdir)
         print
+        if not isdir(outdir):
+            makedirs(outdir)
     scomm.sync()
-    
+        
     myslices = scomm.partition(range(numslices), involved=True)
 
     tstart = time()
