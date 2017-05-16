@@ -14,7 +14,7 @@ NETCDF4PY   := netcdf4-python-1.2.3.1rel
 ORDEREDDICT := ordereddict-1.1
 MPI4PY      := mpi4py-1.3.1
 NUMPY       := numpy-1.10.2
-VIRTUALENV  := virtualenv-14.0.6
+VIRTUALENV  := virtualenv-15.1.0
 SETUPTOOLS  := setuptools-20.2.2
 NETCDF      := netcdf-4.4.0
 HDF5        := hdf5-1.8.16
@@ -175,7 +175,7 @@ ifeq ($(wildcard $(PREFIX)/venv),)
 	if [ ! -d $(VIRTUALENV) ]; then \
 		tar -xmzf $(PREFIX)/src/$(VIRTUALENV).tar.gz; \
 	fi
-	@cd $(PREFIX)/build/$(VIRTUALENV) && $(PYTHON) setup.py install --user --prefix=
+	@cd $(PREFIX)/build/$(VIRTUALENV) && $(PYTHON) setup.py install --user
 	@if [ ! -d $(PREFIX)/venv ]; then \
 		$(PREFIX)/bin/virtualenv --no-pip --no-wheel --no-setuptools --no-site-packages $(PREFIX)/venv; \
 	fi
@@ -184,7 +184,7 @@ endif
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 
-python: sitepkgs
+python:
 	@echo $(HLINE2)
 	@echo "Checking Python Version"
 	@echo
@@ -281,7 +281,7 @@ szip: build
 	@echo $(HLINE1)
 
 
-.PHONY:	build sitepkgs
+.PHONY:	build
 
 build:
 	@if [ ! -d $$PREFIX/build ]; then \
@@ -292,6 +292,3 @@ build:
 	fi
 	@echo
 
-sitepkgs:
-	@PYVER=`python -c "import sys; print '{}.{}'.format(sys.version_info.major, sys.version_info.minor)"`
-	@mkdir -p $(PREFIX)/lib/python$$PYVER/site-packages
