@@ -184,7 +184,7 @@ endif
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 
-python:
+python: sitepkgs
 	@echo $(HLINE2)
 	@echo "Checking Python Version"
 	@echo
@@ -279,9 +279,9 @@ szip: build
 	@echo $(HLINE1)
 	@echo "Installed: $@"
 	@echo $(HLINE1)
-	
 
-.PHONY:	build
+
+.PHONY:	build sitepkgs
 
 build:
 	@if [ ! -d $$PREFIX/build ]; then \
@@ -291,3 +291,7 @@ build:
 		echo "Build directory already exists."; \
 	fi
 	@echo
+
+sitepkgs:
+	@PYVER=`python -c "import sys; print '{}.{}'.format(sys.version_info.major, sys.version_info.minor)"`
+	@mkdir -p $(PREFIX)/lib/python$$PYVER/site-packages
