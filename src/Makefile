@@ -175,9 +175,9 @@ ifeq ($(wildcard $(PREFIX)/venv),)
 	if [ ! -d $(VIRTUALENV) ]; then \
 		tar -xmzf $(PREFIX)/src/$(VIRTUALENV).tar.gz; \
 	fi
-	@cd $(PREFIX)/build/$(VIRTUALENV) && $(PYTHON) setup.py install --user
-	@if [ ! -d $(PREFIX)/venv ]; then \
-		$(PREFIX)/bin/virtualenv --no-pip --no-wheel --no-setuptools --no-site-packages $(PREFIX)/venv; \
+	@cd $(PREFIX)/build/$(VIRTUALENV) && \
+	if [ ! -d $(PREFIX)/venv ]; then \
+		./virtualenv.py --no-pip --no-wheel --no-setuptools $(PREFIX)/venv; \
 	fi
 endif
 	@echo $(HLINE1)
