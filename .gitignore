@@ -3,6 +3,7 @@
 /bin/
 /include/
 /lib/
+/build/
 *.nc
 *.log
 *.s2s
