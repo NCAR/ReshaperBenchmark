@@ -32,7 +32,7 @@ build:
 	@echo
 	@$(MAKE) -C src
 
-.PHONY: help clean
+.PHONY: help cleantests cleanbuild
 
 help:
 	@echo "To run these benchmarks, you will need Python 2.7, an implementation of MPI, and"
@@ -65,8 +65,14 @@ help:
 	@echo
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
-clean:
+cleantests:
 	rm -rf tests/*/*.log
 	rm -rf tests/*/*.s2s
 	rm -rf tests/*/input
 	rm -rf tests/*/output
+
+cleanbuild:
+	rm -rf build
+
+cleanall: cleanbuild
+	rm -rf venv lib include share
