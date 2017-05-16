@@ -10,7 +10,6 @@ from argparse import ArgumentParser
 from glob import glob
 from os.path import join as joinpath
 from time import strftime
-from sys import path
 from asaptools import simplecomm
 from pyreshaper.specification import Specifier
 from pyreshaper.reshaper import Reshaper
