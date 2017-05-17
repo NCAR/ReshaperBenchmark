@@ -5,7 +5,7 @@
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
 
-TSIZE4 := := $$(( 4 * $(TSIZE) ))
+TSIZE4 := $$(( 4 * $(TSIZE) ))
 
 this = $(notdir $(shell pwd))
 
