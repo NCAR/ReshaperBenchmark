@@ -5,8 +5,12 @@
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
 
+ifndef TSIZE
+  export TSIZE := 16
+endif
+
 ifndef MPIRUN
-  export MPIRUN := mpirun -n 16
+  export MPIRUN := mpirun -n $(NPROCS)
 endif
 
 ifndef RUNNAME
