@@ -73,6 +73,9 @@ def main(argv=None):
     specname = '.'.join([TESTNAME, RUNNAME, HOSTNAME, strftime("%Y%m%d%H%M%S"), 's2s'])
     testspec.write(specname)
     
+    if scomm.is_manager():
+        print 'MPI Environment Size: {}'.format(scomm.get_size())
+    
     reshaper = Reshaper(testspec, verbosity=5, wmode='o', simplecomm=scomm)
     reshaper.convert()
     reshaper.print_diagnostics()
