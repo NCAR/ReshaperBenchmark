@@ -10,7 +10,7 @@ ifndef TSIZE
 endif
 
 ifndef MPIRUN
-  export MPIRUN := mpirun -n $(NPROCS)
+  export MPIRUN := mpirun -n $(TSIZE)
 endif
 
 ifndef RUNNAME
