@@ -5,8 +5,6 @@
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
 
-TSIZE2 := $$(( 2 * $(TSIZE) ))
-
 this = $(notdir $(shell pwd))
 
 default: $(this)
