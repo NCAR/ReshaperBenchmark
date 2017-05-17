@@ -1,25 +1,56 @@
 #!/bin/sh
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 
+# Set a number that determines the size of each test (i.e., the number of input
+# files to process and the number of output files to produce).  This will affect
+# the time for tests to complete, so it is important to indicate this number in
+# the RUNNAME parameter (below).
+#
+# NOTE: This number does not, necessarily, have to have anything to do with the 
+#       number of MPI processes used (see below).  This number will be used to set
+#       the size of the tests, in particular the number of input files to process
+#       and the number of variables in the input files.  How each tests scales
+#       according to this number is different.
+
+export TSIZE=16
+
 # The command that must preface any test script to run in parallel
-export MPIRUN="mpirun -n 16"
+#
+# NOTE: In this example, we set the size of the MPI environment to the TSIZE
+#       number defined above.  If the size of the MPI environment scales with
+#       TSIZE, then this would be essentially equivalent to a weak scaling test.
+#       If the test-size TSIZE is held constant while the MPI environment size
+#       is scaled, then this would be essentially equivalent to a strong scaling
+#       test. 
+
+export MPIRUN="mpirun -n $TSIZE"
+
+# Include any MPI environment flags necessary for these runs here
+
+export MP_TIMEOUT=14400
+export MP_PULSE=1800
+export MP_DEBUG_NOTIMEOUT=yes
 
 # Whether to capture strace results during tests (default to no strace results)
 # If strace is enabled, the timing of the tests will be affected.  Therefore,
 # if strace is enabled, you should reflect this fact in the RUNNAME (below).
+#
 # WARNING:  On some systems, or with some MPI implementations, strace will
 #           not capture statistics between MPI_Init and MPI_Finalize!  You
 #           may need to modify your MPIRUN command to allow strace to work
 #           as expected.
+
 export STRACE=0
 
 # Whether to output test files with compression enabled.  This will affect
 # timing if enabled.  Therefore, if the DEFLATE value is changed, you should
 # reflect this fact in the RUNNAME (below).
+
 export DEFLATE=0
 
 # A name to give these runs (can be anything, just no "." or spaces)
-export RUNNAME=default-$DEFLATE-$STRACE
+
+export RUNNAME=default-T$TSIZE-D$DEFLATE-S$STRACE
 
 # Append directories to PATH or LD_LIBRARY_PATH, if necessary
 CWD=`pwd`
