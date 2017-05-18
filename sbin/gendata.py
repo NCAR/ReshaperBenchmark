@@ -168,17 +168,18 @@ def main(argv=None):
                 elif ndims == 1:
                     vobj[:] = arange(dimensions[vobj.dimensions[0]], dtype='d')
                 else:
-                    if chunk[0] in vobj.dimensions:
-                        cname = chunk[0]
+                    cname = chunk[0]
+                    if cname in vobj.dimensions:
+                        cdlen = dimensions[cname]
                         csize = chunk[1]
                     else:
-                        cname = None
+                        cdlen = 1
                         csize = 1
 
-                    nchnks = dimensions[cname] / csize + int(dimensions[cname] % csize > 0)
+                    nchnks = cdlen / csize + int(cdlen % csize > 0)
                     for n in xrange(nchnks):
                         istart = n*csize
-                        iend = dimensions[cname] if n == nchnks-1 else (n+1)*csize
+                        iend = cdlen if n == nchnks-1 else (n+1)*csize
                         slc = tuple(slice(istart,iend) if d == cname else slice(None)
                                     for d in vobj.dimensions)
                         shp = tuple(csize if d == cname else dimensions[d]
