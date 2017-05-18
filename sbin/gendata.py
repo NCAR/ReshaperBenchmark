@@ -130,7 +130,7 @@ def main(argv=None):
         else:
             print '{}: Creating file: {}'.format(header, fname)
 
-        with Dataset(fname, 'w') as fobj:
+        with Dataset(fname, 'w', keepweakref=True) as fobj:
             fobj.setncattr('file', fname)
             fobj.setncattr('slice', str(nslice))
             
