@@ -149,6 +149,7 @@ def main(argv=None):
                     vobj[:] = arange(nslice*dlen, (nslice+1)*dlen, dtype='d')
                 else:
                     vobj[:] = arange(dlen, dtype='d')
+            fobj.sync()
                 
             vobjs = {}    
             for vname in variables:
@@ -182,7 +183,8 @@ def main(argv=None):
                                     for d in vobj.dimensions)
                         shp = tuple(csize if d == cname else dimensions[d]
                                     for d in vobj.dimensions)
-                        vobj[slc] = random_sample(shp)                        
+                        vobj[slc] = random_sample(shp)
+                fobj.sync()
 
     tend = time()
     
