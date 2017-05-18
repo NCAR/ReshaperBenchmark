@@ -159,6 +159,7 @@ def main(argv=None):
                 vobj.setncattr('units', '1')
                 vobj.setncattr('comment', 'Variable {}'.format(vname))
                 vobjs[vname] = vobj
+            fobj.sync()
 
             for vname in vobjs:
                 vobj = vobjs[vname]
