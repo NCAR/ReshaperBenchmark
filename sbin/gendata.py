@@ -85,7 +85,7 @@ def cli(argv=None):
     args.variables = variables
     
     if args.chunk is None:
-        chunk = ('3', 1)
+        chunk = (None, 1)
     else:
         try:
             dim, size = args.chunk.split(',')
