@@ -20,6 +20,8 @@ from time import time
 # Argument Parser
 #===================================================================================================
 __PARSER__ = ArgumentParser(description='Generate time-slice files for PyReshaper testing')
+__PARSER__.add_argument('-c', '--chunk', metavar='DIM,SIZE', 
+                        help='Dimension number and size of chunks to write')
 __PARSER__.add_argument('-d', '--dimensions', metavar='SIZE[,SIZE[,SIZE[...]]]',
                         help='Size of dimensions to be written to files')
 __PARSER__.add_argument('-n', '--numslices', metavar='NUMBER', default=100, type=int,
@@ -81,6 +83,17 @@ def cli(argv=None):
             raise ArgumentTypeError('Variables must be specified as a '
                                     'comma-separated list of integers')
     args.variables = variables
+    
+    if args.chunk is None:
+        chunk = ('3', 1)
+    else:
+        try:
+            dim, size = args.chunk.split(',')
+            chunk = (dim, int(size))
+        except:
+            raise ArgumentTypeError('Chunking must be set with a comma-separated '
+                                    'dimension number and integer size')  
+    args.chunk = chunk          
         
     return args
 
@@ -95,6 +108,7 @@ def main(argv=None):
     variables = args.variables
     numslices = args.numslices
     outdir = args.outputdir
+    chunk = args.chunk
     
     scomm = simplecomm.create_comm(serial=args.serial)
     header = '[{}/{}]'.format(scomm.get_rank(), scomm.get_size())
@@ -153,8 +167,23 @@ def main(argv=None):
                 elif ndims == 1:
                     vobj[:] = arange(dimensions[vobj.dimensions[0]], dtype='d')
                 else:
-                    shape = tuple(dimensions[d] for d in vobj.dimensions)
-                    vobj[:] = random_sample(shape)
+                    if chunk[0] in vobj.dimensions:
+                        cname = chunk[0]
+                        csize = chunk[1]
+                    else:
+                        cname = None
+                        csize = 1
+
+                    nchnks = dimensions[cname] / csize + int(dimensions[cname] % csize > 0)
+                    for n in xrange(nchnks):
+                        istart = n*csize
+                        iend = dimensions[cname] if n == nchnks-1 else (n+1)*csize
+                        slc = tuple(slice(istart,iend) if d == cname else slice(None)
+                                    for d in vobj.dimensions)
+                        shp = tuple(csize if d == cname else dimensions[d]
+                                    for d in vobj.dimensions)
+                        vobj[slc] = random_sample(shp)                        
+
     tend = time()
     
     runtime = scomm.allreduce(tend - tstart, op='max')
