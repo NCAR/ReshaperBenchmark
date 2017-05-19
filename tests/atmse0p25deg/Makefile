@@ -1,6 +1,8 @@
 ################################################################################
 #
-#  Makefile for the NCAR PyReshaper Benchmark - ./tests/testlrgmeta
+#  Makefile for the NCAR PyReshaper Benchmark - ./tests/atmse0p25deg
+#
+#  TEST: Faux atmospheric 0.25-degree spectral-element dataset
 #
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
@@ -13,7 +15,7 @@ $(this):
 	@echo "Running benchmark: $@"
 	@echo "  Generating input data."
 	@$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@." \
-	-d 1,180,360,25 -v 100 -v 50,1,2 -v 10,1,2,3 -v $(TSIZE),0,1,2,3 -n $(TSIZE) > \
+	-d 1,30,777600 -v 10 -v 100,0,2 -v 100,0,1,2 -n 64 > \
 	gendata.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log
 	@if [ ! -d output ]; then mkdir output; fi
 	@echo "  Running test."
