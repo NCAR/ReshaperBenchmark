@@ -5,12 +5,12 @@
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
 
-ifndef MPIRUN
-  export MPIRUN := mpirun -n 16
+ifndef NPROCS
+  export NPROCS := 16
 endif
 
-ifndef RUNNAME
-  export RUNNAME := default
+ifndef MPIRUN
+  export MPIRUN := mpirun -n $(NPROCS)
 endif
 
 ifndef STRACE
@@ -19,6 +19,10 @@ endif
 
 ifndef DEFLATE
   export DEFLATE := 0
+endif
+
+ifndef RUNNAME
+  export RUNNAME := default-N$(NPROCS)-D$(DEFLATE)-S$(STRACE)
 endif
 
 export HOSTNAME := $(shell hostname -s)
