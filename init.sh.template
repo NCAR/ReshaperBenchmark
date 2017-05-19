@@ -1,13 +1,17 @@
 #!/bin/sh
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 
+# For convenience, we set the number of MPI processes we use here
+
+export NPROCS=16
+
 # The command that will preface any test script that runs in parallel
 #
 # NOTE: In this example, we set the size of the MPI environment in this
 #       command, but your environment may be different.  The size of
 #       the job should be set according to your environment's needs.
 
-export MPIRUN="mpirun -n 16"
+export MPIRUN="mpirun -n $NPROCS"
 
 # Include any MPI environment flags necessary for these runs here
 
@@ -34,7 +38,7 @@ export DEFLATE=0
 
 # A name to give these runs (can be anything, just no "." or spaces)
 
-export RUNNAME=default-T$TSIZE-D$DEFLATE-S$STRACE
+export RUNNAME=default-N$NPROCS-D$DEFLATE-S$STRACE
 
 # Append directories to PATH or LD_LIBRARY_PATH, if necessary
 CWD=`pwd`
