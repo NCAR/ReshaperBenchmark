@@ -1,29 +1,13 @@
 #!/bin/sh
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 
-# Set a number that determines the size of each test (i.e., the number of input
-# files to process and the number of output files to produce).  This will affect
-# the time for tests to complete, so it is important to indicate this number in
-# the RUNNAME parameter (below).
+# The command that will preface any test script that runs in parallel
 #
-# NOTE: This number does not, necessarily, have to have anything to do with the 
-#       number of MPI processes used (see below).  This number will be used to set
-#       the size of the tests, in particular the number of input files to process
-#       and the number of variables in the input files.  How each tests scales
-#       according to this number is different.
+# NOTE: In this example, we set the size of the MPI environment in this
+#       command, but your environment may be different.  The size of
+#       the job should be set according to your environment's needs.
 
-export TSIZE=16
-
-# The command that must preface any test script to run in parallel
-#
-# NOTE: In this example, we set the size of the MPI environment to the TSIZE
-#       number defined above.  If the size of the MPI environment scales with
-#       TSIZE, then this would be essentially equivalent to a weak scaling test.
-#       If the test-size TSIZE is held constant while the MPI environment size
-#       is scaled, then this would be essentially equivalent to a strong scaling
-#       test. 
-
-export MPIRUN="mpirun -n $TSIZE"
+export MPIRUN="mpirun -n 16"
 
 # Include any MPI environment flags necessary for these runs here
 
