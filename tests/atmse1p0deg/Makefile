@@ -2,6 +2,8 @@
 #
 #  Makefile for the NCAR PyReshaper Benchmark - ./tests/atmse1p0deg
 #
+#  TEST:  Faux atmospheric 1.0-degree spectral-element dataset
+#
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
 
