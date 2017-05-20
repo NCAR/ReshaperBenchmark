@@ -48,44 +48,78 @@ critical things done in this script are:
 1. The script appends the benchmark root `bin/` and `lib/` diretories to the environment `PATH` and
 `LD_LIBRARY_PATH` variables.  This is needed due to the fact that this package installs everything
 in the package root directory.
-2. The script 
 
-Assuming you have necessary dependencies installed (`make`, a C compiler, MPI, and Python 2.7),
-you should be able to build and install the benchmarking package software with:
+2. The script also sets the command that is used to launch an MPI job.  For many machines this
+is just `mpirun`, but the actual command string should also contain any additional options needed
+to run with the setting you need, such as setting the job size, etc.  By default, this environment
+variable (called `MPIRUN`) is set to `mpirun -n 16`.
 
-    make build
+We recommand that you make a copy of the template initialization script:
 
-or just simply:
+    cp init.sh.template init.sh
 
-    make
-
-
-
-To run these benchmarks, you will need Python 2.7, an implementation of MPI, and
-a C compiler.  Before building the benchmark and dependencies, you may need to
-make changes to the environment settings found in the `init.sh.template` file.
-We suggest that you make a copy of this template file (e.g., init.sh), make 
-changes to fit your environment, and initialize the environment by typing:
+edit this file according to your needs, and then initialize your environment with:
 
     . init.sh
 
-or whatever you named the copy.
+or similar, depending on what you named the script.
 
-Then, to build the toolsuite, just type:
+To build and install the package software and its dependencies, just type:
 
     make build
 
-All other dependencies are included with this benchmark package as tarballs in
-the src directory.  These dependencies will be build with default settings.  If
-any of these packages fail to build, their build directories will be located in
-the `build` directory, and you will be able to diagnose any build problems as you
-encounter them.
+or
 
-Once the dependencies are built, you can run all of the tests by typing:
+    make
+
+and the dependencies will be built in the `build/` directory and installed in the package
+root directory.  (Python packages will be installed in a `virtualenv` environment called
+`venv`.)
+
+If you encounter any problems building and installing the software, you can look in the
+appropriate subdirectory of the `build/` directory to diagnose the problem.  The build
+makefile is `src/Makefile` and can be viewed to see how each dependency is built.
+
+### Running the Benchmark
+
+Once the package and its dependencies have been built, you can run all of the tests with:
 
     make alltests
 
-Or you may run each tests one by one.
+This will run all of the tests found in subdirectories of the `tests/` directory.  To get
+a list of all of the tests that can be run, just type:
+
+    make help
+
+Each test can be run individually with the command:
+
+    make testname
+
+where `testname` is the name of the individual test you want to run.
+
+When a test is run, the procedure for the run is as follows:
+
+1. The data for the test is generated.  This can almost as long as the test in some cases.
+On NCAR's Geyser DAV cluster, with 40 MPI processes, the largest test takes roughly 
+20 minutes to generate the test data.  Data generation is done in parallel, and the parallel
+data generation script is run with command set by the `MPIRUN` environment variable.
+
+2. The PyReshaper tool is run with the generated input.  This step is also run with the command
+set by the `MPIRUN` environment variable.  The largest run takes roughly 30 minutes to run with
+40 MPI processors on NCAR's Geyser DAV cluster.
+
+3. The data generation and PyReshaper log files are copied to the `logs/` directory.
+
+If a test fails, and you need to modify environment variables to to get it to rerun, you may
+want to run `make cleantests` before rerunning the next test.  This will erase the contents of
+the test directories (including all data).  Or, you may just want to delete all log files still
+remaining in the `tests/` subdirectories.
+
+### Results
+
+The results requested for this benchmark will be the contents of the `logs/` directory.  You
+may tarball this directory up and send it to us as requested. 
+
 
 
 Copyright 2017, University Corporation for Atmospheric Research
