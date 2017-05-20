@@ -6,7 +6,7 @@
 ################################################################################
 
 ifndef NPROCS
-  export NPROCS := 16
+  export NPROCS := 40
 endif
 
 ifndef MPIRUN
