@@ -80,7 +80,7 @@ If you encounter any problems building and installing the software, you can look
 appropriate subdirectory of the `build/` directory to diagnose the problem.  The build
 makefile is `src/Makefile` and can be viewed to see how each dependency is built.
 
-### Running the Benchmark
+### Running the Benchmarks
 
 Once the package and its dependencies have been built, you can run all of the tests with:
 
@@ -114,6 +114,62 @@ If a test fails, and you need to modify environment variables to to get it to re
 want to run `make cleantests` before rerunning the next test.  This will erase the contents of
 the test directories (including all data).  Or, you may just want to delete all log files still
 remaining in the `tests/` subdirectories.
+
+### Benchmark Tests
+
+There are 10 tests that can be run.  For each test, there is a subdirectory within the `tests/`
+directory.  The tests are as follows:
+
+- `small`: This is a small demo test.  Use this test to check that your environment is set
+correctly and that the benchmark suite was built correctly.  (Using 40 MPI processes on
+NCAR's Geyser cluster, this test used a total of 1782 MB of memory with a maximum
+use of 94 MB on any single process.  Data generation ran
+in about 5 seconds, and the PyReshaper ran in about 11 seconds.)
+
+- `atmfv1p0deg`: This tests a 1.0-degree finite-volume atmospheric-model-like dataset.  (Using
+40 MPI processes on NCAR's Geyser cluster, this test used a total of 2745 MB of memory with a maximum
+use of 121 MB on any single process.  Data generation ran 
+in about 18 seconds, and the PyReshaper ran in about 81 seconds.)
+
+- `atmse1p0deg`: This tests a 1.0-degree spectral-element atmospheric-model-like dataset.  (Using
+40 MPI processes on NCAR's Geyser cluster, this test used a total of 8352 MB of memory with a maximum
+use of 122 MB on any single process.  Data generation ran
+in about 20 seconds, and the PyReshaper ran in about 78 seconds.)
+
+- `lndse1p0deg`: This tests a 1.0-degree spectral-element land-model-like dataset.  (Using
+40 MPI processes on NCAR's Geyser cluster, this test used a total of 2593 MB of memory with a maximum
+use of 122 MB on any single process.  Data generation ran
+in about 10 seconds, and the PyReshaper ran in about 255 seconds.)
+
+- `ocn1p0deg`: This tests a 1.0-degree ocean-model-like dataset.  (Using
+40 MPI processes on NCAR's Geyser cluster, this test used a total of 11829 MB of memory with a maximum
+use of 167 MB on any single process.  Data generation ran
+in about 85 seconds, and the PyReshaper ran in about 139 seconds.)
+
+- `seaice1p0deg`: This tests a 1.0-degree sea-ice-model-like dataset.  (Using
+40 MPI processes on NCAR's Geyser cluster, this test used a total of 2264 MB of memory with a maximum
+use of 109 MB on any single process.  Data generation ran
+in about 8 seconds, and the PyReshaper ran in about 83 seconds.)
+
+- `atmse0p25deg`: This tests a 0.25-degree spectral-element atmospheric-model-like dataset.  (Using
+40 MPI processes on NCAR's Geyser cluster, this test used a total of 236796 MB of memory with a maximum
+use of 376 MB on any single process.  Data generation ran
+in about 565 seconds, and the PyReshaper ran in about 591 seconds.)
+
+- `lndse0p25deg`: This tests a 0.25-degree spectral-element land-model-like dataset.  (Using
+40 MPI processes on NCAR's Geyser cluster, this test used a total of 34673 MB of memory with a maximum
+use of 355 MB on any single process.  Data generation ran
+in about 90 seconds, and the PyReshaper ran in about 195 seconds.)
+
+- `ocn0p1deg`: This tests a 0.1-degree ocean-model-like dataset.  (Using
+40 MPI processes on NCAR's Geyser cluster, this test used a total of 242194 MB of memory with a maximum
+use of 2677 MB on any single process.  Data generation ran
+in about 1190 seconds, and the PyReshaper ran in about 1755 seconds.)
+
+- `seaice0p1deg`: This tests a 0.1-degree sea-ice-model-like dataset.  (Using
+40 MPI processes on NCAR's Geyser cluster, this test used a total of 1780 MB of memory with a maximum
+use of 333 MB on any single process.  Data generation ran
+in about 310 seconds, and the PyReshaper ran in about 382 seconds.)
 
 ### Results
 
