@@ -17,7 +17,14 @@ export NPROCS=40
 #       command, but your environment and MPI launcher may be different.
 #       The size of the job should be set according to your environment's needs.
 
-export MPIRUN="mpirun -n $NPROCS"
+# On Yellowstone...
+export MPIRUN="mpirun.lsf"
+#
+# On Cheyenne...
+#export MPIRUN="mpiexec_mpt -n $NPROCS"
+#
+# On a generic MPI machine...
+#export MPIRUN="mpirun -n $NPROCS"
 
 # Include any MPI environment flags necessary for these runs here
 #
@@ -55,7 +62,8 @@ export DEFLATE=0
 # run (e.g., the number of processors, the compression/deflate setting, the
 # strace setting, etc.).
 
-export RUNNAME=default-N$NPROCS-D$DEFLATE-S$STRACE
+HOSTNAME=`hostname`
+export RUNNAME=$HOSTNAME-N$NPROCS-D$DEFLATE-S$STRACE
 
 # Append benchmark directories to PATH or LD_LIBRARY_PATH, if necessary.  You should
 # not need to change anything below this line.
