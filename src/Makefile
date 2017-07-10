@@ -135,9 +135,9 @@ pynio: build numpy netcdf
 		echo $(HLINE2); \
 		echo "Now building: $@"; \
 		echo; \
-		cd build; \
+		cd $(PREFIX)/build; \
 		if [ ! -d $(PYNIO) ]; then \
-			tar -xmzf ../source/$(PYNIO).tar.gz; \
+			tar -xmzf $(PREFIX)/src/$(PYNIO).tar.gz; \
 		fi; \
 		cd $(PYNIO) && \
 		source $(PREFIX)/venv/bin/activate && \
