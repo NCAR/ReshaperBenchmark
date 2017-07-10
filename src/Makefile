@@ -128,7 +128,7 @@ mpi4py: numpy
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 
-pynio: build numpy netcdf
+pynio: numpy netcdf
 	@HAS_PYNIO=`source $(PREFIX)/venv/bin/activate && python -c "import Nio" 2> /dev/null; echo $$?`; \
 	if [ $$HAS_PYNIO -ne 0 ]; then \
 		echo; \
