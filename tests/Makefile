@@ -21,12 +21,26 @@ ifndef DEFLATE
   export DEFLATE := 0
 endif
 
+ifndef HOSTNAME
+  export HOSTNAME := $(shell hostname)
+endif
+
+ifndef BACKEND
+  export BACKEND := nc4
+endif
+
 ifndef RUNNAME
-  export RUNNAME := default-N$(NPROCS)-D$(DEFLATE)-S$(STRACE)
+  export RUNNAME := $(HOSTNAME)-$(BACKEND)-N$(NPROCS)-D$(DEFLATE)-S$(STRACE)
+endif
+
+ifeq ($(BACKEND),nio)
+  export FULLBACKEND := Nio
+else
+  export FULLBACKEND := netCDF4
 endif
 
 export HOSTNAME := $(shell hostname -s)
-export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py -d $(DEFLATE) -i input -o output 
+export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py -b $(FULLBACKEND) -d $(DEFLATE) -i input -o output 
 export GENDATA := $(PREFIX)/sbin/gendata.py -o input
 export ACTIVATE := source $(PREFIX)/venv/bin/activate
 

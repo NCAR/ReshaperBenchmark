@@ -25,6 +25,8 @@ __PARSER__.add_argument('--runname', metavar='RUNNAME', default='runname',
                         help='Name of the run')
 __PARSER__.add_argument('--testname', metavar='TESTNAME', default='testname',
                         help='Name of the test')
+__PARSER__.add_argument('-b', '--backend', metavar='BACKEND', default='netCDF4',
+                        help='The netCDF I/O backend to use (netCDF4 or Nio)')
 __PARSER__.add_argument('-d', '--deflate', metavar='DEFLATE', type=int, default=0,
                         help='Deflate value to use in PyReshaper run')
 __PARSER__.add_argument('-o', '--outputdir', metavar='DIR', default='output',
@@ -55,6 +57,7 @@ def main(argv=None):
     TESTNAME = args.testname    
     RUNNAME  = args.runname
     HOSTNAME = args.hostname
+    BACKEND = args.backend
     DEFLATE  = args.deflate
     INDIR = args.inputdir
     OUTDIR = args.outputdir
@@ -66,7 +69,7 @@ def main(argv=None):
                          compression=DEFLATE,
                          prefix=joinpath(OUTDIR, PREFIX),
                          suffix=SUFFIX,
-                         backend='netCDF4',
+                         backend=BACKEND,
                          meta1d=True)
     testspec.validate()
     
