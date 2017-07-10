@@ -10,6 +10,7 @@ HLINE2 := "=====================================================================
 
 PYRESHAPER  := PyReshaper-1.0.1
 ASAPTOOLS   := ASAPPyTools-0.6.0
+PYNIO       := PyNIO-1.4.1p2
 NETCDF4PY   := netcdf4-python-1.2.3.1rel
 ORDEREDDICT := ordereddict-1.1
 MPI4PY      := mpi4py-1.3.1
@@ -127,6 +128,27 @@ mpi4py: numpy
 	@echo "Installed: $@"
 	@echo $(HLINE1)
 
+Nio: build numpy netcdf
+	@HAS_PYNIO=`source $(PREFIX)/venv/bin/activate && python -c "import Nio" 2> /dev/null; echo $$?`; \
+	if [ $$HAS_PYNIO -ne 0 ]; then \
+		echo; \
+		echo $(HLINE2); \
+		echo "Now building: $@"; \
+		echo; \
+		cd build; \
+		if [ ! -d $(PYNIO) ]; then \
+			tar -xmzf ../source/$(PYNIO).tar.gz; \
+		fi; \
+		cd $(PYNIO) && \
+		source $(PREFIX)/venv/bin/activate && \
+		HAS_OPENDAP=0 HAS_SZIP=1 HAS_NETCDF4=1 HAS_HDF5=1 \
+		HDF5_PREFIX=$(PREFIX) NETCDF4_PREFIX=$(PREFIX) \
+		python setup.py install; \
+	fi
+	@echo $(HLINE1)
+	@echo "Installed: $@"
+	@echo $(HLINE1)
+	
 numpy: setuptools
 	@HAS_NUMPY=`source $(PREFIX)/venv/bin/activate && python -c "import numpy" 2> /dev/null; echo $$?`; \
 	if [ $$HAS_NUMPY -ne 0 ]; then \
