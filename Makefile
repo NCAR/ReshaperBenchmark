@@ -32,6 +32,11 @@ build:
 	@echo
 	@$(MAKE) -C src
 
+optional:
+	@echo "Building optional dependencies."
+	@echo
+	@$(MAKE) -C src pynio
+
 .PHONY: help cleantests cleanbuild
 
 help:
