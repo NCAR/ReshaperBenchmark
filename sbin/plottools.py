@@ -45,7 +45,7 @@ def grouped_stacked_bar_graph(data_dict, max_width=0.8, pretitle='',
     stack_names, group_names, categories = dim_names
     num_stacks, num_groups, num_categories = data.shape
     
-    fig = plt.figure()
+    fig = plt.figure(figsize=(16,9))
     ax = fig.add_axes([0.1, 0.1, 0.725, 0.8])
     x_orig = np.arange(num_groups, dtype='d') + 0.25
     x_left = x_orig.copy()
@@ -65,14 +65,14 @@ def grouped_stacked_bar_graph(data_dict, max_width=0.8, pretitle='',
             y_base += y_vals
         for x,y in zip(x_cntr, y_base):
             ax.text(x, y, stack_names[i], fontsize=8,
-                    verticalalignment='bottom', horizontalalignment='center')
+                    verticalalignment='bottom', horizontalalignment='right')
         x_cntr += stack_width
         x_left += stack_width
 
     ax.set_ylabel(label)
     ax.set_title(make_title(stack_names, pretitle, title))
     ax.set_xticks(x_orig + 0.5*max_width)
-    ax.set_xticklabels(group_names, rotation=15, ha='right')
+    ax.set_xticklabels(group_names, rotation=15, ha='center')
     ax.set_xlim(0, max(x_left) + 0.25)
     ax.legend(loc='upper left', bbox_to_anchor=(1.0, 1.0), borderaxespad=0.3,
               prop={'size': 12})
@@ -91,7 +91,7 @@ def grouped_nested_bar_graph(data_dict, max_width=0.8, pretitle='',
     y_min0 = np.min(data)
     y_max0 = np.max(data)
     
-    fig = plt.figure()
+    fig = plt.figure(figsize=(16,9))
     ax = fig.add_axes([0.11, 0.1, 0.675, 0.8])
     x_orig = np.arange(num_groups, dtype='d') + 0.25
     stack_width0 = max_width / num_stacks
@@ -119,13 +119,13 @@ def grouped_nested_bar_graph(data_dict, max_width=0.8, pretitle='',
                 if y_val > y_max:
                     y_max = y_val
             ax.text(x_cntr, y_max, stack_names[i_s], fontsize=8,
-                    verticalalignment='bottom', horizontalalignment='center')
+                    verticalalignment='bottom', horizontalalignment='right')
             x_cntr += stack_width0
 
     ax.set_ylabel(label)
     ax.set_title(make_title(stack_names, pretitle, title))
     ax.set_xticks(x_orig + 0.5*max_width)
-    ax.set_xticklabels(group_names, rotation=15, ha='right')
+    ax.set_xticklabels(group_names, rotation=15, ha='center')
     ax.set_xlim(0, max(x_orig) + num_stacks*stack_width0 + 0.25)
     ax.set_ylim(0.5*y_min0, 2*y_max0)
     ax.set_yscale('log')
@@ -146,7 +146,7 @@ def grouped_bar_graph(data_dict, max_width=0.8, pretitle='',
     #y_min0 = np.min(data)
     #y_max0 = np.max(data)
     
-    fig = plt.figure()
+    fig = plt.figure(figsize=(16,9))
     ax = fig.add_axes([0.11, 0.1, 0.675, 0.8])
     x_orig = np.arange(num_groups, dtype='d') + 0.25
     stack_width0 = max_width / num_stacks
@@ -165,7 +165,7 @@ def grouped_bar_graph(data_dict, max_width=0.8, pretitle='',
     ax.set_ylabel(label)
     ax.set_title(make_title(stack_names, pretitle, title))
     ax.set_xticks(x_orig + 0.5*max_width)
-    ax.set_xticklabels(group_names, rotation=15, ha='right')
+    ax.set_xticklabels(group_names, rotation=15, ha='center')
     ax.set_xlim(0, max(x_orig) + num_stacks*stack_width0 + 0.25)
     #ax.set_ylim(0.5*y_min0, 2*y_max0)
     #ax.set_yscale('log')
