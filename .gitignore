@@ -7,4 +7,5 @@
 *.nc
 *.log
 *.s2s
+*.pyc
 init.sh
