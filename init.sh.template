@@ -19,10 +19,10 @@ export NPROCS=40
 
 # On Yellowstone...
 export MPIRUN="mpirun.lsf"
-#
+
 # On Cheyenne...
 #export MPIRUN="mpiexec_mpt -n $NPROCS"
-#
+
 # On a generic MPI machine...
 #export MPIRUN="mpirun -n $NPROCS"
 
