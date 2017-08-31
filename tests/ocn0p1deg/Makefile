@@ -15,7 +15,7 @@ $(this):
 	@echo "Running benchmark: $@"
 	@echo "  Generating input data."
 	@$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@." \
-	-d 1,60,2400,3600 -v 30 -v 20,2,3 -v 20,0,2,3 -v 10,0,1,2,3 -n 64 > \
+	-d 1,60,2400,3600 -v 30 -v 20,2,3 -v 20,0,2,3 -v 10,0,1,2,3 -n 120 > \
 	gendata.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log
 	@if [ ! -d output ]; then mkdir output; fi
 	@echo "  Running test."
