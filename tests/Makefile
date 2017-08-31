@@ -43,6 +43,8 @@ export HOSTNAME := $(shell hostname -s)
 export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py -b $(FULLBACKEND) -d $(DEFLATE) -i input -o output 
 export GENDATA := $(PREFIX)/sbin/gendata.py -o input
 export ACTIVATE := source $(PREFIX)/venv/bin/activate
+export CHECK := $(PREFIX)/sbin/checktest.py -o output
+export POST := $(PREFIX)/sbin/posttest.py
 
 dirs = $(sort $(dir $(wildcard */)))
 tests = $(dirs:%/=%)
