@@ -32,30 +32,29 @@ build:
 	@echo
 	@$(MAKE) -C src
 
-optional:
-	@echo "Building optional dependencies."
-	@echo
-	@$(MAKE) -C src pynio
-
 .PHONY: help cleantests cleanbuild
 
 help:
 	@echo "To run these benchmarks, you will need Python 2.7, an implementation of MPI, and"
 	@echo "a C compiler.  Before building the benchmark suite and its and dependencies, you"
-	@echo "may need to make changes to the environment settings found in the init.sh.template"
-	@echo "file.  We suggest that you make a copy of this template file (e.g., init.sh), make "
-	@echo "changes to fit your environment, and initialize the environment by typing:"
+	@echo "may need to make changes to the environment settings found in the init.sh file."
+	@echo "We suggest that you edit this file to make changes to fit your environment, and"
+	@echo "initialize the environment by typing:"
 	@echo
 	@echo "    . init.sh"
 	@echo
-	@echo "on the command line (or whatever you named the copy)."
+	@echo "on the command line."
 	@echo
-	@echo "Then, to build the benchmark suite, just type:"
+	@echo "To build the benchmark suite, just type:"
+	@echo
+	@echo "    make"
+	@echo
+	@echo "or"
 	@echo
 	@echo "    make build"
 	@echo
 	@echo "All other dependencies are included with this benchmark package as tarballs in"
-	@echo "the src/ directory.  These dependencies will be build with default settings.  If"
+	@echo "the src/ directory.  These dependencies will be built with default settings.  If"
 	@echo "any of these packages fail to build, their build directories will be located in"
 	@echo "the build/ directory, and you will be able to diagnose the build problems as you"
 	@echo "encounter them.  Assuming all dependencies build, they will be installed in the"
@@ -65,11 +64,13 @@ help:
 	@echo 
 	@echo "    make alltests"
 	@echo
-	@echo "Or you may run each tests one by one."
+	@echo "Or you may run each test individually."
 	@echo
 	@echo "Available Test Targets:"
 	@echo
-	@echo "    $(tests)"
+	@for test in $(tests) ; do \
+	echo "    $$test" ; \
+	done
 
 cleantests:
 	rm -rf tests/*/*.log

@@ -12,13 +12,13 @@ benchmark's installation process.
 After downloading and unpacking this benchmark package, you should see the following files and
 directories:
 
-    README.md        - this file
-    LICENSE.rst      - the license for this benchmark
-    Makefile         - the makefile used for building and running this benchmark
-    init.sh.template - a template environment initialization script
-    sbin/            - directory where useful scripts for running the benchmark are located
-    src/             - directory where all dependencies are contained (as source tarballs)
-    tests/           - directory where all benchmark tests will be run
+    README.md   - this file
+    LICENSE.rst - the license for this benchmark
+    Makefile    - the makefile used for building and running this benchmark
+    init.sh     - a template environment initialization script
+    sbin/       - directory where useful scripts for running the benchmark are located
+    src/        - directory where all dependencies are contained (as source tarballs)
+    tests/      - directory where all benchmark tests will be run
 
 In addition to these files and directories, other directories will be created during installation.
 These include:
@@ -41,7 +41,7 @@ This benchmark does not install any software outside of the benchmark package ro
 (The root directory of this benchmark package will be the prefix for all source installations.)
 
 Before building and installing, you may need to set the proper environment variables for the
-software to build and run properly.  This can be done by modifying the `init.sh.template` script
+software to build and run properly.  This can be done by modifying the `init.sh` script
 for your machine.  Very little in this script may need to change for your machine, but the
 critical things done in this script are:
 
@@ -52,25 +52,21 @@ in the package root directory.
 2. The script also sets the command that is used to launch an MPI job.  For many machines this
 is just `mpirun`, but the actual command string should also contain any additional options needed
 to run with the setting you need, such as setting the job size, etc.  By default, this environment
-variable (called `MPIRUN`) is set to `mpirun -n 16`.
+variable (called `MPIRUN`) is set to `mpirun.lsf` which is the command available on NCAR's Yellowstone
+supercomputer.  However, for generic MPI installations, you may want to set this to something like 
+`mpirun -n 16`.
 
-We recommand that you make a copy of the template initialization script:
-
-    cp init.sh.template init.sh
-
-edit this file according to your needs, and then initialize your environment with:
+We recommand that you edit the `init.sh` file according to your needs, and then initialize your environment with:
 
     . init.sh
 
-or similar, depending on what you named the script.
-
 To build and install the package software and its dependencies, just type:
 
-    make build
+    make
 
 or
 
-    make
+    make build
 
 and the dependencies will be built in the `build/` directory and installed in the package
 root directory.  (Python packages will be installed in a `virtualenv` environment called
