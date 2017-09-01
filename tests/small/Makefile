@@ -14,7 +14,7 @@ default: $(this)
 $(this):
 	@GENARGS="-d 10,100 -v 20,0,1 -n 12"; \
 	GENLOG="gendata.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log"; \
-	RUNARGS="--testname $@  --runname $(RUNNAME) --hostname $(HOSTNAME)"; \
+	RUNARGS="--testname $@ --runname $(RUNNAME) --hostname $(HOSTNAME)"; \
 	RUNLOG="reshaper.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log"; \
 	$(call run_test,$@,"$$GENARGS","$$GENLOG","$$RUNARGS","$$RUNLOG")
 	
