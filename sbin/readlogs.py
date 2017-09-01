@@ -38,7 +38,7 @@ def read_logfile(logfile):
     
     database['backend'] = 'unknown'
     database['compression'] = 'unknown'
-    database['count'] = OrderedDict()
+    database['counts'] = OrderedDict()
     for logline in loglines:
         if 'NetCDF I/O Backend' in logline:
             database['backend'] = logline.strip().split()[-1]
@@ -47,15 +47,15 @@ def read_logfile(logfile):
         elif 'Time-Invariant Metadata:' in logline:
             v_str = logline.strip().split('[')[-1].split(']')[0]
             v_list = [v.strip().split("'")[1] for v in v_str.split(',')]
-            database['count']['time-inv-meta'] = len(v_list)
+            database['counts']['time-inv-meta'] = len(v_list)
         elif 'Time-Variant Metadata:' in logline:
             v_str = logline.strip().split('[')[-1].split(']')[0]
             v_list = [v.strip().split("'")[1] for v in v_str.split(',')]
-            database['count']['time-var-meta'] = len(v_list)
+            database['counts']['time-var-meta'] = len(v_list)
         elif 'Time-Series Variables:' in logline:
             v_str = logline.strip().split('[')[-1].split(']')[0]
             v_list = [v.strip().split("'")[1] for v in v_str.split(',')]
-            database['count']['time-ser-vars'] = len(v_list)
+            database['counts']['time-ser-vars'] = len(v_list)
         elif logline == 'TIMING DATA:':
             break
 
@@ -64,7 +64,7 @@ def read_logfile(logfile):
     timing_lines = loglines[strt_idx : end_idx]
     timing_data = OrderedDict((n.strip().lower(), float(t)) for n,t in
                               map(lambda s: s.split(':'), timing_lines))
-    database['time[s]'] = timing_data
+    database['time[sec]'] = timing_data
     
     strt_idx = loglines.index('BYTE COUNTS (MB):') + 2
     end_idx = loglines.index('-'*50, strt_idx)

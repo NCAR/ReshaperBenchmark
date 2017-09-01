@@ -76,10 +76,10 @@ for set_name, set_data in database.iteritems():
             timestamp = test_data.keys()[0]
             volume = test_data[timestamp]['volume[MB]']['requested data']
             vcount = 1
-            tdict = test_data[timestamp]['time[s]']
+            tdict = test_data[timestamp]['time[sec]']
             tcounts = dict((k,1) for k in tdict.keys())
             for timestamp in test_data.keys()[1:]:
-                for tkey, tval in test_data[timestamp]['time[s]'].iteritems():
+                for tkey, tval in test_data[timestamp]['time[sec]'].iteritems():
                     if tkey in tdict:
                         tdict[tkey] += tval
                         tcounts[tkey] += 1
@@ -94,7 +94,7 @@ for set_name, set_data in database.iteritems():
         else:
             timestamp = most_recent_timestamp(test_data.keys())
             volume = test_data[timestamp]['volume[MB]']['requested data']
-            tdict = test_data[timestamp]['time[s]']
+            tdict = test_data[timestamp]['time[sec]']
         
         # Reduce the time data to specific categories
         tdict_reduced = OrderedDict((c,0.0) for c in time_ids)
@@ -142,14 +142,14 @@ print_dict(rate_db)
 # Get the time data as an array and plot
 
 grouped_stacked_bar_graph(time_db, pretitle=args.title,
-                          title='Times', label='Time [s]',
+                          title='Times', label='Time [sec]',
                           union=args.use_union)
 
 #===============================================================================
 # Convert the rate database into an array and plot
 
 grouped_nested_bar_graph(rate_db,  pretitle=args.title,
-                         title='Rates', label='Rate [MB/s]',
+                         title='Rates', label='Rate [MB/sec]',
                          union=args.use_union)
     
 #===============================================================================
