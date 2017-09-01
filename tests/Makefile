@@ -60,12 +60,12 @@ $(tests): logdir
 	@source ./$@.test; \
 	echo "Running benchmark: $@"; \
 	echo "  Generating input data."; \
-	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@" $(GENARGS) > $(GENLOG); \
+	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@" $$GENARGS > $$GENLOG; \
 	if [ ! -d output ]; then mkdir output; fi; \
 	echo "  Running test."; \
-	$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -p "$@" $(RUNARGS) > $(RUNLOG); \
-	$(ACTIVATE) && $(CHECK) -p "$@" $(GENARGS); \
-	$(ACTIVATE) && $(POST) -l $(RUNLOG); \
+	$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -p "$@" $$RUNARGS > $$RUNLOG; \
+	$(ACTIVATE) && $(CHECK) -p "$@" $$GENARGS; \
+	$(ACTIVATE) && $(POST) -l $$RUNLOG; \
 	echo "  Copying logfiles."; \
 	cp *.log $(PREFIX)/logs/; \
 	echo "  Done."; \
