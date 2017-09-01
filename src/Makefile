@@ -160,6 +160,8 @@ setuptools: virtualenv
 		cd $(SETUPTOOLS) && \
 		source $(PREFIX)/venv/bin/activate && \
 		python setup.py install; \
+	else \
+		echo "DID NOT FIND SETUPTOOLS"; \
 	fi
 	@echo $(HLINE1)
 	@echo "Installed: $@"
