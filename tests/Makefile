@@ -46,7 +46,8 @@ export ACTIVATE := source $(PREFIX)/venv/bin/activate
 export CHECK := $(PREFIX)/sbin/checktest.py -o output
 export POST := $(PREFIX)/sbin/posttest.py
 
-tests = $(basename $(wildcard *.test))
+tdirs = $(sort $(dir $(wildcard */)))
+tests = $(tdirs:%/=%)
 
 default:
 
@@ -56,7 +57,8 @@ logdir:
 	@mkdir -p $(PREFIX)/logs
 
 $(tests): logdir
-	@TESTNAME=$@ source ./$@.test; \
+	@cd $@; \
+	TESTNAME=$@ source arguments.sh; \
 	echo "Running benchmark: $@"; \
 	echo "  Generating input data."; \
 	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@" $$GENARGS > $$GENLOG; \
@@ -64,7 +66,7 @@ $(tests): logdir
 	echo "  Running test."; \
 	$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -p "$@" $$RUNARGS > $$RUNLOG; \
 	$(ACTIVATE) && $(CHECK) -p "$@" $$GENARGS; \
-	$(ACTIVATE) && $(POST) -l $$RUNLOG; \
+	$(ACTIVATE) && $(POST) $$RUNLOG; \
 	echo "  Copying logfiles."; \
 	cp *.log $(PREFIX)/logs/; \
 	echo "  Done."

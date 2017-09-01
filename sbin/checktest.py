@@ -9,12 +9,7 @@ See the LICENSE.rst file for details
 from argparse import ArgumentParser, ArgumentTypeError
 from itertools import permutations
 from netCDF4 import Dataset
-from numpy import arange
-from numpy.random import random_sample
-from os.path import isdir, isfile, join
-from os import makedirs
-from asaptools import simplecomm
-from time import time
+from os.path import isfile, join
 
 #===================================================================================================
 # Argument Parser
@@ -95,78 +90,33 @@ def main(argv=None):
     variables = args.variables
     numslices = args.numslices
     outdir = args.outputdir
-    
-    scomm = simplecomm.create_comm(serial=args.serial)
-    header = '[{}/{}]'.format(scomm.get_rank(), scomm.get_size())
-    if scomm.is_manager():
-        print 'Creating time-slice files in output directory: {}'.format(outdir)
-        print 'MPI Environment Size: {}'.format(scomm.get_size())
-        print
-        if not isdir(outdir):
-            makedirs(outdir)
-    scomm.sync()
+
+    for vname in variables:
+        fname = join(outdir, '{}{}.nc'.format(args.prefix, vname))
+        if not isfile(fname):
+            raise RuntimeError('Output file {} missing'.format(fname))
         
-    myslices = scomm.partition(range(numslices), involved=True)
-
-    tstart = time()
-    for nslice in myslices:
-        fname = join(outdir, '{}{}.nc'.format(args.prefix, nslice))
-        if isfile(fname):
-            print '{}: Overwriting file: {}'.format(header, fname)
-        else:
-            print '{}: Creating file: {}'.format(header, fname)
-
-        with Dataset(fname, 'w') as fobj:
-            fobj.setncattr('file', fname)
-            fobj.setncattr('slice', str(nslice))
-            
-            for dname in dimensions:
-                if dname == '0':
-                    fobj.createDimension(dname)
-                else:
-                    fobj.createDimension(dname, dimensions[dname])
-
-            for dname in dimensions:
-                vobj = fobj.createVariable(dname, 'd', (dname,))
-                vobj.setncattr('units', '1')
-                vobj.setncattr('comment', 'Coordinate {}'.format(dname))
-                dlen = dimensions[dname]
-                if dname == '0':
-                    vobj[:] = arange(nslice*dlen, (nslice+1)*dlen, dtype='d')
-                else:
-                    vobj[:] = arange(dlen, dtype='d')
-            fobj.sync()
+        with Dataset(fname) as fobj:
                 
-            vobjs = {}    
+            for dname in dimensions:
+                if dname not in fobj.dimensions:
+                    raise RuntimeError('Dimension {} missing from file {}'.format(dname, fname))
+                dlen = dimensions[dname]
+                dlen *= numslices if dname == '0' else 1
+                if len(fobj.dimensions[dname]) != dlen:
+                    raise RuntimeError('Dimension {} has size {} but expected {} in file {}'.format(dname, len(fobj.dimensions[dname]), dlen, fname))
+                if dname not in fobj.variables:
+                    raise RuntimeError('Coordinate variable {} missing in file {}'.format(dname, fname))
+                if fobj.variables[dname].dimensions != (dname,):
+                    raise RuntimeError('Coordinate variable {} has dimensions {} but expected {} in file {}'.format(dname, fobj.variables[dname].dimensions, (dname,), fname))
+                    
             for vname in variables:
-                vdims = variables[vname]
-                vtype = 'f' if len(vdims) > 1 else 'd'
-                vobj = fobj.createVariable(vname, vtype, vdims)
-                vobj.setncattr('units', '1')
-                vobj.setncattr('comment', 'Variable {}'.format(vname))
-                vobjs[vname] = vobj
-            fobj.sync()
+                if vname not in fobj.variables:
+                    raise RuntimeError('Variable {} missing in file {}'.format(dname, fname))
+                if fobj.variables[vname].dimensions != variables[vname]:
+                    raise RuntimeError('Variable {} has dimensions {} but expected {} in file {}'.format(vname, fobj.variables[vname].dimensions, variables[vname], fname))
 
-            for vname in vobjs:
-                vobj = vobjs[vname]
-                ndims = len(vobj.dimensions)
-                if ndims == 0:
-                    vobj[:] = 1.0
-                elif ndims == 1:
-                    vobj[:] = arange(dimensions[vobj.dimensions[0]], dtype='d')
-                else:
-                    slc = tuple(slice(None) for _ in vobj.dimensions)
-                    shp = tuple(dimensions[d] for d in vobj.dimensions)
-                    vobj[slc] = random_sample(shp)
-                fobj.sync()
-
-    tend = time()
-    
-    runtime = scomm.allreduce(tend - tstart, op='max')
-
-    if scomm.is_manager():
-        print
-        print 'Maximum Process Runtime: {} seconds'.format(runtime)
+    print 'Output files pass sanity check'
 
 
 #===================================================================================================

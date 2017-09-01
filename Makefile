@@ -12,7 +12,8 @@ export PYTHONVER := $(shell python -c "import sys; print 'python{0}.{1}'.format(
 
 default: build
 
-tests = $(notdir $(basename $(wildcard tests/*.test)))
+tdirs = $(sort $(dir $(wildcard tests/*/.)))
+tests = $(tdirs:tests/%/=%)
 
 alltests: $(tests)
 
