@@ -31,7 +31,7 @@ def main(argv=None):
     args = cli(argv)
     logdb = read_logfile(args.logfile)
     time = logdb['time[sec]']['complete conversion process']
-    volume = logdb['volume[MB]']
+    volume = logdb['volume[MB]']['requested data']
     thruput = volume / time
     print '  Processed {} MB in {} sec ({} MB/sec).'.format(volume, time, thruput)
 
