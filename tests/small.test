@@ -1,5 +1,5 @@
-GENARGS := -d 10,100 -v 20,0,1 -n 12
-GENLOG  := gendata.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log
-RUNARGS := --testname $@ --runname $(RUNNAME) --hostname $(HOSTNAME)
-RUNLOG  := reshaper.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log
+export GENARGS="-d 10,100 -v 20,0,1 -n 12"
+export GENLOG="gendata.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log"
+export RUNARGS="--testname $@ --runname $(RUNNAME) --hostname $(HOSTNAME)"
+export RUNLOG="reshaper.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log"
     
