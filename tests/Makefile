@@ -57,23 +57,18 @@ logdir:
 	@mkdir -p $(PREFIX)/logs
 
 define run_test
-	echo $(1)
-	echo $(2)
-	echo $(3)
-	echo $(4)
-	echo $(5)
-	echo "Running benchmark: $(1)"
-	echo "  Generating input data."
-	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$(1)" $(2) > $(3)
-	if [ ! -d output ]; then mkdir output; fi
-	echo "  Running test."
-	$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -p "$(1)" $(4) > $(5)
-	$(ACTIVATE) && $(CHECK) -p "$(1)" $(2)
-	$(ACTIVATE) && $(POST) -l $(5)
-	echo "  Copying logfiles."
-	cp *.log $(PREFIX)/logs/
-	echo "  Done."
-	echo
+echo "Running benchmark: $(1)"
+echo "  Generating input data."
+$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$(1)" $(2) > $(3)
+if [ ! -d output ]; then mkdir output; fi
+echo "  Running test."
+$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -p "$(1)" $(4) > $(5)
+$(ACTIVATE) && $(CHECK) -p "$(1)" $(2)
+$(ACTIVATE) && $(POST) -l $(5)
+echo "  Copying logfiles."
+cp *.log $(PREFIX)/logs/
+echo "  Done."
+echo
 endef
 
 $(tests): logdir
