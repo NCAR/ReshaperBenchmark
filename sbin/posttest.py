@@ -30,6 +30,8 @@ def cli(argv=None):
 def main(argv=None):
     args = cli(argv)
     logdb = read_logfile(args.logfile)
+    print logdb['time[sec]']
+    print logdb['volume[MB]']
 
 
 #===================================================================================================
