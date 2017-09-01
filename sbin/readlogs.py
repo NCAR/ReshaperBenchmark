@@ -41,20 +41,17 @@ def read_logfile(logfile):
     database['counts'] = OrderedDict()
     for logline in loglines:
         if 'NetCDF I/O Backend' in logline:
-            database['backend'] = logline.strip().split()[-1]
+            database['backend'] = logline.split()[-1]
         elif 'NetCDF Compression' in logline:
-            database['compression'] = logline.strip().split()[-1]
+            database['compression'] = logline.split()[-1]
         elif 'Time-Invariant Metadata:' in logline:
-            v_str = logline.strip().split('[')[-1].split(']')[0]
-            v_list = [v.strip().split("'")[1] for v in v_str.split(',')]
+            v_list = logline.split(':')[-1].strip().split(', ')
             database['counts']['time-inv-meta'] = len(v_list)
         elif 'Time-Variant Metadata:' in logline:
-            v_str = logline.strip().split('[')[-1].split(']')[0]
-            v_list = [v.strip().split("'")[1] for v in v_str.split(',')]
+            v_list = logline.split(':')[-1].strip().split(', ')
             database['counts']['time-var-meta'] = len(v_list)
         elif 'Time-Series Variables:' in logline:
-            v_str = logline.strip().split('[')[-1].split(']')[0]
-            v_list = [v.strip().split("'")[1] for v in v_str.split(',')]
+            v_list = logline.split(':')[-1].strip().split(', ')
             database['counts']['time-ser-vars'] = len(v_list)
         elif logline == 'TIMING DATA:':
             break

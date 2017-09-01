@@ -114,8 +114,6 @@ def main(argv=None):
             if fobj.variables[vname].dimensions != variables[vname]:
                 raise RuntimeError('Variable {} has dimensions {} but expected {} in file {}'.format(vname, fobj.variables[vname].dimensions, variables[vname], fname))
 
-    print 'Output files pass sanity check'
-
 
 #===================================================================================================
 # Command-line Operation
