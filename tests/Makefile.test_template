@@ -23,6 +23,3 @@ test:
 	@cp *.log $(PREFIX)/logs/
 	@echo "  Done."
 	@echo
-
-$(tests): logdir
-	@$(MAKE) -C $@
