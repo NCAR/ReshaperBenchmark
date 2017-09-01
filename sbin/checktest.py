@@ -91,8 +91,11 @@ def main(argv=None):
     dimensions['0'] *= numslices
     variables = args.variables
     outdir = args.outputdir
+    
+    tservars = [vname for vname in variables if '0' in variables[vname]]
+    metavars = [vname for vname in variables if '0' not in variables[vname]]
 
-    for vname in variables:
+    for vname in tservars:
         fname = join(outdir, '{}{}.nc'.format(args.prefix, vname))
         if not isfile(fname):
             raise RuntimeError('Output file {} missing'.format(fname))
@@ -109,10 +112,11 @@ def main(argv=None):
                 if fobj.variables[dname].dimensions != (dname,):
                     raise RuntimeError('Coordinate variable {} has dimensions {} but expected {} in file {}'.format(dname, fobj.variables[dname].dimensions, (dname,), fname))
 
-            if vname not in fobj.variables:
-                raise RuntimeError('Variable {} missing in file {}'.format(dname, fname))
-            if fobj.variables[vname].dimensions != variables[vname]:
-                raise RuntimeError('Variable {} has dimensions {} but expected {} in file {}'.format(vname, fobj.variables[vname].dimensions, variables[vname], fname))
+            for fvar in metavars + [vname]:
+                if fvar not in fobj.variables:
+                    raise RuntimeError('Variable {} missing in file {}'.format(fvar, fname))
+                if fobj.variables[fvar].dimensions != variables[fvar]:
+                    raise RuntimeError('Variable {} has dimensions {} but expected {} in file {}'.format(fvar, fobj.variables[fvar].dimensions, variables[fvar], fname))
 
     print '  Output files pass sanity checks.'
 
