@@ -86,11 +86,10 @@ def cli(argv=None):
 def main(argv=None):
     args = cli(argv)
     
-    dimensions = args.dimensions
-    variables = args.variables
-    print dimensions
-    print variables
     numslices = args.numslices
+    dimensions = args.dimensions
+    dimensions['0'] *= numslices
+    variables = args.variables
     outdir = args.outputdir
 
     for vname in variables:
@@ -100,23 +99,20 @@ def main(argv=None):
         
         with Dataset(fname) as fobj:
                 
-            for dname in dimensions:
+            for dname in variables[vname]:
                 if dname not in fobj.dimensions:
                     raise RuntimeError('Dimension {} missing from file {}'.format(dname, fname))
-                dlen = dimensions[dname]
-                dlen *= numslices if dname == '0' else 1
-                if len(fobj.dimensions[dname]) != dlen:
-                    raise RuntimeError('Dimension {} has size {} but expected {} in file {}'.format(dname, len(fobj.dimensions[dname]), dlen, fname))
+                if len(fobj.dimensions[dname]) != dimensions[dname]:
+                    raise RuntimeError('Dimension {} has size {} but expected {} in file {}'.format(dname, len(fobj.dimensions[dname]), dimensions[dname], fname))
                 if dname not in fobj.variables:
                     raise RuntimeError('Coordinate variable {} missing in file {}'.format(dname, fname))
                 if fobj.variables[dname].dimensions != (dname,):
                     raise RuntimeError('Coordinate variable {} has dimensions {} but expected {} in file {}'.format(dname, fobj.variables[dname].dimensions, (dname,), fname))
-                    
-            for vname in variables:
-                if vname not in fobj.variables:
-                    raise RuntimeError('Variable {} missing in file {}'.format(dname, fname))
-                if fobj.variables[vname].dimensions != variables[vname]:
-                    raise RuntimeError('Variable {} has dimensions {} but expected {} in file {}'.format(vname, fobj.variables[vname].dimensions, variables[vname], fname))
+
+            if vname not in fobj.variables:
+                raise RuntimeError('Variable {} missing in file {}'.format(dname, fname))
+            if fobj.variables[vname].dimensions != variables[vname]:
+                raise RuntimeError('Variable {} has dimensions {} but expected {} in file {}'.format(vname, fobj.variables[vname].dimensions, variables[vname], fname))
 
     print 'Output files pass sanity check'
 
