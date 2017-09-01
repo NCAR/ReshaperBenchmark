@@ -15,10 +15,10 @@ $(this):
 	@RUNARGS="--testname $@  --runname $(RUNNAME) --hostname $(HOSTNAME)"
 	@RUNLOG="reshaper.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log"
 	echo $@
-	echo $GENARGS
-	echo $GENLOG
-	echo $RUNARGS
-	echo $RUNLOG
+	echo $$GENARGS
+	echo $$GENLOG
+	echo $$RUNARGS
+	echo $$RUNLOG
 	@$(call run_test,$@,2,3,4,5)
 	
 .PHONY:	$(this)
