@@ -57,6 +57,11 @@ logdir:
 	@mkdir -p $(PREFIX)/logs
 
 define run_test
+	echo $(1)
+	echo $(2)
+	echo $(3)
+	echo $(4)
+	echo $(5)
 	echo "Running benchmark: $(1)"
 	echo "  Generating input data."
 	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$(1)" $(2) > $(3)
