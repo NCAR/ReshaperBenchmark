@@ -169,7 +169,6 @@ in about 310 seconds, and the PyReshaper ran in about 382 seconds.)
 
 Data regarding each test, using NCAR's Geyser cluster, is described in the following table:
 
-|--------------|--------------|-------------------|-------------------------|----------------------|---------------------|
 | Test Name    | MPI Job Size | Total Memory Used | Memory Used per Process | Data Generation Time | PyReshaper Run Time | 
 |--------------|--------------|-------------------|-------------------------|----------------------|---------------------|
 | small        | 40 processes |                   |                         |                      |                     |
@@ -182,8 +181,6 @@ Data regarding each test, using NCAR's Geyser cluster, is described in the follo
 | lndse0p25deg | 40 processes |                   |                         |                      |                     |
 | ocn0p1deg    | 40 processes |                   |                         |                      |                     |
 | seaice0p1deg | 40 processes |                   |                         |                      |                     |
-|--------------|--------------|-------------------|-------------------------|----------------------|---------------------|
-
 
 ### Results
 
