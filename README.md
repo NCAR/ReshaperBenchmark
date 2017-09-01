@@ -167,6 +167,24 @@ in about 1190 seconds, and the PyReshaper ran in about 1755 seconds.)
 use of 333 MB on any single process.  Data generation ran
 in about 310 seconds, and the PyReshaper ran in about 382 seconds.)
 
+Data regarding each test, using NCAR's Geyser cluster, is described in the following table:
+
+|--------------|--------------|-------------------|-------------------------|----------------------|---------------------|
+| Test Name    | MPI Job Size | Total Memory Used | Memory Used per Process | Data Generation Time | PyReshaper Run Time | 
+|--------------|--------------|-------------------|-------------------------|----------------------|---------------------|
+| small        | 40 processes |                   |                         |                      |                     |
+| atmfv1p0deg  | 40 processes |                   |                         |                      |                     |
+| atmse1p0deg  | 40 processes |                   |                         |                      |                     |
+| lndse1p0deg  | 40 processes |                   |                         |                      |                     |
+| ocn1p0deg    | 40 processes |                   |                         |                      |                     |
+| seaice1p0deg | 40 processes |                   |                         |                      |                     |
+| atmse0p25deg | 40 processes |                   |                         |                      |                     |
+| lndse0p25deg | 40 processes |                   |                         |                      |                     |
+| ocn0p1deg    | 40 processes |                   |                         |                      |                     |
+| seaice0p1deg | 40 processes |                   |                         |                      |                     |
+|--------------|--------------|-------------------|-------------------------|----------------------|---------------------|
+
+
 ### Results
 
 The results requested for this benchmark will be the contents of the `logs/` directory.  You
