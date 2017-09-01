@@ -88,6 +88,8 @@ def main(argv=None):
     
     dimensions = args.dimensions
     variables = args.variables
+    print dimensions
+    print variables
     numslices = args.numslices
     outdir = args.outputdir
 
