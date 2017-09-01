@@ -117,10 +117,7 @@ There are 10 tests that can be run.  For each test, there is a subdirectory with
 directory.  The tests are as follows:
 
 - `small`: This is a small demo test.  Use this test to check that your environment is set
-correctly and that the benchmark suite was built correctly.  (Using 40 MPI processes on
-NCAR's Geyser cluster, this test used a total of 1782 MB of memory with a maximum
-use of 94 MB on any single process.  Data generation ran
-in about 5 seconds, and the PyReshaper ran in about 11 seconds.)
+correctly and that the benchmark suite was built correctly.
 
 - `atmfv1p0deg`: This tests a 1.0-degree finite-volume atmospheric-model-like dataset.
 
