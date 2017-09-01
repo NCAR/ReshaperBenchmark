@@ -61,11 +61,11 @@ $(tests): logdir
 	TESTNAME=$@ source arguments.sh; \
 	echo "Running benchmark: $@"; \
 	echo "  Generating input data."; \
-	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@" $$GENARGS > $$GENLOG; \
+	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@." $$GENARGS > $$GENLOG; \
 	if [ ! -d output ]; then mkdir output; fi; \
 	echo "  Running test."; \
-	$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -p "$@" $$RUNARGS > $$RUNLOG; \
-	$(ACTIVATE) && $(CHECK) -p "$@" $$GENARGS; \
+	$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -p "$@." $$RUNARGS > $$RUNLOG; \
+	$(ACTIVATE) && $(CHECK) -p "$@." $$GENARGS; \
 	$(ACTIVATE) && $(POST) $$RUNLOG; \
 	echo "  Copying logfiles."; \
 	cp *.log $(PREFIX)/logs/; \
