@@ -58,17 +58,19 @@ logdir:
 
 $(tests): logdir
 	@cd $@; \
-	TESTNAME=$@ source arguments.sh; \
 	echo "Running benchmark: $@"; \
 	echo "  Generating input data."; \
-	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@." $$GENARGS > $$GENLOG; \
+	source arguments.sh; \
+	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@." $$GENARGS > \
+	gendata.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log; \
 	if [ ! -d output ]; then mkdir output; fi; \
 	echo "  Running test."; \
-	$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -p "$@." $$RUNARGS > $$RUNLOG; \
+	RUNLOG=reshaper.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log; \
+	$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -p "$@." --testname $@ --runname $(RUNNAME) --hostname $(HOSTNAME) > $$RUNLOG; \
 	$(ACTIVATE) && $(CHECK) -p "$@." $$GENARGS; \
 	$(ACTIVATE) && $(POST) $$RUNLOG; \
 	echo "  Copying logfiles."; \
 	cp *.log $(PREFIX)/logs/; \
 	echo "  Done."; \
-	unset GENARGS GENLOG RUNARGS RUNLOG; \
+	unset GENARGS RUNLOG; \
 	echo
