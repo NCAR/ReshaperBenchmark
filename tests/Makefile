@@ -57,7 +57,7 @@ logdir:
 	@mkdir -p $(PREFIX)/logs
 
 $(tests): logdir
-	@source $@.test; \
+	@source ./$@.test; \
 	echo "Running benchmark: $@"; \
 	echo "  Generating input data."; \
 	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@" $(GENARGS) > $(GENLOG); \
