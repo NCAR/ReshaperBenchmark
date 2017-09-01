@@ -157,6 +157,6 @@ Data regarding each test, using NCAR's Geyser cluster, is described in the follo
 The results requested for this benchmark will be the contents of the `logs/` directory.  You
 may tarball this directory up and send it to us as requested. 
 
-
+---
 
 Copyright 2017, University Corporation for Atmospheric Research
