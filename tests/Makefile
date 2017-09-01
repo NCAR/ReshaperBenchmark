@@ -67,6 +67,6 @@ $(tests): logdir
 	$(ACTIVATE) && $(POST) -l $$RUNLOG; \
 	echo "  Copying logfiles."; \
 	cp *.log $(PREFIX)/logs/; \
-	echo "  Done."; \
-	unset GENARGS GENLOG RUNARGS RUNLOG; \
+	echo "  Done."
+	unset GENARGS GENLOG RUNARGS RUNLOG
 	echo
