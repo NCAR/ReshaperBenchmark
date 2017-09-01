@@ -178,7 +178,7 @@ ifeq ($(wildcard $(PREFIX)/venv),)
 	fi
 	@cd $(PREFIX)/build/$(VIRTUALENV) && \
 	if [ ! -d $(PREFIX)/venv ]; then \
-		./virtualenv.py --no-pip --no-wheel --no-setuptools $(PREFIX)/venv; \
+		./virtualenv.py --no-pip --no-wheel $(PREFIX)/venv; \
 	fi
 endif
 	@echo $(HLINE1)
