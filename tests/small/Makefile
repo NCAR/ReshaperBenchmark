@@ -5,6 +5,8 @@
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 ################################################################################
 
+include ../Makefile.run_test
+
 this = $(notdir $(shell pwd))
 
 default: $(this)
