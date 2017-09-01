@@ -140,7 +140,7 @@ correctly and that the benchmark suite was built correctly.
 Data regarding each test, using NCAR's Geyser cluster, is described in the following table:
 
 | Test Name    | MPI Job Size | Total Memory Used | Memory Used per Process | Data Generation Time | PyReshaper Run Time | 
-|--------------|--------------|-------------------|-------------------------|----------------------|---------------------|
+|--------------|-------------:|------------------:|------------------------:|---------------------:|--------------------:|
 | small        | 40 procs     | 2745 MB           | 121 MB                  | 18 sec               | 81 sec              |
 | atmfv1p0deg  | 40 procs     | 2745 MB           | 121 MB                  | 18 sec               | 81 sec              |
 | atmse1p0deg  | 40 procs     | 8352 MB           | 122 MB                  | 20 sec               | 78 sec              |
