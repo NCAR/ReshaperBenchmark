@@ -148,7 +148,7 @@ numpy: setuptools
 
 setuptools: virtualenv
 	@HAS_SETUPTOOLS=`source $(PREFIX)/venv/bin/activate && python -c "import setuptools" 2> /dev/null; echo $$?`; \
-	echo $$HAS_SETUPTOOLS; \
+	python -c "import setuptools"; \
 	if [ $$HAS_SETUPTOOLS -ne 0 ]; then \
 		echo; \
 		echo $(HLINE2); \
