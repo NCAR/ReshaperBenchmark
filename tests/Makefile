@@ -46,7 +46,7 @@ export ACTIVATE := source $(PREFIX)/venv/bin/activate
 export CHECK := $(PREFIX)/sbin/checktest.py -o output
 export POST := $(PREFIX)/sbin/posttest.py
 
-tests = $(basename $(wildcard *.test)
+tests = $(basename $(wildcard *.test))
 
 default:
 
