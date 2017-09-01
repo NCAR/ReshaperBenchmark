@@ -56,6 +56,20 @@ default:
 logdir:
 	@mkdir -p $(PREFIX)/logs
 
+testtemplate:
+	@echo "Running benchmark: $@"
+	@echo "  Generating input data."
+	@$(ACTIVATE) && $(MPIRUN) $(GENDATA) $$GENARGS > $$GENLOG
+	@if [ ! -d output ]; then mkdir output; fi
+	@echo "  Running test."
+	@$(ACTIVATE) && $(MPIRUN) $(EXECRUN) $$RUNARGS > $$RUNLOG
+	@$(ACTIVATE) && $(CHECK) -p "$@." $$GENARGS
+	@$(ACTIVATE) && $(POST) -l $$RUNLOG
+	@echo "  Copying logfiles."
+	@cp *.log $(PREFIX)/logs/
+	@echo "  Done."
+	@echo
+
 $(tests): logdir
 	@$(MAKE) -C $@
 	
