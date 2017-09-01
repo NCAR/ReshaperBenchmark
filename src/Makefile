@@ -10,7 +10,7 @@ HLINE2 := "=====================================================================
 
 PYRESHAPER  := PyReshaper-1.0.4
 ASAPTOOLS   := ASAPPyTools-0.6.0
-NETCDF4PY   := netcdf4-python-1.2.3.1rel
+NETCDF4PY   := netcdf4-python-1.2.9rel
 ORDEREDDICT := ordereddict-1.1
 MPI4PY      := mpi4py-1.3.1
 NUMPY       := numpy-1.10.2
