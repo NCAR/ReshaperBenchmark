@@ -46,8 +46,7 @@ export ACTIVATE := source $(PREFIX)/venv/bin/activate
 export CHECK := $(PREFIX)/sbin/checktest.py -o output
 export POST := $(PREFIX)/sbin/posttest.py
 
-dirs = $(sort $(dir $(wildcard */)))
-tests = $(dirs:%/=%)
+tests = $(basename $(wildcard *.test)
 
 default:
 
