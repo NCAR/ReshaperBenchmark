@@ -141,7 +141,7 @@ Data regarding each test, using NCAR's Geyser cluster, is described in the follo
 
 | Test Name    | MPI Job Size | Total Memory Used | Memory Used per Process | Data Generation Time | PyReshaper Run Time | 
 |--------------|-------------:|------------------:|------------------------:|---------------------:|--------------------:|
-| small        | 40 procs     | 2745 MB           | 121 MB                  | 18 sec               | 81 sec              |
+| small        | 40 procs     | ---- MB           | --- MB                  | -- sec               | -- sec              |
 | atmfv1p0deg  | 40 procs     | 2745 MB           | 121 MB                  | 18 sec               | 81 sec              |
 | atmse1p0deg  | 40 procs     | 8352 MB           | 122 MB                  | 20 sec               | 78 sec              |
 | lndse1p0deg  | 40 procs     | 2593 MB           | 122 MB                  | 10 sec               | 255 sec             |
