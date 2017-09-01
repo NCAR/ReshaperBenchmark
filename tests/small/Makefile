@@ -16,7 +16,7 @@ $(this):
 	GENLOG="gendata.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log"; \
 	RUNARGS="--testname $@  --runname $(RUNNAME) --hostname $(HOSTNAME)"; \
 	RUNLOG="reshaper.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log"; \
-	$(call run_test,$@,$$GENARGS,$$GENLOG,$$RUNARGS,$$RUNLOG)
+	$(call run_test,$@,"$$GENARGS","$$GENLOG","$$RUNARGS","$$RUNLOG")
 	
 .PHONY:	$(this)
 
