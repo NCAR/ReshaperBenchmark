@@ -66,14 +66,11 @@ $(tests): logdir
 	echo "  Running test."; \
 	$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -p "$@." $$RUNARGS > $$RUNLOG; \
 	$(ACTIVATE) && $(CHECK) -p "$@." $$GENARGS; \
-	if [ "$$?" -ne 0 ]; then \ 
-	echo "  ERROR: Output files do not pass sanity checks!"; \
-	else \
-	echo "  Output files pass sanity checks."; \
-	fi; \
+	if [ $$? -ne 0 ]; then echo "  ERROR: Output files do not pass sanity checks!"; \
+	else echo "  Output files pass sanity checks."; fi; \
 	$(ACTIVATE) && $(POST) $$RUNLOG; \
 	echo "  Copying logfiles."; \
 	cp *.log $(PREFIX)/logs/; \
-	echo "  Done."
-	unset GENARGS GENLOG RUNARGS RUNLOG
+	echo "  Done."; \
+	unset GENARGS GENLOG RUNARGS RUNLOG; \
 	echo
