@@ -141,16 +141,16 @@ Data regarding each test, using NCAR's Geyser cluster, is described in the follo
 
 | Test Name    | MPI Job Size | Total Memory Used | Memory Used per Process | Data Generation Time | PyReshaper Run Time | PyReshaper Throughput |
 |--------------|-------------:|------------------:|------------------------:|---------------------:|--------------------:|----------------------:|
-| small        | 8 procs      | ---- MB           | 91 MB                   | 0.2 sec              | 1 sec               |                       |
-| atmfv1p0deg  | 40 procs     | 2745 MB           | 121 MB                  | 18 sec               | 81 sec              |                       |
-| atmse1p0deg  | 40 procs     | 8352 MB           | 122 MB                  | 20 sec               | 78 sec              |                       |
-| lndse1p0deg  | 40 procs     | 2593 MB           | 122 MB                  | 10 sec               | 255 sec             |                       |
-| ocn1p0deg    | 40 procs     | 11829 MB          | 167 MB                  | 85 sec               | 139 sec             |                       |
-| seaice1p0deg | 40 procs     | 2264 MB           | 109 MB                  | 8 sec                | 83 sec              |                       |
-| atmse0p25deg | 40 procs     | 236796 MB         | 376 MB                  | 565 sec              | 591 sec             |                       |
-| lndse0p25deg | 40 procs     | 34673 MB          | 355 MB                  | 90 sec               | 195 sec             |                       |
-| ocn0p1deg    | 40 procs     | 242194 MB         | 2677 MB                 | 1190 sec             | 1755 sec            |                       |
-| seaice0p1deg | 40 procs     | 1780 MB           | 333 MB                  | 310 sec              | 382 sec             |                       |
+| small        | 40 procs     | 1788 MB           | 91 MB                   | 0.16 sec             | 1 sec               | 0.18 MB/sec           |
+| atmfv1p0deg  | 40 procs     | 2745 MB           | 123 MB                  | 17 sec               | 130 sec             | 211 MB/sec            |
+| atmse1p0deg  | 40 procs     | 8352 MB           | 126 MB                  | 31 sec               | 130 sec             | 247 MB/sec            |
+| lndse1p0deg  | 40 procs     | 2593 MB           | 123 MB                  | 13 sec               | 519 sec             | 23.8 MB/sec           |
+| ocn1p0deg    | 40 procs     | 11829 MB          | 178 MB                  | 68 sec               | 152 sec             | 1044 MB/sec           |
+| seaice1p0deg | 40 procs     | 2264 MB           | 113 MB                  | 4 sec                | 117 sec             | 74.0 MB/sec           |
+| atmse0p25deg | 40 procs     | 236796 MB         | 376 MB                  | 342 sec              | 510 sec             | 2167 MB/sec           |
+| lndse0p25deg | 40 procs     | 34673 MB          | 372 MB                  | 75 sec               | 238 sec             | 742 MB/sec            |
+| ocn0p1deg    | 40 procs     | 242194 MB         | 2677 MB                 | 774 sec              | 3472 sec            | 712 MB/sec            |
+| seaice0p1deg | 40 procs     | 1780 MB           | 335 MB                  | 168 sec              | 250 sec             | 2423 MB/sec           |
 
 ### Results
 
