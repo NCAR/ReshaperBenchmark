@@ -117,61 +117,46 @@ There are 10 tests that can be run.  For each test, there is a subdirectory with
 directory.  The tests are as follows:
 
 - `small`: This is a small demo test.  Use this test to check that your environment is set
-correctly and that the benchmark suite was built correctly.  (Using 40 MPI processes on
-NCAR's Geyser cluster, this test used a total of 1782 MB of memory with a maximum
-use of 94 MB on any single process.  Data generation ran
-in about 5 seconds, and the PyReshaper ran in about 11 seconds.)
+correctly and that the benchmark suite was built correctly.
 
-- `atmfv1p0deg`: This tests a 1.0-degree finite-volume atmospheric-model-like dataset.  (Using
-40 MPI processes on NCAR's Geyser cluster, this test used a total of 2745 MB of memory with a maximum
-use of 121 MB on any single process.  Data generation ran 
-in about 18 seconds, and the PyReshaper ran in about 81 seconds.)
+- `atmfv1p0deg`: This tests a 1.0-degree finite-volume atmospheric-model-like dataset.
 
-- `atmse1p0deg`: This tests a 1.0-degree spectral-element atmospheric-model-like dataset.  (Using
-40 MPI processes on NCAR's Geyser cluster, this test used a total of 8352 MB of memory with a maximum
-use of 122 MB on any single process.  Data generation ran
-in about 20 seconds, and the PyReshaper ran in about 78 seconds.)
+- `atmse1p0deg`: This tests a 1.0-degree spectral-element atmospheric-model-like dataset.
 
-- `lndse1p0deg`: This tests a 1.0-degree spectral-element land-model-like dataset.  (Using
-40 MPI processes on NCAR's Geyser cluster, this test used a total of 2593 MB of memory with a maximum
-use of 122 MB on any single process.  Data generation ran
-in about 10 seconds, and the PyReshaper ran in about 255 seconds.)
+- `lndse1p0deg`: This tests a 1.0-degree spectral-element land-model-like dataset.
 
-- `ocn1p0deg`: This tests a 1.0-degree ocean-model-like dataset.  (Using
-40 MPI processes on NCAR's Geyser cluster, this test used a total of 11829 MB of memory with a maximum
-use of 167 MB on any single process.  Data generation ran
-in about 85 seconds, and the PyReshaper ran in about 139 seconds.)
+- `ocn1p0deg`: This tests a 1.0-degree ocean-model-like dataset.
 
-- `seaice1p0deg`: This tests a 1.0-degree sea-ice-model-like dataset.  (Using
-40 MPI processes on NCAR's Geyser cluster, this test used a total of 2264 MB of memory with a maximum
-use of 109 MB on any single process.  Data generation ran
-in about 8 seconds, and the PyReshaper ran in about 83 seconds.)
+- `seaice1p0deg`: This tests a 1.0-degree sea-ice-model-like dataset.
 
-- `atmse0p25deg`: This tests a 0.25-degree spectral-element atmospheric-model-like dataset.  (Using
-40 MPI processes on NCAR's Geyser cluster, this test used a total of 236796 MB of memory with a maximum
-use of 376 MB on any single process.  Data generation ran
-in about 565 seconds, and the PyReshaper ran in about 591 seconds.)
+- `atmse0p25deg`: This tests a 0.25-degree spectral-element atmospheric-model-like dataset.
 
-- `lndse0p25deg`: This tests a 0.25-degree spectral-element land-model-like dataset.  (Using
-40 MPI processes on NCAR's Geyser cluster, this test used a total of 34673 MB of memory with a maximum
-use of 355 MB on any single process.  Data generation ran
-in about 90 seconds, and the PyReshaper ran in about 195 seconds.)
+- `lndse0p25deg`: This tests a 0.25-degree spectral-element land-model-like dataset.
 
-- `ocn0p1deg`: This tests a 0.1-degree ocean-model-like dataset.  (Using
-40 MPI processes on NCAR's Geyser cluster, this test used a total of 242194 MB of memory with a maximum
-use of 2677 MB on any single process.  Data generation ran
-in about 1190 seconds, and the PyReshaper ran in about 1755 seconds.)
+- `ocn0p1deg`: This tests a 0.1-degree ocean-model-like dataset.
 
-- `seaice0p1deg`: This tests a 0.1-degree sea-ice-model-like dataset.  (Using
-40 MPI processes on NCAR's Geyser cluster, this test used a total of 1780 MB of memory with a maximum
-use of 333 MB on any single process.  Data generation ran
-in about 310 seconds, and the PyReshaper ran in about 382 seconds.)
+- `seaice0p1deg`: This tests a 0.1-degree sea-ice-model-like dataset.
+
+Data regarding each test, using NCAR's Geyser cluster, is described in the following table:
+
+| Test Name    | MPI Job Size | Total Memory Used | Memory Used per Process | Data Generation Time | PyReshaper Run Time | PyReshaper Throughput |
+|--------------|-------------:|------------------:|------------------------:|---------------------:|--------------------:|----------------------:|
+| small        | 40 procs     | 1788 MB           | 91 MB                   | 0.16 sec             | 1 sec               | 0.18 MB/sec           |
+| atmfv1p0deg  | 40 procs     | 2745 MB           | 123 MB                  | 17 sec               | 130 sec             | 211 MB/sec            |
+| atmse1p0deg  | 40 procs     | 8352 MB           | 126 MB                  | 31 sec               | 130 sec             | 247 MB/sec            |
+| lndse1p0deg  | 40 procs     | 2593 MB           | 123 MB                  | 13 sec               | 519 sec             | 23.8 MB/sec           |
+| ocn1p0deg    | 40 procs     | 11829 MB          | 178 MB                  | 68 sec               | 152 sec             | 1044 MB/sec           |
+| seaice1p0deg | 40 procs     | 2264 MB           | 113 MB                  | 4 sec                | 117 sec             | 74.0 MB/sec           |
+| atmse0p25deg | 40 procs     | 236796 MB         | 376 MB                  | 342 sec              | 510 sec             | 2167 MB/sec           |
+| lndse0p25deg | 40 procs     | 34673 MB          | 372 MB                  | 75 sec               | 238 sec             | 742 MB/sec            |
+| ocn0p1deg    | 40 procs     | 242194 MB         | 2677 MB                 | 774 sec              | 3472 sec            | 712 MB/sec            |
+| seaice0p1deg | 40 procs     | 1780 MB           | 335 MB                  | 168 sec              | 250 sec             | 2423 MB/sec           |
 
 ### Results
 
 The results requested for this benchmark will be the contents of the `logs/` directory.  You
 may tarball this directory up and send it to us as requested. 
 
-
+---
 
 Copyright 2017, University Corporation for Atmospheric Research

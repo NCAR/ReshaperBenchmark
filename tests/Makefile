@@ -43,9 +43,11 @@ export HOSTNAME := $(shell hostname -s)
 export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py -b $(FULLBACKEND) -d $(DEFLATE) -i input -o output 
 export GENDATA := $(PREFIX)/sbin/gendata.py -o input
 export ACTIVATE := source $(PREFIX)/venv/bin/activate
+export CHECK := $(PREFIX)/sbin/checktest.py -o output
+export POST := $(PREFIX)/sbin/posttest.py
 
-dirs = $(sort $(dir $(wildcard */)))
-tests = $(dirs:%/=%)
+tdirs = $(sort $(dir $(wildcard */)))
+tests = $(tdirs:%/=%)
 
 default:
 
@@ -55,5 +57,20 @@ logdir:
 	@mkdir -p $(PREFIX)/logs
 
 $(tests): logdir
-	@$(MAKE) -C $@
-	
+	@cd $@ && \
+	echo "Running benchmark: $@" && \
+	echo "  Generating input data." && \
+	source arguments.sh && \
+	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@." $$GENARGS > \
+	gendata.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log && \
+	if [ ! -d output ]; then mkdir output; fi && \
+	echo "  Running test." && \
+	RUNLOG=reshaper.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log && \
+	$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -p "$@." --testname $@ --runname $(RUNNAME) --hostname $(HOSTNAME) > $$RUNLOG && \
+	$(ACTIVATE) && $(CHECK) -p "$@." $$GENARGS && \
+	$(ACTIVATE) && $(POST) $$RUNLOG && \
+	echo "  Copying logfiles." && \
+	cp *.log $(PREFIX)/logs/ && \
+	echo "  Done." && \
+	unset GENARGS RUNLOG && \
+	echo

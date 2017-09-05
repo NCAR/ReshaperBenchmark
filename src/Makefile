@@ -10,13 +10,13 @@ HLINE2 := "=====================================================================
 
 PYRESHAPER  := PyReshaper-1.0.4
 ASAPTOOLS   := ASAPPyTools-0.6.0
-NETCDF4PY   := netcdf4-python-1.2.3.1rel
+NETCDF4PY   := netcdf4-python-1.2.9rel
 ORDEREDDICT := ordereddict-1.1
-MPI4PY      := mpi4py-1.3.1
-NUMPY       := numpy-1.10.2
+MPI4PY      := mpi4py-2.0.0
+NUMPY       := numpy-1.10.1
 VIRTUALENV  := virtualenv-15.1.0
-SETUPTOOLS  := setuptools-20.2.2
-NETCDF      := netcdf-4.4.0
+SETUPTOOLS  := setuptools-27.2.0
+NETCDF      := netcdf-4.4.1.1
 HDF5        := hdf5-1.8.16
 ZLIB        := zlib-1.2.11
 SZIP        := szip-2.1.1
@@ -177,7 +177,7 @@ ifeq ($(wildcard $(PREFIX)/venv),)
 	fi
 	@cd $(PREFIX)/build/$(VIRTUALENV) && \
 	if [ ! -d $(PREFIX)/venv ]; then \
-		./virtualenv.py --no-pip --no-wheel --no-setuptools $(PREFIX)/venv; \
+		./virtualenv.py --no-pip --no-wheel $(PREFIX)/venv; \
 	fi
 endif
 	@echo $(HLINE1)
