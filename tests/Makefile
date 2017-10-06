@@ -60,7 +60,7 @@ $(tests): logdir
 	@cd $@ && \
 	echo "Running benchmark: $@" && \
 	echo "  Generating input data." && \
-	source arguments.sh && \
+	source ./arguments.sh && \
 	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@." $$GENARGS > \
 	gendata.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log && \
 	if [ ! -d output ]; then mkdir output; fi && \
