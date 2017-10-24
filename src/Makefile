@@ -199,91 +199,119 @@ python:
 	@echo $(HLINE1)
 
 netcdf: hdf5
-	@if [ ! -s $$PREFIX/lib/libnetcdf.a ]; then \
-		echo; \
-		echo $(HLINE2); \
-		echo "Now building: $@"; \
-		echo; \
-		cd $(PREFIX)/build; \
-		export LD_LIBRARY_PATH=$(PREFIX)/lib:$$LD_LIBRARY_PATH; \
-		if [ ! -d $(NETCDF) ]; then \
-			tar -xmzf $(PREFIX)/src/$(NETCDF).tar.gz && \
-			cd $(NETCDF) && \
-			CPPFLAGS=-I$(PREFIX)/include LDFLAGS=-L$(PREFIX)/lib \
-			./configure --enable-netcdf-4 --prefix=$(PREFIX) --disable-dap; \
-			cd ..; \
-		fi; \
-		cd $(NETCDF) && \
-		$(MAKE) && \
-		$(MAKE) install || \
-		$(MAKE) install; \
-	fi
-	@echo $(HLINE1)
-	@echo "Installed: $@"
-	@echo $(HLINE1)
+	@HAS_NETCDF4PY=`source $(PREFIX)/venv/bin/activate && python -c "import netCDF4" 2> /dev/null; echo $$?`; \
+	if [ $$HAS_NETCDF4PY -ne 0 ]; then \
+    	if [ ! -s $$PREFIX/lib/libnetcdf.a ]; then \
+    		echo; \
+    		echo $(HLINE2); \
+    		echo "Now building: $@"; \
+    		echo; \
+    		cd $(PREFIX)/build; \
+    		export LD_LIBRARY_PATH=$(PREFIX)/lib:$$LD_LIBRARY_PATH; \
+    		if [ ! -d $(NETCDF) ]; then \
+    			tar -xmzf $(PREFIX)/src/$(NETCDF).tar.gz && \
+    			cd $(NETCDF) && \
+    			CPPFLAGS=-I$(PREFIX)/include LDFLAGS=-L$(PREFIX)/lib \
+    			./configure --enable-netcdf-4 --prefix=$(PREFIX) --disable-dap; \
+    			cd ..; \
+    		fi; \
+    		cd $(NETCDF) && \
+    		$(MAKE) && \
+    		$(MAKE) install || \
+    		$(MAKE) install; \
+    	fi; \
+    	echo $(HLINE1); \
+    	echo "Installed: $@"; \
+    	echo $(HLINE1); \
+    else; \
+    	echo $(HLINE1); \
+    	echo "Unnecessary: $@"; \
+    	echo $(HLINE1); \    	
+    fi
 
 hdf5: zlib szip
-	@if [ ! -s $$PREFIX/lib/libhdf5.a ]; then \
-		echo; \
-		echo $(HLINE2); \
-		echo "Now building: $@"; \
-		echo; \
-		cd $(PREFIX)/build; \
-		if [ ! -d $(HDF5) ]; then \
-			tar -xmzf $(PREFIX)/src/$(HDF5).tar.gz && \
-			cd $(HDF5) && \
-			./configure --prefix=$(PREFIX) --with-zlib=$(PREFIX) --with-szlib=$(PREFIX); \
-			cd ..; \
-		fi; \
-		cd $(HDF5) && \
-		$(MAKE) && \
-		$(MAKE) install; \
-	fi
-	@echo $(HLINE1)
-	@echo "Installed: $@"
-	@echo $(HLINE1)
+	@HAS_NETCDF4PY=`source $(PREFIX)/venv/bin/activate && python -c "import netCDF4" 2> /dev/null; echo $$?`; \
+	if [ $$HAS_NETCDF4PY -ne 0 ]; then \
+    	if [ ! -s $$PREFIX/lib/libhdf5.a ]; then \
+    		echo; \
+    		echo $(HLINE2); \
+    		echo "Now building: $@"; \
+    		echo; \
+    		cd $(PREFIX)/build; \
+    		if [ ! -d $(HDF5) ]; then \
+    			tar -xmzf $(PREFIX)/src/$(HDF5).tar.gz && \
+    			cd $(HDF5) && \
+    			./configure --prefix=$(PREFIX) --with-zlib=$(PREFIX) --with-szlib=$(PREFIX); \
+    			cd ..; \
+    		fi; \
+    		cd $(HDF5) && \
+    		$(MAKE) && \
+    		$(MAKE) install; \
+    	fi; \
+    	echo $(HLINE1); \
+    	echo "Installed: $@"; \
+    	echo $(HLINE1); \
+    else; \
+    	echo $(HLINE1); \
+    	echo "Unnecessary: $@"; \
+    	echo $(HLINE1); \    	
+    fi
 
 zlib: build
-	@if [ ! -s $$PREFIX/lib/libz.a ]; then \
-		echo; \
-		echo $(HLINE2); \
-		echo "Now building: $@"; \
-		echo; \
-		cd $(PREFIX)/build; \
-		if [ ! -d $(ZLIB) ]; then \
-			tar -xmzf $(PREFIX)/src/$(ZLIB).tar.gz && \
-			cd $(ZLIB) && \
-			./configure --prefix=$(PREFIX); \
-			cd ..; \
-		fi; \
-		cd $(ZLIB) && \
-		$(MAKE) && \
-		$(MAKE) install; \
-	fi
-	@echo $(HLINE1)
-	@echo "Installed: $@"
-	@echo $(HLINE1)
+	@HAS_NETCDF4PY=`source $(PREFIX)/venv/bin/activate && python -c "import netCDF4" 2> /dev/null; echo $$?`; \
+	if [ $$HAS_NETCDF4PY -ne 0 ]; then \
+    	if [ ! -s $$PREFIX/lib/libz.a ]; then \
+    		echo; \
+    		echo $(HLINE2); \
+    		echo "Now building: $@"; \
+    		echo; \
+    		cd $(PREFIX)/build; \
+    		if [ ! -d $(ZLIB) ]; then \
+    			tar -xmzf $(PREFIX)/src/$(ZLIB).tar.gz && \
+    			cd $(ZLIB) && \
+    			./configure --prefix=$(PREFIX); \
+    			cd ..; \
+    		fi; \
+    		cd $(ZLIB) && \
+    		$(MAKE) && \
+    		$(MAKE) install; \
+    	fi; \
+    	echo $(HLINE1); \
+    	echo "Installed: $@"; \
+    	echo $(HLINE1); \
+    else; \
+    	echo $(HLINE1); \
+    	echo "Unnecessary: $@"; \
+    	echo $(HLINE1); \    	
+    fi
 	
 szip: build
-	@if [ ! -s $$PREFIX/lib/libsz.a ]; then \
-		echo; \
-		echo $(HLINE2); \
-		echo "Now building: $@"; \
-		echo; \
-		cd $(PREFIX)/build; \
-		if [ ! -d $(SZIP) ]; then \
-			tar -xmzf $(PREFIX)/src/$(SZIP).tar.gz && \
-			cd $(SZIP) && \
-			./configure --prefix=$(PREFIX); \
-			cd ..; \
-		fi; \
-		cd $(SZIP) && \
-		$(MAKE) && \
-		$(MAKE) install; \
-	fi
-	@echo $(HLINE1)
-	@echo "Installed: $@"
-	@echo $(HLINE1)
+	@HAS_NETCDF4PY=`source $(PREFIX)/venv/bin/activate && python -c "import netCDF4" 2> /dev/null; echo $$?`; \
+	if [ $$HAS_NETCDF4PY -ne 0 ]; then \
+    	if [ ! -s $$PREFIX/lib/libsz.a ]; then \
+    		echo; \
+    		echo $(HLINE2); \
+    		echo "Now building: $@"; \
+    		echo; \
+    		cd $(PREFIX)/build; \
+    		if [ ! -d $(SZIP) ]; then \
+    			tar -xmzf $(PREFIX)/src/$(SZIP).tar.gz && \
+    			cd $(SZIP) && \
+    			./configure --prefix=$(PREFIX); \
+    			cd ..; \
+    		fi; \
+    		cd $(SZIP) && \
+    		$(MAKE) && \
+    		$(MAKE) install; \
+    	fi; \
+    	echo $(HLINE1); \
+    	echo "Installed: $@"; \
+    	echo $(HLINE1); \
+    else; \
+    	echo $(HLINE1); \
+    	echo "Unnecessary: $@"; \
+    	echo $(HLINE1); \    	
+    fi
 
 
 .PHONY:	build
