@@ -1,0 +1,157 @@
+Building source and dependencies.
+
+make[1]: Entering directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/src'
+Build directory already exists.
+
+=====================================================================
+Checking Python Version
+
+python --version
+---------------------------------------------------------------------
+Installed: python
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: virtualenv
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: setuptools
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: numpy
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: mpi4py
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: asaptools
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: ordereddict
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: netcdf4python
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: pyreshaper
+---------------------------------------------------------------------
+make[1]: Leaving directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/src'
+Running benchmarking tests.
+
+make[1]: Entering directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmark: atmfv1p0deg
+  Generating input data.
+  Running test.
+  Output files pass sanity checks.
+  Processed 27338.0722046 MB in 66.4951951504 sec (411.12853557 MB/sec).
+  Copying logfiles.
+  Done.
+
+make[1]: Leaving directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmarking tests.
+
+make[1]: Entering directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmark: atmse0p25deg
+  Generating input data.
+  Running test.
+  Output files pass sanity checks.
+  Processed 1104653.56445 MB in 521.331216097 sec (2118.90930438 MB/sec).
+  Copying logfiles.
+  Done.
+
+make[1]: Leaving directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmarking tests.
+
+make[1]: Entering directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmark: atmse1p0deg
+  Generating input data.
+  Running test.
+  Output files pass sanity checks.
+  Processed 32086.3437653 MB in 74.5539610386 sec (430.377451691 MB/sec).
+  Copying logfiles.
+  Done.
+
+make[1]: Leaving directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmarking tests.
+
+make[1]: Entering directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmark: lndse0p25deg
+  Generating input data.
+  Running test.
+  Output files pass sanity checks.
+  Processed 176673.517227 MB in 165.056668997 sec (1070.38096855 MB/sec).
+  Copying logfiles.
+  Done.
+
+make[1]: Leaving directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmarking tests.
+
+make[1]: Entering directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmark: lndse1p0deg
+  Generating input data.
+  Running test.
+  Output files pass sanity checks.
+  Processed 12331.8048477 MB in 283.583614826 sec (43.4856042556 MB/sec).
+  Copying logfiles.
+  Done.
+
+make[1]: Leaving directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmarking tests.
+
+make[1]: Entering directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmark: ocn0p1deg
+  Generating input data.
+  Running test.
+  Output files pass sanity checks.
+  Processed 2471925.24948 MB in 8857.52702212 sec (279.076230116 MB/sec).
+  Copying logfiles.
+  Done.
+
+make[1]: Leaving directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmarking tests.
+
+make[1]: Entering directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmark: ocn1p0deg
+  Generating input data.
+  Running test.
+  Output files pass sanity checks.
+  Processed 158816.619797 MB in 358.408951998 sec (443.115661346 MB/sec).
+  Copying logfiles.
+  Done.
+
+make[1]: Leaving directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmarking tests.
+
+make[1]: Entering directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmark: seaice0p1deg
+  Generating input data.
+  Running test.
+  Output files pass sanity checks.
+  Processed 606450.686455 MB in 338.106360912 sec (1793.66837352 MB/sec).
+  Copying logfiles.
+  Done.
+
+make[1]: Leaving directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmarking tests.
+
+make[1]: Entering directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmark: seaice1p0deg
+  Generating input data.
+  Running test.
+  Output files pass sanity checks.
+  Processed 8625.72734833 MB in 61.339318037 sec (140.6231374 MB/sec).
+  Copying logfiles.
+  Done.
+
+make[1]: Leaving directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmarking tests.
+
+make[1]: Entering directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmark: small
+  Generating input data.
+  Running test.
+  Output files pass sanity checks.
+  Processed 0.949096679688 MB in 0.963056087494 sec (0.985505093642 MB/sec).
+  Copying logfiles.
+  Done.
+
+make[1]: Leaving directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
