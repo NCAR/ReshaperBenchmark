@@ -279,10 +279,6 @@ zlib: build
 		echo $(HLINE1); \
 		echo "Installed: $@"; \
 		echo $(HLINE1); \
-	else \
-		echo $(HLINE1); \
-		echo "Unnecessary: $@"; \
-		echo $(HLINE1); \    	
 	fi
 	
 szip: build
