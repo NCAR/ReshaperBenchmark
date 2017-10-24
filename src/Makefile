@@ -24,6 +24,11 @@ SZIP        := szip-2.1.1
 ifndef PYTHON
   PYTHON := python
 endif
+ifdef SYSTEM_SITE_PACKAGES
+  SYSTEM_SITE_PACKAGES := --system-site-packages
+else
+  SYSTEM_SITE_PACKAGES :=
+endif
 
 all: pyreshaper
 
@@ -177,7 +182,7 @@ ifeq ($(wildcard $(PREFIX)/venv),)
 	fi
 	@cd $(PREFIX)/build/$(VIRTUALENV) && \
 	if [ ! -d $(PREFIX)/venv ]; then \
-		./virtualenv.py --no-pip --no-wheel $(PREFIX)/venv; \
+		./virtualenv.py --no-pip --no-wheel $(SYSTEM_SITE_PACKAGES) $(PREFIX)/venv; \
 	fi
 endif
 	@echo $(HLINE1)
