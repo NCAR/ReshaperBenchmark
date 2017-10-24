@@ -223,7 +223,7 @@ netcdf: hdf5
     	echo $(HLINE1); \
     	echo "Installed: $@"; \
     	echo $(HLINE1); \
-    else; \
+    else \
     	echo $(HLINE1); \
     	echo "Unnecessary: $@"; \
     	echo $(HLINE1); \    	
@@ -251,7 +251,7 @@ hdf5: zlib szip
     	echo $(HLINE1); \
     	echo "Installed: $@"; \
     	echo $(HLINE1); \
-    else; \
+    else \
     	echo $(HLINE1); \
     	echo "Unnecessary: $@"; \
     	echo $(HLINE1); \    	
@@ -279,7 +279,7 @@ zlib: build
     	echo $(HLINE1); \
     	echo "Installed: $@"; \
     	echo $(HLINE1); \
-    else; \
+    else \
     	echo $(HLINE1); \
     	echo "Unnecessary: $@"; \
     	echo $(HLINE1); \    	
@@ -307,7 +307,7 @@ szip: build
     	echo $(HLINE1); \
     	echo "Installed: $@"; \
     	echo $(HLINE1); \
-    else; \
+    else \
     	echo $(HLINE1); \
     	echo "Unnecessary: $@"; \
     	echo $(HLINE1); \    	
