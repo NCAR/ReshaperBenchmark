@@ -15,12 +15,6 @@ parser.add_argument('-p', '--pattern', action='append', dest='patterns', metavar
                     help=('A pattern and optional name to give to each '
                           'group of logs.  Name and pattern should be comma-'
                           'separated, with the name coming first.'))
-parser.add_argument('-t', '--title', default='', type=str, dest='title', metavar='TITLE',
-                    help=('The title to use for both the timing and rate '
-                          'plots.  This is pre-pended to the automatically '
-                          'generated title.  It does not replace it.'))
-parser.add_argument('-u', '--union', default=False, action='store_true', dest='use_union',
-                    help=('Plot all data (union) versus only common elements'))
 args = parser.parse_args()
 
 named_logs = OrderedDict()
@@ -60,11 +54,11 @@ print_dict(database)
 # Gather timing and rate data into a reduced dictionary
 
 time_db = OrderedDict()
-time_ids = {'Input': ('open input files', 'close input files', 'read time-invariant metadata',
-                      'read time-variant metadata', 'read time-series variables'),
-            'Output': ('open output files', 'close output files', 'write time-invariant metadata',
-                      'write time-variant metadata', 'write time-series variables'),
-            'Other': ()}
+time_ids = OrderedDict([('Input', ('open input files', 'close input files', 'read time-invariant metadata',
+                                   'read time-variant metadata', 'read time-series variables')),
+                        ('Output', ('open output files', 'close output files', 'write time-invariant metadata',
+                                    'write time-variant metadata', 'write time-series variables')),
+                        ('Other', ())])
 rate_db = OrderedDict()
 for set_name, set_data in database.iteritems():
     for test_name, test_data in set_data.iteritems():
