@@ -111,6 +111,7 @@ for set_name, set_data in database.iteritems():
         if set_name not in time_db:
             time_db[set_name] = OrderedDict()
         time_db[set_name][test_name] = tdict_reduced
+        time_db[set_name][test_name]['Total'] = total_time
         
         # Compute the rate information
         if set_name not in rate_db:
