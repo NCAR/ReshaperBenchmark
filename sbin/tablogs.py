@@ -104,7 +104,7 @@ for set_name, set_data in database.iteritems():
                 if tkey in time_ids[tid]:
                     tdict_reduced[tid] += tvalue
                     break
-                elif tid == time_ids[-1]:
+                elif tid == 'Other':
                     tdict_reduced[tid] += tvalue
         
         # Scale time data by fractions of total time
