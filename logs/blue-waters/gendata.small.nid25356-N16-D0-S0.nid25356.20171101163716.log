@@ -1,0 +1,18 @@
+Creating time-slice files in output directory: input
+MPI Environment Size: 16
+
+[1/16]: Creating file: input/small.1.nc
+[2/16]: Creating file: input/small.2.nc
+[3/16]: Creating file: input/small.3.nc
+[4/16]: Creating file: input/small.4.nc
+[5/16]: Creating file: input/small.5.nc
+[6/16]: Creating file: input/small.6.nc
+[7/16]: Creating file: input/small.7.nc
+[8/16]: Creating file: input/small.8.nc
+[9/16]: Creating file: input/small.9.nc
+[10/16]: Creating file: input/small.10.nc
+[11/16]: Creating file: input/small.11.nc
+[0/16]: Creating file: input/small.0.nc
+
+Maximum Process Runtime: 0.234724998474 seconds
+Application 63070087 resources: utime ~20s, stime ~15s, Rss ~33940, inblocks ~184014, outblocks ~3970
