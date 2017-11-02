@@ -32,7 +32,7 @@ build:
 	@echo
 	@$(MAKE) -C src
 
-.PHONY: help cleanall cleantests cleanbuild
+.PHONY: help build cleanall cleantests cleanbuild
 
 help:
 	@echo "To run these benchmarks, you will need Python 2.7, an implementation of MPI, and"

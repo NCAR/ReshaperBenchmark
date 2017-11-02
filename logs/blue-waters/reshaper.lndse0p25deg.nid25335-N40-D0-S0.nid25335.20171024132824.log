@@ -1,0 +1,565 @@
+MPI Environment Size: 40
+Initializing Reshaper...
+  MPI Communicator Size: 40
+  Specifier validated
+  NetCDF I/O Backend: netCDF4
+  NetCDF Output Format: netcdf4
+  NetCDF Compression: 0
+...Reshaper initialized.
+Inspecting input files...
+  First input file inspected.
+  Remaining input files inspected.
+  Checked for missing variables.
+  Input files sorted by time.
+  Time-Invariant Metadata: 1, 2, v0, v1, v2, v3, v4
+  Time-Variant Metadata: 0
+  Time-Series Variables: v18, v19, v12, v13, v10, v11, v16, v17, v14, v15, v118, v119, v114, v115, v116, v117, v110, v111, v112, v113, v89, v88, v85, v84, v87, v86, v81, v80, v83, v82, v69, v68, v67, v66, v65, v64, v63, v62, v61, v60, v92, v93, v90, v91, v96, v97, v94, v95, v107, v106, v98, v104, v103, v102, v101, v100, v105, v99, v78, v79, v74, v75, v76, v77, v70, v71, v72, v73, v138, v139, v132, v133, v130, v131, v136, v137, v134, v135, v125, v124, v127, v126, v121, v120, v123, v122, v129, v128, v150, v151, v152, v153, v154, v155, v156, v157, v158, v159, v41, v40, v43, v42, v45, v44, v47, v46, v49, v48, v23, v22, v21, v20, v27, v26, v25, v24, v29, v28, v143, v142, v141, v140, v147, v146, v145, v144, v149, v148, v56, v57, v54, v55, v52, v53, v50, v51, v109, v58, v59, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v108, v5, v6, v7, v8, v9
+...Input files inspected.
+Inspecting output files...
+...Output files inspected.
+Read chunk sizes:
+  0: 1
+Converting time-slices to time-series...
+[0/40] Converting time-series variables: v155
+[2/40] Converting time-series variables: v157
+[3/40] Converting time-series variables: v158
+[4/40] Converting time-series variables: v159
+[5/40] Converting time-series variables: v18, v64, v132, v21, v36
+[6/40] Converting time-series variables: v19, v63, v133, v20, v37
+[7/40] Converting time-series variables: v12, v62, v130, v27, v38
+[1/40] Converting time-series variables: v156
+[2/40] Opening output file for variable: v157
+[3/40] Opening output file for variable: v158
+[4/40] Opening output file for variable: v159
+[5/40] Opening output file for variable: v18
+[7/40] Opening output file for variable: v12
+[6/40] Opening output file for variable: v19
+[1/40] Opening output file for variable: v156
+[32/40] Converting time-series variables: v80, v76, v45, v58
+[37/40] Converting time-series variables: v67, v73, v48, v33
+[36/40] Converting time-series variables: v68, v72, v49, v32
+[33/40] Converting time-series variables: v83, v77, v44, v59
+[39/40] Converting time-series variables: v65, v139, v22, v35
+[38/40] Converting time-series variables: v66, v138, v23, v34
+[34/40] Converting time-series variables: v82, v70, v47, v30
+[35/40] Converting time-series variables: v69, v71, v46, v31
+[26/40] Converting time-series variables: v88, v105, v153, v55
+[27/40] Converting time-series variables: v85, v99, v154, v52
+[24/40] Converting time-series variables: v113, v101, v151, v57
+[29/40] Converting time-series variables: v87, v79, v40, v50
+[28/40] Converting time-series variables: v84, v78, v41, v53
+[25/40] Converting time-series variables: v89, v100, v152, v54
+[30/40] Converting time-series variables: v86, v74, v43, v51
+[31/40] Converting time-series variables: v81, v75, v42, v109
+[23/40] Converting time-series variables: v112, v102, v150, v56
+[16/40] Converting time-series variables: v119, v94, v126, v140
+[18/40] Converting time-series variables: v115, v107, v120, v146
+[22/40] Converting time-series variables: v111, v103, v128, v148
+[21/40] Converting time-series variables: v110, v104, v129, v149
+[20/40] Converting time-series variables: v117, v98, v122, v144
+[19/40] Converting time-series variables: v116, v106, v123, v145
+[17/40] Converting time-series variables: v114, v95, v121, v147
+[9/40] Converting time-series variables: v10, v60, v136, v25, v108
+[8/40] Converting time-series variables: v13, v61, v131, v26, v39
+[13/40] Converting time-series variables: v14, v91, v125, v143, v8
+[12/40] Converting time-series variables: v17, v90, v135, v28, v7
+[15/40] Converting time-series variables: v118, v97, v127, v141
+[14/40] Converting time-series variables: v15, v96, v124, v142, v9
+[11/40] Converting time-series variables: v16, v93, v134, v29, v6
+[10/40] Converting time-series variables: v11, v92, v137, v24, v5
+[8/40] Opening output file for variable: v13
+[9/40] Opening output file for variable: v10
+[13/40] Opening output file for variable: v14
+[12/40] Opening output file for variable: v17
+[14/40] Opening output file for variable: v15
+[15/40] Opening output file for variable: v118
+[10/40] Opening output file for variable: v11
+[11/40] Opening output file for variable: v16
+[23/40] Opening output file for variable: v112
+[16/40] Opening output file for variable: v119
+[18/40] Opening output file for variable: v115
+[22/40] Opening output file for variable: v111
+[21/40] Opening output file for variable: v110
+[20/40] Opening output file for variable: v117
+[19/40] Opening output file for variable: v116
+[17/40] Opening output file for variable: v114
+[26/40] Opening output file for variable: v88
+[27/40] Opening output file for variable: v85
+[24/40] Opening output file for variable: v113
+[29/40] Opening output file for variable: v87
+[28/40] Opening output file for variable: v84
+[25/40] Opening output file for variable: v89
+[31/40] Opening output file for variable: v81
+[30/40] Opening output file for variable: v86
+[32/40] Opening output file for variable: v80
+[36/40] Opening output file for variable: v68
+[37/40] Opening output file for variable: v67
+[33/40] Opening output file for variable: v83
+[38/40] Opening output file for variable: v66
+[39/40] Opening output file for variable: v65
+[35/40] Opening output file for variable: v69
+[34/40] Opening output file for variable: v82
+[0/40] Opening output file for variable: v155
+[7/40] Writing output file for variable: v12
+[5/40] Writing output file for variable: v18
+[4/40] Writing output file for variable: v159
+[2/40] Writing output file for variable: v157
+[1/40] Writing output file for variable: v156
+[6/40] Writing output file for variable: v19
+[0/40] Writing output file for variable: v155
+[3/40] Writing output file for variable: v158
+[30/40] Writing output file for variable: v86
+[28/40] Writing output file for variable: v84
+[29/40] Writing output file for variable: v87
+[26/40] Writing output file for variable: v88
+[27/40] Writing output file for variable: v85
+[31/40] Writing output file for variable: v81
+[25/40] Writing output file for variable: v89
+[24/40] Writing output file for variable: v113
+[8/40] Writing output file for variable: v13
+[11/40] Writing output file for variable: v16
+[15/40] Writing output file for variable: v118
+[9/40] Writing output file for variable: v10
+[14/40] Writing output file for variable: v15
+[13/40] Writing output file for variable: v14
+[12/40] Writing output file for variable: v17
+[10/40] Writing output file for variable: v11
+[19/40] Writing output file for variable: v116
+[36/40] Writing output file for variable: v68
+[17/40] Writing output file for variable: v114
+[23/40] Writing output file for variable: v112
+[37/40] Writing output file for variable: v67
+[39/40] Writing output file for variable: v65
+[22/40] Writing output file for variable: v111
+[35/40] Writing output file for variable: v69
+[20/40] Writing output file for variable: v117
+[38/40] Writing output file for variable: v66
+[34/40] Writing output file for variable: v82
+[18/40] Writing output file for variable: v115
+[16/40] Writing output file for variable: v119
+[32/40] Writing output file for variable: v80
+[33/40] Writing output file for variable: v83
+[21/40] Writing output file for variable: v110
+[7/40] Closed output file for variable: v12
+[7/40] Opening output file for variable: v62
+[6/40] Closed output file for variable: v19
+[6/40] Opening output file for variable: v63
+[11/40] Closed output file for variable: v16
+[11/40] Opening output file for variable: v93
+[10/40] Closed output file for variable: v11
+[10/40] Opening output file for variable: v92
+[5/40] Closed output file for variable: v18
+[5/40] Opening output file for variable: v64
+[29/40] Closed output file for variable: v87
+[29/40] Opening output file for variable: v79
+[26/40] Closed output file for variable: v88
+[26/40] Opening output file for variable: v105
+[27/40] Closed output file for variable: v85
+[27/40] Opening output file for variable: v99
+[14/40] Closed output file for variable: v15
+[14/40] Opening output file for variable: v96
+[12/40] Closed output file for variable: v17
+[12/40] Opening output file for variable: v90
+[13/40] Closed output file for variable: v14
+[13/40] Opening output file for variable: v91
+[28/40] Closed output file for variable: v84
+[28/40] Opening output file for variable: v78
+[8/40] Closed output file for variable: v13
+[8/40] Opening output file for variable: v61
+[9/40] Closed output file for variable: v10
+[9/40] Opening output file for variable: v60
+[7/40] Writing output file for variable: v62
+[24/40] Closed output file for variable: v113
+[24/40] Opening output file for variable: v101
+[25/40] Closed output file for variable: v89
+[25/40] Opening output file for variable: v100
+[31/40] Closed output file for variable: v81
+[31/40] Opening output file for variable: v75
+[15/40] Closed output file for variable: v118
+[15/40] Opening output file for variable: v97
+[11/40] Writing output file for variable: v93
+[6/40] Writing output file for variable: v63
+[10/40] Writing output file for variable: v92
+[16/40] Closed output file for variable: v119
+[16/40] Opening output file for variable: v94
+[29/40] Writing output file for variable: v79
+[30/40] Closed output file for variable: v86
+[30/40] Opening output file for variable: v74
+[14/40] Writing output file for variable: v96
+[23/40] Closed output file for variable: v112
+[23/40] Opening output file for variable: v102
+[26/40] Writing output file for variable: v105
+[5/40] Writing output file for variable: v64
+[18/40] Closed output file for variable: v115
+[18/40] Opening output file for variable: v107
+[27/40] Writing output file for variable: v99
+[21/40] Closed output file for variable: v110
+[21/40] Opening output file for variable: v104
+[19/40] Closed output file for variable: v116
+[19/40] Opening output file for variable: v106
+[12/40] Writing output file for variable: v90
+[20/40] Closed output file for variable: v117
+[20/40] Opening output file for variable: v98
+[22/40] Closed output file for variable: v111
+[22/40] Opening output file for variable: v103
+[17/40] Closed output file for variable: v114
+[17/40] Opening output file for variable: v95
+[31/40] Writing output file for variable: v75
+[13/40] Writing output file for variable: v91
+[28/40] Writing output file for variable: v78
+[9/40] Writing output file for variable: v60
+[24/40] Writing output file for variable: v101
+[25/40] Writing output file for variable: v100
+[8/40] Writing output file for variable: v61
+[16/40] Writing output file for variable: v94
+[15/40] Writing output file for variable: v97
+[23/40] Writing output file for variable: v102
+[21/40] Writing output file for variable: v104
+[18/40] Writing output file for variable: v107
+[30/40] Writing output file for variable: v74
+[19/40] Writing output file for variable: v106
+[20/40] Writing output file for variable: v98
+[22/40] Writing output file for variable: v103
+[17/40] Writing output file for variable: v95
+[34/40] Closed output file for variable: v82
+[34/40] Opening output file for variable: v70
+[33/40] Closed output file for variable: v83
+[33/40] Opening output file for variable: v77
+[32/40] Closed output file for variable: v80
+[32/40] Opening output file for variable: v76
+[37/40] Closed output file for variable: v67
+[37/40] Opening output file for variable: v73
+[38/40] Closed output file for variable: v66
+[38/40] Opening output file for variable: v138
+[39/40] Closed output file for variable: v65
+[39/40] Opening output file for variable: v139
+[35/40] Closed output file for variable: v69
+[35/40] Opening output file for variable: v71
+[34/40] Writing output file for variable: v70
+[33/40] Writing output file for variable: v77
+[37/40] Writing output file for variable: v73
+[32/40] Writing output file for variable: v76
+[38/40] Writing output file for variable: v138
+[39/40] Writing output file for variable: v139
+[35/40] Writing output file for variable: v71
+[36/40] Closed output file for variable: v68
+[36/40] Opening output file for variable: v72
+[36/40] Writing output file for variable: v72
+[37/40] Closed output file for variable: v73
+[37/40] Opening output file for variable: v48
+[39/40] Closed output file for variable: v139
+[39/40] Opening output file for variable: v22
+[38/40] Closed output file for variable: v138
+[38/40] Opening output file for variable: v23
+[37/40] Writing output file for variable: v48
+[39/40] Writing output file for variable: v22
+[38/40] Writing output file for variable: v23
+[27/40] Closed output file for variable: v99
+[27/40] Opening output file for variable: v154
+[26/40] Closed output file for variable: v105
+[26/40] Opening output file for variable: v153
+[30/40] Closed output file for variable: v74
+[30/40] Opening output file for variable: v43
+[31/40] Closed output file for variable: v75
+[31/40] Opening output file for variable: v42
+[28/40] Closed output file for variable: v78
+[28/40] Opening output file for variable: v41
+[29/40] Closed output file for variable: v79
+[29/40] Opening output file for variable: v40
+[22/40] Closed output file for variable: v103
+[22/40] Opening output file for variable: v128
+[23/40] Closed output file for variable: v102
+[23/40] Opening output file for variable: v150
+[27/40] Writing output file for variable: v154
+[26/40] Writing output file for variable: v153
+[34/40] Closed output file for variable: v70
+[34/40] Opening output file for variable: v47
+[32/40] Closed output file for variable: v76
+[32/40] Opening output file for variable: v45
+[33/40] Closed output file for variable: v77
+[33/40] Opening output file for variable: v44
+[30/40] Writing output file for variable: v43
+[35/40] Closed output file for variable: v71
+[35/40] Opening output file for variable: v46
+[31/40] Writing output file for variable: v42
+[21/40] Closed output file for variable: v104
+[21/40] Opening output file for variable: v129
+[28/40] Writing output file for variable: v41
+[36/40] Closed output file for variable: v72
+[36/40] Opening output file for variable: v49
+[29/40] Writing output file for variable: v40
+[14/40] Closed output file for variable: v96
+[14/40] Opening output file for variable: v124
+[25/40] Closed output file for variable: v100
+[25/40] Opening output file for variable: v152
+[22/40] Writing output file for variable: v128
+[23/40] Writing output file for variable: v150
+[34/40] Writing output file for variable: v47
+[20/40] Closed output file for variable: v98
+[20/40] Opening output file for variable: v122
+[11/40] Closed output file for variable: v93
+[11/40] Opening output file for variable: v134
+[18/40] Closed output file for variable: v107
+[18/40] Opening output file for variable: v120
+[32/40] Writing output file for variable: v45
+[15/40] Closed output file for variable: v97
+[15/40] Opening output file for variable: v127
+[33/40] Writing output file for variable: v44
+[10/40] Closed output file for variable: v92
+[10/40] Opening output file for variable: v137
+[24/40] Closed output file for variable: v101
+[24/40] Opening output file for variable: v151
+[21/40] Writing output file for variable: v129
+[19/40] Closed output file for variable: v106
+[19/40] Opening output file for variable: v123
+[12/40] Closed output file for variable: v90
+[12/40] Opening output file for variable: v135
+[14/40] Writing output file for variable: v124
+[16/40] Closed output file for variable: v94
+[16/40] Opening output file for variable: v126
+[17/40] Closed output file for variable: v95
+[17/40] Opening output file for variable: v121
+[25/40] Writing output file for variable: v152
+[35/40] Writing output file for variable: v46
+[13/40] Closed output file for variable: v91
+[13/40] Opening output file for variable: v125
+[36/40] Writing output file for variable: v49
+[18/40] Writing output file for variable: v120
+[11/40] Writing output file for variable: v134
+[10/40] Writing output file for variable: v137
+[12/40] Writing output file for variable: v135
+[20/40] Writing output file for variable: v122
+[15/40] Writing output file for variable: v127
+[16/40] Writing output file for variable: v126
+[19/40] Writing output file for variable: v123
+[24/40] Writing output file for variable: v151
+[17/40] Writing output file for variable: v121
+[13/40] Writing output file for variable: v125
+[9/40] Closed output file for variable: v60
+[9/40] Opening output file for variable: v136
+[8/40] Closed output file for variable: v61
+[8/40] Opening output file for variable: v131
+[9/40] Writing output file for variable: v136
+[8/40] Writing output file for variable: v131
+[6/40] Closed output file for variable: v63
+[6/40] Opening output file for variable: v133
+[7/40] Closed output file for variable: v62
+[7/40] Opening output file for variable: v130
+[6/40] Writing output file for variable: v133
+[5/40] Closed output file for variable: v64
+[5/40] Opening output file for variable: v132
+[7/40] Writing output file for variable: v130
+[5/40] Writing output file for variable: v132
+[23/40] Closed output file for variable: v150
+[23/40] Opening output file for variable: v56
+[22/40] Closed output file for variable: v128
+[22/40] Opening output file for variable: v148
+[26/40] Closed output file for variable: v153
+[26/40] Opening output file for variable: v55
+[17/40] Closed output file for variable: v121
+[17/40] Opening output file for variable: v147
+[27/40] Closed output file for variable: v154
+[27/40] Opening output file for variable: v52
+[21/40] Closed output file for variable: v129
+[21/40] Opening output file for variable: v149
+[18/40] Closed output file for variable: v120
+[18/40] Opening output file for variable: v146
+[19/40] Closed output file for variable: v123
+[19/40] Opening output file for variable: v145
+[25/40] Closed output file for variable: v152
+[25/40] Opening output file for variable: v54
+[20/40] Closed output file for variable: v122
+[20/40] Opening output file for variable: v144
+[23/40] Writing output file for variable: v56
+[30/40] Closed output file for variable: v43
+[30/40] Opening output file for variable: v51
+[24/40] Closed output file for variable: v151
+[24/40] Opening output file for variable: v57
+[31/40] Closed output file for variable: v42
+[31/40] Opening output file for variable: v109
+[26/40] Writing output file for variable: v55
+[27/40] Writing output file for variable: v52
+[25/40] Writing output file for variable: v54
+[19/40] Writing output file for variable: v145
+[21/40] Writing output file for variable: v149
+[17/40] Writing output file for variable: v147
+[18/40] Writing output file for variable: v146
+[20/40] Writing output file for variable: v144
+[22/40] Writing output file for variable: v148
+[30/40] Writing output file for variable: v51
+[31/40] Writing output file for variable: v109
+[24/40] Writing output file for variable: v57
+[10/40] Closed output file for variable: v137
+[10/40] Opening output file for variable: v24
+[15/40] Closed output file for variable: v127
+[15/40] Opening output file for variable: v141
+[11/40] Closed output file for variable: v134
+[11/40] Opening output file for variable: v29
+[12/40] Closed output file for variable: v135
+[12/40] Opening output file for variable: v28
+[13/40] Closed output file for variable: v125
+[13/40] Opening output file for variable: v143
+[32/40] Closed output file for variable: v45
+[32/40] Opening output file for variable: v58
+[33/40] Closed output file for variable: v44
+[33/40] Opening output file for variable: v59
+[16/40] Closed output file for variable: v126
+[16/40] Opening output file for variable: v140
+[34/40] Closed output file for variable: v47
+[34/40] Opening output file for variable: v30
+[15/40] Writing output file for variable: v141
+[10/40] Writing output file for variable: v24
+[35/40] Closed output file for variable: v46
+[35/40] Opening output file for variable: v31
+[12/40] Writing output file for variable: v28
+[11/40] Writing output file for variable: v29
+[38/40] Closed output file for variable: v23
+[38/40] Opening output file for variable: v34
+[37/40] Closed output file for variable: v48
+[37/40] Opening output file for variable: v33
+[13/40] Writing output file for variable: v143
+[14/40] Closed output file for variable: v124
+[14/40] Opening output file for variable: v142
+[32/40] Writing output file for variable: v58
+[33/40] Writing output file for variable: v59
+[39/40] Closed output file for variable: v22
+[39/40] Opening output file for variable: v35
+[36/40] Closed output file for variable: v49
+[36/40] Opening output file for variable: v32
+[34/40] Writing output file for variable: v30
+[16/40] Writing output file for variable: v140
+[35/40] Writing output file for variable: v31
+[38/40] Writing output file for variable: v34
+[37/40] Writing output file for variable: v33
+[39/40] Writing output file for variable: v35
+[36/40] Writing output file for variable: v32
+[14/40] Writing output file for variable: v142
+[29/40] Closed output file for variable: v40
+[29/40] Opening output file for variable: v50
+[9/40] Closed output file for variable: v136
+[9/40] Opening output file for variable: v25
+[29/40] Writing output file for variable: v50
+[9/40] Writing output file for variable: v25
+[28/40] Closed output file for variable: v41
+[28/40] Opening output file for variable: v53
+[28/40] Writing output file for variable: v53
+[8/40] Closed output file for variable: v131
+[8/40] Opening output file for variable: v26
+[8/40] Writing output file for variable: v26
+[7/40] Closed output file for variable: v130
+[7/40] Opening output file for variable: v27
+[6/40] Closed output file for variable: v133
+[6/40] Opening output file for variable: v20
+[7/40] Writing output file for variable: v27
+[6/40] Writing output file for variable: v20
+[5/40] Closed output file for variable: v132
+[5/40] Opening output file for variable: v21
+[5/40] Writing output file for variable: v21
+[27/40] Closed output file for variable: v52
+[30/40] Closed output file for variable: v51
+[28/40] Closed output file for variable: v53
+[31/40] Closed output file for variable: v109
+[29/40] Closed output file for variable: v50
+[19/40] Closed output file for variable: v145
+[35/40] Closed output file for variable: v31
+[38/40] Closed output file for variable: v34
+[32/40] Closed output file for variable: v58
+[34/40] Closed output file for variable: v30
+[26/40] Closed output file for variable: v55
+[33/40] Closed output file for variable: v59
+[36/40] Closed output file for variable: v32
+[39/40] Closed output file for variable: v35
+[37/40] Closed output file for variable: v33
+[21/40] Closed output file for variable: v149
+[22/40] Closed output file for variable: v148
+[25/40] Closed output file for variable: v54
+[20/40] Closed output file for variable: v144
+[24/40] Closed output file for variable: v57
+[15/40] Closed output file for variable: v141
+[11/40] Closed output file for variable: v29
+[11/40] Opening output file for variable: v6
+[14/40] Closed output file for variable: v142
+[14/40] Opening output file for variable: v9
+[18/40] Closed output file for variable: v146
+[12/40] Closed output file for variable: v28
+[12/40] Opening output file for variable: v7
+[17/40] Closed output file for variable: v147
+[13/40] Closed output file for variable: v143
+[13/40] Opening output file for variable: v8
+[23/40] Closed output file for variable: v56
+[11/40] Writing output file for variable: v6
+[14/40] Writing output file for variable: v9
+[12/40] Writing output file for variable: v7
+[13/40] Writing output file for variable: v8
+[16/40] Closed output file for variable: v140
+[10/40] Closed output file for variable: v24
+[10/40] Opening output file for variable: v5
+[10/40] Writing output file for variable: v5
+[9/40] Closed output file for variable: v25
+[9/40] Opening output file for variable: v108
+[9/40] Writing output file for variable: v108
+[8/40] Closed output file for variable: v26
+[8/40] Opening output file for variable: v39
+[8/40] Writing output file for variable: v39
+[7/40] Closed output file for variable: v27
+[7/40] Opening output file for variable: v38
+[7/40] Writing output file for variable: v38
+[5/40] Closed output file for variable: v21
+[5/40] Opening output file for variable: v36
+[6/40] Closed output file for variable: v20
+[6/40] Opening output file for variable: v37
+[5/40] Writing output file for variable: v36
+[6/40] Writing output file for variable: v37
+[14/40] Closed output file for variable: v9
+[12/40] Closed output file for variable: v7
+[13/40] Closed output file for variable: v8
+[11/40] Closed output file for variable: v6
+[10/40] Closed output file for variable: v5
+[9/40] Closed output file for variable: v108
+[8/40] Closed output file for variable: v39
+[4/40] Closed output file for variable: v159
+[2/40] Closed output file for variable: v157
+[1/40] Closed output file for variable: v156
+[3/40] Closed output file for variable: v158
+[0/40] Closed output file for variable: v155
+[6/40] Closed output file for variable: v37
+[7/40] Closed output file for variable: v38
+[5/40] Closed output file for variable: v36
+...Finished converting time-slices to time-series.
+--------------------------------------------------
+ TIMING DATA:
+--------------------------------------------------
+Initializing Simple Communicator:  3.60012054443e-05
+Specifier Validation:              0.00577592849731
+Complete Conversion Process:       165.056668997
+Inspect Input Files:               1.25380086899
+Inspect Output Files:              0.0036768913269
+Open Output Files:                 0.0635201931
+Close Output Files:                1.12544703484
+Open Input Files:                  89.5637743473
+Close Input Files:                 5.13920783997
+Create Time-Invariant Metadata:    0.128502845764
+Create Time-Variant Metadata:      0.0337901115417
+Create Time-Series Variables:      0.0343060493469
+Read Time-Invariant Metadata:      11.1914765835
+Read Time-Variant Metadata:        2.28481316566
+Read Time-Series Variables:        85.4541344643
+Write Time-Invariant Metadata:     9.99642896652
+Write Time-Variant Metadata:       0.291318893433
+Write Time-Series Variables:       49.4926173687
+--------------------------------------------------
+
+--------------------------------------------------
+ BYTE COUNTS (MB):
+--------------------------------------------------
+Actual Data:     274760.0
+Requested Data:  176673.517227
+--------------------------------------------------
+
+--------------------------------------------------
+ MEMORY USAGE (MB):
+--------------------------------------------------
+Maximum Memory Use:  170.51171875
+--------------------------------------------------
+
+Application 62872192 resources: utime ~3531s, stime ~1778s, Rss ~174604, inblocks ~520510758, outblocks ~361855068
