@@ -45,16 +45,17 @@ software to build and run properly.  This can be done by modifying the `init.sh`
 for your machine.  Very little in this script may need to change for your machine, but the
 critical things done in this script are:
 
-1. The script appends the benchmark root `bin/` and `lib/` diretories to the environment `PATH` and
-`LD_LIBRARY_PATH` variables.  This is needed due to the fact that this package installs everything
-in the package root directory.
+1. The script appends the benchmark root `bin/` and `lib/` directories to the environment `PATH` and
+`LD_LIBRARY_PATH` variables, reespectively.  This is needed due to the fact that this package installs
+everything in the package root directory.
 
 2. The script also sets the command that is used to launch an MPI job.  For many machines this
-is just `mpirun`, but the actual command string should also contain any additional options needed
-to run with the setting you need, such as setting the job size, etc.  By default, this environment
+is just `mpirun -n N`, where `N` is the number of MPI tasks needed for the job.  By default, this environment
 variable (called `MPIRUN`) is set to `mpirun.lsf` which is the command available on NCAR's Yellowstone
 supercomputer.  However, for generic MPI installations, you may want to set this to something like 
-`mpirun -n 16`.
+`mpirun -n N`, where `N` is the number of MPI tasks needed for the job.  Other alternatives might be
+`mpiexec -n N` or `mpirun_mpt` or `aprun -n N`, all depending on the MPI environment on the machine 
+you are running.
 
 We recommand that you edit the `init.sh` file according to your needs, and then initialize your environment with:
 
@@ -70,11 +71,28 @@ or
 
 and the dependencies will be built in the `build/` directory and installed in the package
 root directory.  (Python packages will be installed in a `virtualenv` environment called
-`venv`.)
+`venv`.)  Note that you can control the compiler used to build the dependencies with the `CC` and `CXX`
+environment variables (for the C and C++ compilers, respectively), like so:
+
+    CC=icc CXX=icpc make build
 
 If you encounter any problems building and installing the software, you can look in the
 appropriate subdirectory of the `build/` directory to diagnose the problem.  The build
-makefile is `src/Makefile` and can be viewed to see how each dependency is built.
+makefile is `src/Makefile` and can be viewed to see how each dependency is built.  If you need
+to reconfigure and rebuild an individual package because the default configuration will not
+work on your system, this is how (and where) you would do it.
+
+This package is designed to build all of the necessary dependencies (except python and MPI) with default
+configurations, so that comparison between runs on different systems is more of an "apples-to-apples"
+comparison.  However, there are times that can arise (such as if default configuration cannot build
+on the given system, or if idealized timing conditions might be desired instead of default timings)
+when you might want to use packages already installed on your system.  When this is the case,
+you can set the `USE_SYSTEM_PACKAGES` environment variable to change the way that the packages
+are built.  When the `USE_SYSTEM_PACKAGES` variable is set, the benchmark tool will create the
+virtual environment using the `--system_site_packages` flag, making the available system-installed
+Python packages availing from within the virtual environment itself.  Hence, if your system already
+has an install of `netcdf4-python`, for example, you can use this flag to prevent the rebuilding 
+and installing of `netcdf4`, `hdf5`, and the `netcdf4-python` packages and their dependencies.
 
 ### Running the Benchmarks
 
@@ -95,13 +113,13 @@ where `testname` is the name of the individual test you want to run.
 
 When a test is run, the procedure for the run is as follows:
 
-1. The data for the test is generated.  This can almost as long as the test in some cases.
+1. The data for the test is generated.  This can be almost as long as the test in some cases.
 On NCAR's Geyser DAV cluster, with 40 MPI processes, the largest test takes roughly 
-20 minutes to generate the test data.  Data generation is done in parallel, and the parallel
+13 minutes to generate the test data.  Data generation is done in parallel, and the parallel
 data generation script is run with command set by the `MPIRUN` environment variable.
 
 2. The PyReshaper tool is run with the generated input.  This step is also run with the command
-set by the `MPIRUN` environment variable.  The largest run takes roughly 30 minutes to run with
+set by the `MPIRUN` environment variable.  The largest run takes roughly 60 minutes to run with
 40 MPI processors on NCAR's Geyser DAV cluster.
 
 3. The data generation and PyReshaper log files are copied to the `logs/` directory.
