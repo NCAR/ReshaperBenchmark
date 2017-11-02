@@ -1,0 +1,49 @@
+Building source and dependencies.
+
+make[1]: Entering directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/src'
+Build directory already exists.
+
+=====================================================================
+Checking Python Version
+
+python --version
+---------------------------------------------------------------------
+Installed: python
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: virtualenv
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: setuptools
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: numpy
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: mpi4py
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: asaptools
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: ordereddict
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: netcdf4python
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+Installed: pyreshaper
+---------------------------------------------------------------------
+make[1]: Leaving directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/src'
+Running benchmarking tests.
+
+make[1]: Entering directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
+Running benchmark: lndse0p25deg
+  Generating input data.
+  Running test.
+  Output files pass sanity checks.
+  Processed 176673.517227 MB in 315.962620974 sec (559.159550843 MB/sec).
+  Copying logfiles.
+  Done.
+
+make[1]: Leaving directory `/mnt/c/scratch/sciteam/tp6u4/ReshaperBenchmark/tests'
