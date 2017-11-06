@@ -33,12 +33,12 @@ ifndef RUNNAME
   export RUNNAME := $(HOSTNAME)-$(BACKEND)-N$(NPROCS)-D$(DEFLATE)-S$(STRACE)
 endif
 
-ifndef INPUT_DIR
-  export INPUT_DIR := input
+ifndef INPUT_ROOT
+  export INPUT_ROOT := $(PREFIX)/tests
 endif
 
-ifndef OUTPUT_DIR
-  export OUTPUT_DIR := input
+ifndef OUTPUT_ROOT
+  export OUTPUT_ROOT := $(PREFIX)/tests
 endif
 
 ifeq ($(BACKEND),nio)
@@ -48,10 +48,10 @@ else
 endif
 
 export HOSTNAME := $(shell hostname -s)
-export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py -b $(FULLBACKEND) -d $(DEFLATE) -i $(INPUT_DIR) -o $(OUTPUT_DIR) 
-export GENDATA := $(PREFIX)/sbin/gendata.py -o $(INPUT_DIR)
+export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py -b $(FULLBACKEND) -d $(DEFLATE)
+export GENDATA := $(PREFIX)/sbin/gendata.py
 export ACTIVATE := source $(PREFIX)/venv/bin/activate
-export CHECK := $(PREFIX)/sbin/checktest.py -o $(OUTPUT_DIR)
+export CHECK := $(PREFIX)/sbin/checktest.py
 export POST := $(PREFIX)/sbin/posttest.py
 
 tdirs = $(sort $(dir $(wildcard */)))
@@ -69,16 +69,23 @@ $(tests): logdir
 	echo "Running benchmark: $@" && \
 	echo "  Generating input data." && \
 	source ./arguments.sh && \
-	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@." $$GENARGS > \
+	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -o $(INPUT_ROOT)/$@/input -p "$@." $$GENARGS > \
 	gendata.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log && \
-	if [ ! -d $(OUTPUT_DIR) ]; then mkdir -p $(OUTPUT_DIR); fi && \
+	if [ ! -d $(OUTPUT_ROOT)/$@/output ]; then mkdir -p $(OUTPUT_ROOT)/$@/output; fi && \
 	echo "  Running test." && \
 	RUNLOG=reshaper.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log && \
-	$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -p "$@." --testname $@ --runname $(RUNNAME) --hostname $(HOSTNAME) > $$RUNLOG && \
-	$(ACTIVATE) && $(CHECK) -p "$@." $$GENARGS && \
+	$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -i $(INPUT_ROOT)/$@/input -o $(OUTPUT_ROOT)/$@/output -p "$@." --testname $@ --runname $(RUNNAME) --hostname $(HOSTNAME) > $$RUNLOG && \
+	$(ACTIVATE) && $(CHECK) -o $(OUTPUT_ROOT)/$@/output -p "$@." $$GENARGS && \
 	$(ACTIVATE) && $(POST) $$RUNLOG && \
 	echo "  Copying logfiles." && \
 	cp *.log $(PREFIX)/logs/ && \
 	echo "  Done." && \
 	unset GENARGS RUNLOG && \
 	echo
+
+cleantests:
+	rm -rf */*.log
+	rm -rf */*.s2s
+	rm -rf $(INPUT_ROOT)/*/input
+	rm -rf $(OUTPUT_ROOT)/*/output
+	

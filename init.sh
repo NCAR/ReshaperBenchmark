@@ -1,9 +1,9 @@
 #!/bin/sh
 # COPYRIGHT 2017, University Corporation for Atmospheric Research
 
-# If desired, set the location of the output and input data directories
-export INPUT_DIR=input
-export OUTPUT_DIR=output
+# If desired, set the location of the output and input root data directories
+#export INPUT_ROOT=`pwd`
+#export OUTPUT_ROOT=`pwd`
 
 # For convenience, we set the number of MPI processes we use here.
 #
