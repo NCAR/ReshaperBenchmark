@@ -33,6 +33,14 @@ ifndef RUNNAME
   export RUNNAME := $(HOSTNAME)-$(BACKEND)-N$(NPROCS)-D$(DEFLATE)-S$(STRACE)
 endif
 
+ifndef INPUT_DIR
+  export INPUT_DIR := input
+endif
+
+ifndef OUTPUT_DIR
+  export OUTPUT_DIR := input
+endif
+
 ifeq ($(BACKEND),nio)
   export FULLBACKEND := Nio
 else
@@ -40,10 +48,10 @@ else
 endif
 
 export HOSTNAME := $(shell hostname -s)
-export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py -b $(FULLBACKEND) -d $(DEFLATE) -i input -o output 
-export GENDATA := $(PREFIX)/sbin/gendata.py -o input
+export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py -b $(FULLBACKEND) -d $(DEFLATE) -i $(INPUT_DIR) -o $(OUTPUT_DIR) 
+export GENDATA := $(PREFIX)/sbin/gendata.py -o $(INPUT_DIR)
 export ACTIVATE := source $(PREFIX)/venv/bin/activate
-export CHECK := $(PREFIX)/sbin/checktest.py -o output
+export CHECK := $(PREFIX)/sbin/checktest.py -o $(OUTPUT_DIR)
 export POST := $(PREFIX)/sbin/posttest.py
 
 tdirs = $(sort $(dir $(wildcard */)))
@@ -63,7 +71,7 @@ $(tests): logdir
 	source ./arguments.sh && \
 	$(ACTIVATE) && $(MPIRUN) $(GENDATA) -p "$@." $$GENARGS > \
 	gendata.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log && \
-	if [ ! -d output ]; then mkdir output; fi && \
+	if [ ! -d $(OUTPUT_DIR) ]; then mkdir -p $(OUTPUT_DIR); fi && \
 	echo "  Running test." && \
 	RUNLOG=reshaper.$@.$(RUNNAME).$(HOSTNAME).$(shell date +%Y%m%d%H%M%S).log && \
 	$(ACTIVATE) && $(MPIRUN) $(EXECRUN) -p "$@." --testname $@ --runname $(RUNNAME) --hostname $(HOSTNAME) > $$RUNLOG && \
