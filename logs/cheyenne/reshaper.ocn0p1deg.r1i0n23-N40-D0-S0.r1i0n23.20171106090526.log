@@ -1,0 +1,189 @@
+MPI Environment Size: 40
+Initializing Reshaper...
+  MPI Communicator Size: 40
+  Specifier validated
+  NetCDF I/O Backend: netCDF4
+  NetCDF Output Format: netcdf4
+  NetCDF Compression: 0
+...Reshaper initialized.
+Inspecting input files...
+  First input file inspected.
+  Remaining input files inspected.
+  Checked for missing variables.
+  Input files sorted by time.
+  Time-Invariant Metadata: 1, 3, 2, v30, v31, v18, v19, v34, v35, v36, v37, v12, v13, v10, v11, v16, v17, v14, v15, v33, v46, v40, v41, v38, v43, v42, v45, v44, v47, v39, v49, v48, v32, v23, v22, v21, v20, v27, v26, v25, v24, v29, v28, v0, v1, v2, v3, v4, v5, v6, v7, v8, v9
+  Time-Variant Metadata: 0
+  Time-Series Variables: v78, v79, v74, v75, v76, v77, v70, v71, v72, v73, v69, v68, v67, v66, v65, v64, v63, v62, v61, v60, v56, v57, v54, v55, v52, v53, v50, v51, v58, v59
+...Input files inspected.
+Inspecting output files...
+...Output files inspected.
+Read chunk sizes:
+  0: 1
+Converting time-slices to time-series...
+[0/40] Converting time-series variables: v78
+[1/40] Converting time-series variables: v79
+[0/40] Opening output file for variable: v78
+[2/40] Converting time-series variables: v74
+[3/40] Converting time-series variables: v75
+[1/40] Opening output file for variable: v79
+[2/40] Opening output file for variable: v74
+[3/40] Opening output file for variable: v75
+[32/40] Converting time-series variables: 
+[29/40] Converting time-series variables: v59
+[33/40] Converting time-series variables: 
+[17/40] Converting time-series variables: v62
+[36/40] Converting time-series variables: 
+[20/40] Converting time-series variables: v56
+[13/40] Converting time-series variables: v66
+[30/40] Converting time-series variables: 
+[9/40] Converting time-series variables: v73
+[35/40] Converting time-series variables: 
+[16/40] Converting time-series variables: v63
+[37/40] Converting time-series variables: 
+[5/40] Converting time-series variables: v77
+[22/40] Converting time-series variables: v54
+[12/40] Converting time-series variables: v67
+[25/40] Converting time-series variables: v53
+[28/40] Converting time-series variables: v58
+[11/40] Converting time-series variables: v68
+[34/40] Converting time-series variables: 
+[17/40] Opening output file for variable: v62
+[38/40] Converting time-series variables: 
+[6/40] Converting time-series variables: v70
+[23/40] Converting time-series variables: v55
+[23/40] Opening output file for variable: v55
+[13/40] Opening output file for variable: v66
+[24/40] Converting time-series variables: v52
+[29/40] Opening output file for variable: v59
+[8/40] Converting time-series variables: v72
+[18/40] Converting time-series variables: v61
+[18/40] Opening output file for variable: v61
+[39/40] Converting time-series variables: 
+[7/40] Converting time-series variables: v71
+[7/40] Opening output file for variable: v71
+[20/40] Opening output file for variable: v56
+[14/40] Converting time-series variables: v65
+[25/40] Opening output file for variable: v53
+[31/40] Converting time-series variables: 
+[9/40] Opening output file for variable: v73
+[19/40] Converting time-series variables: v60
+[19/40] Opening output file for variable: v60
+[4/40] Converting time-series variables: v76
+[21/40] Converting time-series variables: v57
+[21/40] Opening output file for variable: v57
+[15/40] Converting time-series variables: v64
+[15/40] Opening output file for variable: v64
+[26/40] Converting time-series variables: v50
+[28/40] Opening output file for variable: v58
+[10/40] Converting time-series variables: v69
+[10/40] Opening output file for variable: v69
+[16/40] Opening output file for variable: v63
+[5/40] Opening output file for variable: v77
+[22/40] Opening output file for variable: v54
+[12/40] Opening output file for variable: v67
+[27/40] Converting time-series variables: v51
+[27/40] Opening output file for variable: v51
+[11/40] Opening output file for variable: v68
+[6/40] Opening output file for variable: v70
+[14/40] Opening output file for variable: v65
+[24/40] Opening output file for variable: v52
+[8/40] Opening output file for variable: v72
+[4/40] Opening output file for variable: v76
+[26/40] Opening output file for variable: v50
+[29/40] Writing output file for variable: v59
+[13/40] Writing output file for variable: v66
+[9/40] Writing output file for variable: v73
+[28/40] Writing output file for variable: v58
+[17/40] Writing output file for variable: v62
+[22/40] Writing output file for variable: v54
+[2/40] Writing output file for variable: v74
+[27/40] Writing output file for variable: v51
+[7/40] Writing output file for variable: v71
+[6/40] Writing output file for variable: v70
+[1/40] Writing output file for variable: v79
+[5/40] Writing output file for variable: v77
+[25/40] Writing output file for variable: v53
+[3/40] Writing output file for variable: v75
+[24/40] Writing output file for variable: v52
+[15/40] Writing output file for variable: v64
+[19/40] Writing output file for variable: v60
+[11/40] Writing output file for variable: v68
+[14/40] Writing output file for variable: v65
+[26/40] Writing output file for variable: v50
+[12/40] Writing output file for variable: v67
+[4/40] Writing output file for variable: v76
+[0/40] Writing output file for variable: v78
+[10/40] Writing output file for variable: v69
+[8/40] Writing output file for variable: v72
+[18/40] Writing output file for variable: v61
+[23/40] Writing output file for variable: v55
+[21/40] Writing output file for variable: v57
+[20/40] Writing output file for variable: v56
+[16/40] Writing output file for variable: v63
+[29/40] Closed output file for variable: v59
+[28/40] Closed output file for variable: v58
+[19/40] Closed output file for variable: v60
+[14/40] Closed output file for variable: v65
+[13/40] Closed output file for variable: v66
+[16/40] Closed output file for variable: v63
+[17/40] Closed output file for variable: v62
+[23/40] Closed output file for variable: v55
+[18/40] Closed output file for variable: v61
+[26/40] Closed output file for variable: v50
+[24/40] Closed output file for variable: v52
+[25/40] Closed output file for variable: v53
+[27/40] Closed output file for variable: v51
+[21/40] Closed output file for variable: v57
+[12/40] Closed output file for variable: v67
+[20/40] Closed output file for variable: v56
+[10/40] Closed output file for variable: v69
+[11/40] Closed output file for variable: v68
+[15/40] Closed output file for variable: v64
+[22/40] Closed output file for variable: v54
+[9/40] Closed output file for variable: v73
+[8/40] Closed output file for variable: v72
+[6/40] Closed output file for variable: v70
+[5/40] Closed output file for variable: v77
+[2/40] Closed output file for variable: v74
+[7/40] Closed output file for variable: v71
+[4/40] Closed output file for variable: v76
+[3/40] Closed output file for variable: v75
+[1/40] Closed output file for variable: v79
+[0/40] Closed output file for variable: v78
+...Finished converting time-slices to time-series.
+--------------------------------------------------
+ TIMING DATA:
+--------------------------------------------------
+Initializing Simple Communicator:  2.69412994385e-05
+Specifier Validation:              0.00448393821716
+Complete Conversion Process:       508.982802153
+Inspect Input Files:               0.323348045349
+Inspect Output Files:              0.000504016876221
+Open Output Files:                 0.0811030864716
+Close Output Files:                0.789227962494
+Open Input Files:                  8.92194128036
+Close Input Files:                 1.92824006081
+Create Time-Invariant Metadata:    0.0437059402466
+Create Time-Variant Metadata:      0.00187516212463
+Create Time-Series Variables:      0.00205516815186
+Read Time-Invariant Metadata:      0.652943372726
+Read Time-Variant Metadata:        0.193509817123
+Read Time-Series Variables:        288.304591179
+Write Time-Invariant Metadata:     0.453860759735
+Write Time-Variant Metadata:       0.0459122657776
+Write Time-Series Variables:       215.139944315
+--------------------------------------------------
+
+--------------------------------------------------
+ BYTE COUNTS (MB):
+--------------------------------------------------
+Actual Data:     2502360.0
+Requested Data:  2471925.24948
+--------------------------------------------------
+
+--------------------------------------------------
+ MEMORY USAGE (MB):
+--------------------------------------------------
+Maximum Memory Use:  5014.55078125
+--------------------------------------------------
+
