@@ -1,0 +1,152 @@
+Execute poe command line: poe  /glade2/scratch2/kpaul/yellowstone/ReshaperBenchmark/sbin/execrun.sh /glade2/scratch2/kpaul/yellowstone/ReshaperBenchmark/sbin/runtest.py -b netCDF4 -d 0 -i input -o output -p small. --testname small --runname geyser14-N32-D0-S0 --hostname geyser14
+MPI Environment Size: 32
+Initializing Reshaper...
+  MPI Communicator Size: 32
+  Specifier validated
+  NetCDF I/O Backend: netCDF4
+  NetCDF Output Format: netcdf4
+  NetCDF Compression: 0
+...Reshaper initialized.
+Inspecting input files...
+  First input file inspected.
+  Remaining input files inspected.
+  Checked for missing variables.
+  Input files sorted by time.
+  Time-Invariant Metadata: 1
+  Time-Variant Metadata: 0
+  Time-Series Variables: v18, v19, v12, v13, v10, v11, v16, v17, v14, v15, v0, v1, v2, v3, v4, v5, v6, v7, v8, v9
+...Input files inspected.
+Inspecting output files...
+...Output files inspected.
+Read chunk sizes:
+  0: 1
+Converting time-slices to time-series...
+[0/32] Converting time-series variables: v18
+[5/32] Converting time-series variables: v11
+[8/32] Converting time-series variables: v14
+[9/32] Converting time-series variables: v15
+[0/32] Opening output file for variable: v18
+[5/32] Opening output file for variable: v11
+[8/32] Opening output file for variable: v14
+[9/32] Opening output file for variable: v15
+[12/32] Converting time-series variables: v2
+[13/32] Converting time-series variables: v3
+[13/32] Opening output file for variable: v3
+[12/32] Opening output file for variable: v2
+[18/32] Converting time-series variables: v8
+[20/32] Converting time-series variables: 
+[21/32] Converting time-series variables: 
+[22/32] Converting time-series variables: 
+[23/32] Converting time-series variables: 
+[24/32] Converting time-series variables: 
+[25/32] Converting time-series variables: 
+[26/32] Converting time-series variables: 
+[27/32] Converting time-series variables: 
+[28/32] Converting time-series variables: 
+[29/32] Converting time-series variables: 
+[30/32] Converting time-series variables: 
+[31/32] Converting time-series variables: 
+[16/32] Converting time-series variables: v6
+[16/32] Opening output file for variable: v6
+[17/32] Converting time-series variables: v7
+[17/32] Opening output file for variable: v7
+[18/32] Opening output file for variable: v8
+[19/32] Converting time-series variables: v9
+[19/32] Opening output file for variable: v9
+[7/32] Converting time-series variables: v17
+[7/32] Opening output file for variable: v17
+[10/32] Converting time-series variables: v0
+[10/32] Opening output file for variable: v0
+[11/32] Converting time-series variables: v1
+[11/32] Opening output file for variable: v1
+[15/32] Converting time-series variables: v5
+[15/32] Opening output file for variable: v5
+[14/32] Converting time-series variables: v4
+[14/32] Opening output file for variable: v4
+[6/32] Converting time-series variables: v16
+[6/32] Opening output file for variable: v16
+[4/32] Converting time-series variables: v10
+[4/32] Opening output file for variable: v10
+[2/32] Converting time-series variables: v12
+[2/32] Opening output file for variable: v12
+[3/32] Converting time-series variables: v13
+[3/32] Opening output file for variable: v13
+[1/32] Converting time-series variables: v19
+[1/32] Opening output file for variable: v19
+[17/32] Writing output file for variable: v7
+[18/32] Writing output file for variable: v8
+[16/32] Writing output file for variable: v6
+[19/32] Writing output file for variable: v9
+[9/32] Writing output file for variable: v15
+[8/32] Writing output file for variable: v14
+[7/32] Writing output file for variable: v17
+[10/32] Writing output file for variable: v0
+[3/32] Writing output file for variable: v13
+[4/32] Writing output file for variable: v10
+[2/32] Writing output file for variable: v12
+[5/32] Writing output file for variable: v11
+[6/32] Writing output file for variable: v16
+[0/32] Writing output file for variable: v18
+[1/32] Writing output file for variable: v19
+[12/32] Writing output file for variable: v2
+[15/32] Writing output file for variable: v5
+[13/32] Writing output file for variable: v3
+[14/32] Writing output file for variable: v4
+[11/32] Writing output file for variable: v1
+[9/32] Closed output file for variable: v15
+[8/32] Closed output file for variable: v14
+[18/32] Closed output file for variable: v8
+[10/32] Closed output file for variable: v0
+[19/32] Closed output file for variable: v9
+[7/32] Closed output file for variable: v17
+[4/32] Closed output file for variable: v10
+[3/32] Closed output file for variable: v13
+[17/32] Closed output file for variable: v7
+[16/32] Closed output file for variable: v6
+[15/32] Closed output file for variable: v5
+[12/32] Closed output file for variable: v2
+[5/32] Closed output file for variable: v11
+[14/32] Closed output file for variable: v4
+[6/32] Closed output file for variable: v16
+[11/32] Closed output file for variable: v1
+[13/32] Closed output file for variable: v3
+[2/32] Closed output file for variable: v12
+[0/32] Closed output file for variable: v18
+[1/32] Closed output file for variable: v19
+...Finished converting time-slices to time-series.
+--------------------------------------------------
+ TIMING DATA:
+--------------------------------------------------
+Initializing Simple Communicator:  5.60283660889e-05
+Specifier Validation:              0.00142693519592
+Complete Conversion Process:       1.03274989128
+Inspect Input Files:               0.488167047501
+Inspect Output Files:              0.0022280216217
+Open Output Files:                 0.0485880374908
+Close Output Files:                0.136400938034
+Open Input Files:                  0.151186704636
+Close Input Files:                 0.0107052326202
+Create Time-Invariant Metadata:    0.0227239131927
+Create Time-Variant Metadata:      0.00123000144958
+Create Time-Series Variables:      0.00778007507324
+Read Time-Invariant Metadata:      0.0193819999695
+Read Time-Variant Metadata:        0.0767941474915
+Read Time-Series Variables:        0.09801030159
+Write Time-Invariant Metadata:     0.0121319293976
+Write Time-Variant Metadata:       0.0436172485352
+Write Time-Series Variables:       0.0609834194183
+--------------------------------------------------
+
+--------------------------------------------------
+ BYTE COUNTS (MB):
+--------------------------------------------------
+Actual Data:     19280.0
+Requested Data:  0.949096679688
+--------------------------------------------------
+
+--------------------------------------------------
+ MEMORY USAGE (MB):
+--------------------------------------------------
+Maximum Memory Use:  92.25
+--------------------------------------------------
+
