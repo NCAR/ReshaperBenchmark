@@ -73,10 +73,7 @@ help:
 	done
 
 cleantests:
-	rm -rf tests/*/*.log
-	rm -rf tests/*/*.s2s
-	rm -rf tests/*/input
-	rm -rf tests/*/output
+	@$(MAKE) -C tests $@
 
 cleanbuild:
 	rm -rf build
