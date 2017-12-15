@@ -159,7 +159,7 @@ Data regarding each test, using a *single node* on NCAR's Geyser cluster, is des
 
 | Test Name    | MPI Job Size | Maximum Memory Used by a Single Process | Data Generation Time | PyReshaper Run Time | PyReshaper Throughput | Data Volume |
 |--------------|-------------:|----------------------------------------:|---------------------:|--------------------:|----------------------:|------------:|
-| small        | 40 procs     |                                         |                      |                     |                       |             |
+| small        | 40 procs     | 43 MB                                   | 1 sec                | 1 sec               | 1 MB/sec              | 1 MB        |
 | atmfv1p0deg  | 40 procs     | 70 MB                                   | 31 sec               | 107 sec             | 256 MB/sec            | 27338 MB    |
 | atmse1p0deg  | 40 procs     | 70 MB                                   | 35 sec               | 136 sec             | 237 MB/sec            | 32086 MB    |
 | lndse1p0deg  | 40 procs     | 70 MB                                   | 15 sec               | 555 sec             | 22 MB/sec             | 12331 MB    |
