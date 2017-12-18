@@ -157,18 +157,18 @@ correctly and that the benchmark suite was built correctly.
 
 Data regarding each test, using a *single node* on NCAR's Geyser cluster, is described in the following table:
 
-| Test Name    | MPI Job Size | Max Single-Process Memory Use | Data Generation Time | PyReshaper Run Time | PyReshaper Throughput | Data Volume |
-|--------------|-------------:|------------------------------:|---------------------:|--------------------:|----------------------:|------------:|
-| small        | 40 procs     | 43 MB                         | 1 sec                | 1 sec               | 1 MB/sec              | 1 MB        |
-| atmfv1p0deg  | 40 procs     | 70 MB                         | 31 sec               | 107 sec             | 256 MB/sec            | 27338 MB    |
-| atmse1p0deg  | 40 procs     | 70 MB                         | 35 sec               | 136 sec             | 237 MB/sec            | 32086 MB    |
-| lndse1p0deg  | 40 procs     | 70 MB                         | 15 sec               | 555 sec             | 22 MB/sec             | 12331 MB    |
-| ocn1p0deg    | 40 procs     | 98 MB                         | 157 sec              | 252 sec             | 631 MB/sec            | 158816 MB   |
-| seaice1p0deg | 40 procs     | 58 MB                         | 12 sec               | 147 sec             | 59 MB/sec             | 8626 MB     |
-| atmse0p25deg | 40 procs     | 212 MB                        | 1041 sec             | 1042 sec            | 1060 MB/sec           | 1104653 MB  |
-| lndse0p25deg | 40 procs     | 209 MB                        | 153 sec              | 273 sec             | 648 MB/sec            | 176674 MB   |
-| ocn0p1deg    | 40 procs     | 3577 MB                       | 2338 sec             | 3456 sec            | 715 MB/sec            | 2471925 MB  |
-| seaice0p1deg | 40 procs     | 346 MB                        | 591 sec              | 563 sec             | 1077 MB/sec           | 606451 MB   |
+| Test Name    | MPI Job Size | Maximum Single-Process Memory Use | Data Generation Time | PyReshaper Run Time | PyReshaper Throughput | Data Volume |
+|--------------|-------------:|----------------------------------:|---------------------:|--------------------:|----------------------:|------------:|
+| small        | 40 procs     | 43 MB                             | 1 sec                | 1 sec               | 1 MB/sec              | 1 MB        |
+| atmfv1p0deg  | 40 procs     | 70 MB                             | 31 sec               | 107 sec             | 256 MB/sec            | 27338 MB    |
+| atmse1p0deg  | 40 procs     | 70 MB                             | 35 sec               | 136 sec             | 237 MB/sec            | 32086 MB    |
+| lndse1p0deg  | 40 procs     | 70 MB                             | 15 sec               | 555 sec             | 22 MB/sec             | 12331 MB    |
+| ocn1p0deg    | 40 procs     | 98 MB                             | 157 sec              | 252 sec             | 631 MB/sec            | 158816 MB   |
+| seaice1p0deg | 40 procs     | 58 MB                             | 12 sec               | 147 sec             | 59 MB/sec             | 8626 MB     |
+| atmse0p25deg | 40 procs     | 212 MB                            | 1041 sec             | 1042 sec            | 1060 MB/sec           | 1104653 MB  |
+| lndse0p25deg | 40 procs     | 209 MB                            | 153 sec              | 273 sec             | 648 MB/sec            | 176674 MB   |
+| ocn0p1deg    | 40 procs     | 3577 MB                           | 2338 sec             | 3456 sec            | 715 MB/sec            | 2471925 MB  |
+| seaice0p1deg | 40 procs     | 346 MB                            | 591 sec              | 563 sec             | 1077 MB/sec           | 606451 MB   |
 
 ### Results
 
