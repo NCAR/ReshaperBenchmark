@@ -8,7 +8,7 @@
 HLINE1 := "---------------------------------------------------------------------"
 HLINE2 := "====================================================================="
 
-PYRESHAPER  := PyReshaper-1.0.4
+PYRESHAPER  := PyReshaper-1.0.6
 ASAPTOOLS   := ASAPPyTools-0.6.0
 NETCDF4PY   := netcdf4-python-1.2.9rel
 ORDEREDDICT := ordereddict-1.1
@@ -112,7 +112,7 @@ ordereddict: virtualenv
 	@echo $(HLINE1)
 	@echo "Installed: $@"
 	@echo $(HLINE1)
-	
+
 mpi4py: numpy
 	@HAS_MPI4PY=`source $(PREFIX)/venv/bin/activate && python -c "import mpi4py" 2> /dev/null; echo $$?`; \
 	if [ $$HAS_MPI4PY -ne 0 ]; then \
@@ -265,14 +265,14 @@ zlib: build
 				cd ..; \
 			fi; \
 			cd $(ZLIB) && \
-			$(MAKE) && \
+			CC="$CC -fPIC" $(MAKE) && \
 			$(MAKE) install; \
 		fi; \
 		echo $(HLINE1); \
 		echo "Installed: $@"; \
 		echo $(HLINE1); \
 	fi
-	
+
 szip: build
 	@HAS_NETCDF4PY=`source $(PREFIX)/venv/bin/activate && python -c "import netCDF4" 2> /dev/null; echo $$?`; \
 	if [ $$HAS_NETCDF4PY -ne 0 ]; then \
@@ -289,7 +289,7 @@ szip: build
 				cd ..; \
 			fi; \
 			cd $(SZIP) && \
-			$(MAKE) && \
+			CC="$CC -fPIC" $(MAKE) && \
 			$(MAKE) install; \
 		fi; \
 		echo $(HLINE1); \

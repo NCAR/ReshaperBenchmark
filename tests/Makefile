@@ -21,6 +21,10 @@ ifndef DEFLATE
   export DEFLATE := 0
 endif
 
+ifndef TRUNCATE
+  export TRUNCATE :=
+endif
+
 ifndef HOSTNAME
   export HOSTNAME := $(shell hostname)
 endif
@@ -49,6 +53,9 @@ endif
 
 export HOSTNAME := $(shell hostname -s)
 export EXECRUN := $(PREFIX)/sbin/execrun.sh $(PREFIX)/sbin/runtest.py -b $(FULLBACKEND) -d $(DEFLATE)
+ifneq ($(TRUNCATE),)
+export EXECRUN := $(EXECRUN) -t $(TRUNCATE)
+endif
 export GENDATA := $(PREFIX)/sbin/gendata.py
 export ACTIVATE := source $(PREFIX)/venv/bin/activate
 export CHECK := $(PREFIX)/sbin/checktest.py
